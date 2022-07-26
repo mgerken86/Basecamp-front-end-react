@@ -1,6 +1,7 @@
 import './App.css';
 import axios from 'axios'
 import { useState, useEffect } from 'react';
+import NavBar from './components/Navbar/Navbar';
 
 const starterData = {
   name: "",
@@ -60,6 +61,7 @@ export default function App() {
 
     return (
       <div className="App">
+        <NavBar/>
         {gear.map(gear => <p>{gear.name}</p>)}
 
         <div className="listSearch">

@@ -1,0 +1,24 @@
+.nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    height: 15vh;
+    background-color: black;
+    padding: 0 1.5em;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: space-between;
+    width: 50vw;
+}
+
+.nav-list a {
+    color: white;
+    text-decoration: none;
+}
+
+#logoImg {
+    width: 20vw;
+}
