@@ -26,26 +26,11 @@ export default function App() {
         .catch(err => { })
     }
 
-    // const callPut = () => {
-
-    //   axios.post('http://localhost:8000/rentals/')
-    //   .then(res => {
-    //     data = res.data;
-    //     console.log(data)
-    //     setGear(data);
-    //   })
-    //   .catch(err => { })
-    // }
 
     useEffect(() => {
       callGet()
     }, [])
 
-    // const handleInput = (e) => {
-    //   this.setState({
-    //     [e.target.name]: e.target.value,
-    //   });
-    // };
     const changeData = (e) => {
       const newData = {
         ...formData,
