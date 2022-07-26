@@ -7,6 +7,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 export default function ReservationsIndexPage() {
     const [reservations, setReservations] = useState([])
     const navigate = useNavigate()
+    const [showForm, setShowForm] = useState(false)
 
     let data
 
@@ -28,6 +29,10 @@ export default function ReservationsIndexPage() {
     return (
         <main>
             <h1>Reservations Index Page</h1>
+            <button onClick={()=>setShowForm(!showForm)}>New Reservation</button>
+            {showForm && 
+            <div>Form
+            </div>}
             {reservations.map((reservation, index) => {
                 return <div key={index}>
                     <p>Start Date: {reservation.start_date}</p>

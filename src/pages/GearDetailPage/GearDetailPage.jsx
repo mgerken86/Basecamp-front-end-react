@@ -2,6 +2,7 @@ import './GearDetailPage.css'
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import EditGearForm from '../../components/EditGearForm/EditGearForm';
 
 
 
@@ -9,6 +10,7 @@ export default function GearDetailPage(){
     const { state } = useLocation();
     const { gear } = state
     const [gearItem, setGearItem] = useState(gear.gear)
+    const [showEdit, setShowEdit] = useState(false)
 
     const deleteGear = (id) => {
         axios.delete(`http://localhost:8000/rentals/${id}`)
@@ -28,6 +30,8 @@ export default function GearDetailPage(){
             <p>${gearItem.price}</p>
             <p>Quantity: {gearItem.qty}</p>
             <button onClick={()=> deleteGear(gearItem.id)}>Delete</button>
+            <button onClick={()=> setShowEdit(!showEdit)}>Edit</button>
+            {showEdit && <EditGearForm gear={gearItem}/>}
         </main>
     )
 }
