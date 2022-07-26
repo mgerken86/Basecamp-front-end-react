@@ -27,7 +27,7 @@ export default function GearDetailPage(){
             <p>{gearItem.desc}</p>
             <p>${gearItem.price}</p>
             <p>Quantity: {gearItem.qty}</p>
-            <button onClick={()=> deleteGear(gear.id)}>Delete</button>
+            <button onClick={()=> deleteGear(gearItem.id)}>Delete</button>
         </main>
     )
 }
