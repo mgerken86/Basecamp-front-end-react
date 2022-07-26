@@ -70,6 +70,9 @@ export default function NewGearForm({ setGear }) {
                         onChange={changeData}
                         required
                     />
+                </div>
+                <div>
+                    <label>Quantity</label>
                     <input
                         className="SearchInput"
                         type="number"
