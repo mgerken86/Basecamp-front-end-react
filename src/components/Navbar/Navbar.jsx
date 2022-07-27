@@ -5,13 +5,13 @@ export default function NavBar() {
   return (
     <nav>
       <div className="nav-link">
-        <a href="">
+      <Link to="/">
           <img
             id="logoImg"
             src="/images/A-Lodge_logo.png"
             alt="logo"
           />
-        </a>
+        </Link>
         <ul className="nav-list">
           {/* <Link><a href="{% url 'about' %}">About</a></Link> */}
           <Link to="/rentals">Rentals</Link>

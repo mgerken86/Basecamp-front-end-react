@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react';
 import axios from 'axios'
 
 
-const starterData = {
-    start_date: "",
-    end_date: "",
-    gear_item: '',
-    qty: 0,
-  };
+// const starterData = {
+//     start_date: "",
+//     end_date: "",
+//     gear_item: '',
+//     qty: 0,
+//   };
 
 
-export default function NewGearForm({ setGear }) {
-    const [formData, setFormData] = useState(starterData)
+export default function NewReservationForm({  }) {
+    const [formData, setFormData] = useState({})
   
       const changeData = (e) => {
         const newData = {
@@ -23,50 +23,52 @@ export default function NewGearForm({ setGear }) {
   
       const handleSubmit = () => {
         axios
-            .post("http://localhost:8000/rentals/", {
-                name: formData.name,
-                desc: formData.desc,
-                price: formData.price,
+            .post("http://localhost:8000/reservations/", {
+                start_date: formData.start_date,
+                end_date: formData.end_date,
+                gear_item: 2,
+                // gear_item: formData.gear_item,
                 qty: formData.qty,
+                user: 1
             })
             .then((res) => {
                 
             })
             .catch((err) => {});
 
-        setFormData(starterData)
+        // setFormData(starterData)
     };
 
     return (
         <main>
             <div className="listSearch">
                 <div>
-                    <label>Name</label>
+                    <label>Start Date</label>
                     <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
+                        type="date"
+                        name="start_date"
+                        value={formData.start_date}
                         onChange={changeData}
                         required
                     />
                 </div>
                 <div>
-                    <label>Description</label>
+                    <label>End Date</label>
                     <input
-                        type="text"
-                        name="desc"
+                        type="date"
+                        name="end_date"
                         value={formData.desc}
                         onChange={changeData}
                         required
                     />
                 </div>
                 <div>
-                    <label>Price</label>
+                    <label>Gear</label>
                     <input
                         className="SearchInput"
                         type="number"
-                        name="price"
-                        value={formData.price}
+                        name="gear_item"
+                        value={formData.gear_item}
                         onChange={changeData}
                         required
                     />

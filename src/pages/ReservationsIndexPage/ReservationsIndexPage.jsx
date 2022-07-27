@@ -1,4 +1,5 @@
 import './ReservationsIndexPage.css'
+import NewReservationForm from '../../components/NewReservationForm/NewReservationForm';
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Navigate, useNavigate } from "react-router-dom";
@@ -31,7 +32,8 @@ export default function ReservationsIndexPage() {
             <h1>Reservations Index Page</h1>
             <button onClick={()=>setShowForm(!showForm)}>New Reservation</button>
             {showForm && 
-            <div>Form
+            <div>
+                <NewReservationForm />
             </div>}
             {reservations.map((reservation, index) => {
                 return <div key={index}>

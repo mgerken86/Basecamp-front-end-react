@@ -17,7 +17,7 @@ export default function App() {
             <Route path="/rentals" element={<GearIndexPage />} />
             <Route path="/rentals/:gear_item_id" element={<GearDetailPage />} />
             <Route path="/reservations" element={<ReservationsIndexPage />} />
-            <Route path="/reservations/:reservation_id" element={<ReservationDetailPage />} />
+            <Route path="/reservations/:reservation_id" element={<ReservationDetailPage/>} />
           </Routes>
       </div>
     );
