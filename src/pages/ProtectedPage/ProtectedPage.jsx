@@ -21,9 +21,9 @@ export default function ProtectedPage() {
   }, []);
 
   return (
-    <div>
+    <main>
       <h1>Protected Page</h1>
       <p>{res}</p>
-    </div>
+    </main>
   );
 }

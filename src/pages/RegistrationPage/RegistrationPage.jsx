@@ -13,7 +13,7 @@ export default function RegistrationPage() {
   };
 
   return (
-    <section>
+    <main>
       <form onSubmit={handleSubmit}>
         <h1>Register</h1>
         <hr />
@@ -50,6 +50,6 @@ export default function RegistrationPage() {
         </div>
         <button>Register</button>
       </form>
-    </section>
+    </main>
   );
 }

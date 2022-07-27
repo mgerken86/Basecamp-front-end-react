@@ -11,7 +11,7 @@ export default function LoginPage() {
   };
 
   return (
-    <section>
+    <main>
       <form onSubmit={handleSubmit}>
         <h1>Login </h1>
         <hr />
@@ -21,6 +21,6 @@ export default function LoginPage() {
         <input type="password" id="password" placeholder="Enter Password" />
         <button type="submit">Login</button>
       </form>
-    </section>
+    </main>
   );
 };

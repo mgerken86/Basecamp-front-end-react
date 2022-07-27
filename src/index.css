@@ -3,6 +3,17 @@
   margin: 0;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main h1 {
+  color: var(--aRed);
+  font-size: 3em;
+  margin: 1em;
+}
+
 body {
   background-color: lightgray;
 }
