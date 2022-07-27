@@ -22,7 +22,7 @@ export default function ProtectedPage() {
 
   return (
     <div>
-      <h1>Projected Page</h1>
+      <h1>Protected Page</h1>
       <p>{res}</p>
     </div>
   );
