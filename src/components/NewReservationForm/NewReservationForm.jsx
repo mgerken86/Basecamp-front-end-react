@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import AuthContext from '../../context/AuthContext';
 import axios from 'axios'
 
 
@@ -6,7 +8,7 @@ const getGear = (setState) => {
     axios.get('http://localhost:8000/rentals/')
       .then(res => {
         let data = res.data;
-        console.log(data)
+        // console.log(data)
         setState(data)
       })
       .catch(err => { })
@@ -14,14 +16,17 @@ const getGear = (setState) => {
 
 
 export default function NewReservationForm({  }) {
+    const { user } = useContext(AuthContext);
     const [formData, setFormData] = useState({})
     const [gear, setGear] = useState([])
+
+    // console.log(user)
 
     useEffect(()=> {
         getGear(setGear)
     }, [])
   
-    console.log(gear)
+    // console.log(gear)
       const changeData = (e) => {
         const newData = {
           ...formData,
@@ -39,7 +44,7 @@ export default function NewReservationForm({  }) {
                 gear_item_ids: [formData.gear_item_ids],
                 // gear_item: formData.gear_item,
                 qty: formData.qty,
-                user: 1
+                user: user.user_id
             })
             .then((res) => {
                 
@@ -74,14 +79,18 @@ export default function NewReservationForm({  }) {
                 {gear !== null && 
                 <div>
                     {gear.map((item, index) => {
-                        return <input
+                        return <>
+                        <input
                         className="SearchInput"
+                        id={item.name}
                         type="radio"
                         name="gear_item_ids"
                         value={item.id}
                         onChange={changeData}
                         required
                     />
+                    <label for={item.name}>{item.name}</label>
+                    </>
                     })}
                     
                     

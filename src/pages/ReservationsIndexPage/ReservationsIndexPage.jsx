@@ -44,7 +44,9 @@ export default function ReservationsIndexPage() {
                         return <div key={index}>
                             <h3>Gear Item:</h3>
                             <p>{gear.name}</p>
-                            <p>{gear.price}</p>
+                            {/* <p>${gear.price}</p> */}
+                            <p>Quantity: {reservation.qty}</p>
+                            <p>{reservation.qty}</p>
                         </div>
                     })}
                     <button
