@@ -25,7 +25,7 @@ export default function App() {
             <Route path="/reservations" element={<ReservationsIndexPage />} />
             <Route path="/reservations/:reservation_id" element={<ReservationDetailPage/>} />
             {/* <PrivateRoute path="/protected" element={<ProtectedPage/>} exact /> */}
-            <Route path="/protected" element={<ProtectedPage/>}  />
+            <Route path="/myaccount" element={<ProtectedPage/>}  />
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/register" element={<RegistrationPage/>}/>
           </Routes>

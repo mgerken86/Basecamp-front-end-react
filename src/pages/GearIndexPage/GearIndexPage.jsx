@@ -34,6 +34,7 @@ export default function GearIndexPage(){
     return (
         <main>
             <h1>Gear Index Page</h1>
+            <div className='container-left'>
             {gear.map((gear, index) => { return <div key={index}>
             <h2>{gear.name}</h2>
             <p>${gear.price}</p>
@@ -53,6 +54,7 @@ export default function GearIndexPage(){
             </div>
             })}
             <NewGearForm setGear={setGear}/>
+            </div>
         </main>
     )
 }

@@ -24,7 +24,7 @@ export default function NavBar() {
 
           {user ? (
             <>
-              <Link to="/protected">Protected Page</Link>
+              <Link to="/myaccount">My Account</Link>
               <Link to="/login" onClick={logoutUser}>Logout</Link>
             </>
           ) : (
