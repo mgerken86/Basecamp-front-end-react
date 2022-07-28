@@ -26,7 +26,8 @@ export default function NewReservationForm({  }) {
             .post("http://localhost:8000/reservations/", {
                 start_date: formData.start_date,
                 end_date: formData.end_date,
-                gear_item: 2,
+                //change this to dynamically choose the id of the gear items
+                gear_item_ids: [26],
                 // gear_item: formData.gear_item,
                 qty: formData.qty,
                 user: 1
