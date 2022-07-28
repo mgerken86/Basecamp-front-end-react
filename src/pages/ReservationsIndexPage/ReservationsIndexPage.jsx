@@ -49,21 +49,6 @@ export default function ReservationsIndexPage() {
                             <p>{reservation.qty}</p>
                         </div>
                     })}
-                    <button
-                        onClick={() => {
-                            navigate(`/reservations/${reservation.id}`,
-                                {
-                                    state: {
-                                        reservation: { reservation },
-                                    },
-                                })
-                        }}>
-                        More Info
-                    </button>
-                    <hr />
-                    <br />
-                    <hr />
-                    <br />
                 </div>
             })}
             </div>

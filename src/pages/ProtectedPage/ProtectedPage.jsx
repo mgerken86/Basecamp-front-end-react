@@ -1,29 +1,60 @@
 import { useEffect, useState } from "react";
-import useAxios from "../../utils/useAxios";
+import axios from "axios";
+import { useContext } from 'react';
+import AuthContext from '../../context/AuthContext';
+import { useNavigate } from "react-router-dom";
 
 
 export default function ProtectedPage() {
-  const [res, setRes] = useState("");
-  const api = useAxios();
+  const [userReservations, setUserReservations] = useState()
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate()
+  console.log(user)
+  const getReservations = () => {
+    axios.get(`http://localhost:8000/myaccount/${user.user_id}`)
+      .then(res => {
+        let data = res.data;
+        console.log(data)
+        setUserReservations(data);
+      })
+      .catch(err => { })
+  }
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/test/");
-        setRes(response.data.response);
-        console.log(response.data.response)
-      } catch {
-        setRes("Something went wrong");
-      }
-    };
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    getReservations()
   }, []);
 
   return (
     <main>
-      <h1>Protected Page</h1>
-      <p>{res}</p>
+      <h1>My Account</h1>
+      <div className="container-left">
+        {userReservations?.map((reservation, index) => {
+          return <div key={index}>
+            <p>Start Date: {reservation.start_date}</p>
+            <p>End Date: {reservation.end_date}</p>
+            <hr />
+            {reservation.gear_item.map((gear, index) => {
+              return <div key={index}>
+                <h3>Gear Item:</h3>
+                <p>{gear.name}- ${gear.price}</p>
+                {/* <p>${gear.price}</p> */}
+                <p>Quantity: {reservation.qty}</p>
+              </div>
+            })}
+            <button
+              onClick={() => {
+                navigate(`/reservations/${reservation.id}`,
+                  {
+                    state: {
+                      reservation: { reservation },
+                    },
+                  })
+              }}>
+              More Info
+            </button>
+          </div>
+        })}
+      </div>
     </main>
   );
 }

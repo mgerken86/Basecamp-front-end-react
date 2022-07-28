@@ -30,6 +30,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
+  gap: 3em;
 }
 
 .flex-col {
@@ -38,4 +40,9 @@ body {
 }
 .evenly {
   justify-content: space-evenly;
+}
+.space-around {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
