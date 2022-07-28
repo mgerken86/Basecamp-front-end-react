@@ -2,17 +2,26 @@ import { useState, useEffect } from 'react';
 import axios from 'axios'
 
 
-// const starterData = {
-//     start_date: "",
-//     end_date: "",
-//     gear_item: '',
-//     qty: 0,
-//   };
+const getGear = (setState) => {
+    axios.get('http://localhost:8000/rentals/')
+      .then(res => {
+        let data = res.data;
+        console.log(data)
+        setState(data)
+      })
+      .catch(err => { })
+  }
 
 
 export default function NewReservationForm({  }) {
     const [formData, setFormData] = useState({})
+    const [gear, setGear] = useState([])
+
+    useEffect(()=> {
+        getGear(setGear)
+    }, [])
   
+    console.log(gear)
       const changeData = (e) => {
         const newData = {
           ...formData,
@@ -27,7 +36,7 @@ export default function NewReservationForm({  }) {
                 start_date: formData.start_date,
                 end_date: formData.end_date,
                 //change this to dynamically choose the id of the gear items
-                gear_item_ids: [26],
+                gear_item_ids: [formData.gear_item_ids],
                 // gear_item: formData.gear_item,
                 qty: formData.qty,
                 user: 1
@@ -36,8 +45,6 @@ export default function NewReservationForm({  }) {
                 
             })
             .catch((err) => {});
-
-        // setFormData(starterData)
     };
 
     return (
@@ -63,17 +70,22 @@ export default function NewReservationForm({  }) {
                         required
                     />
                 </div>
+                {/* If there's gear, map through the gear items and make radio inputs for each */}
+                {gear !== null && 
                 <div>
-                    <label>Gear</label>
-                    <input
+                    {gear.map((item, index) => {
+                        return <input
                         className="SearchInput"
-                        type="number"
-                        name="gear_item"
-                        value={formData.gear_item}
+                        type="radio"
+                        name="gear_item_ids"
+                        value={item.id}
                         onChange={changeData}
                         required
                     />
-                </div>
+                    })}
+                    
+                    
+                </div>}
                 <div>
                     <label>Quantity</label>
                     <input

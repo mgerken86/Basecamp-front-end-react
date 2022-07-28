@@ -1,4 +1,4 @@
-#Basecamp
+# Basecamp
 
 This is the front end of "Basecamp," a hotel-manager built for the Boulder Adventure Lodge in Boulder, CO. 
 

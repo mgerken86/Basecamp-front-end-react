@@ -55,7 +55,9 @@ export default function GearIndexPage(){
     return (
         <main>
             <h1>Gear Index Page</h1>
-            <h2>Before renting, know the weather conditions!...</h2>
+            {forecast.current && <>
+            <h2 onClick={()=> getWeather(setForecast)}>Before renting, know the weather conditions!...</h2>
+             
             <p>Currently: {forecast.current.condition.text} and {forecast.current.temp_f}</p>
             <img src={forecast.current.condition.icon} alt="" />
             <h3>Next three days...</h3>
@@ -71,6 +73,7 @@ export default function GearIndexPage(){
                   </div>
               })}
               </div>
+              </>}
             
             <div className='container-left'>
             {gear.length != 0 && gear.map((gear, index) => { return <div key={index}>
