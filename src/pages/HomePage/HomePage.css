@@ -1,0 +1,19 @@
+#trailsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#trailsContainer img {
+    width: 30vw;
+    height: 30vh;
+}
+
+.trailDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}

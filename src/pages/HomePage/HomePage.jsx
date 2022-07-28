@@ -8,14 +8,17 @@ const boulder = {
     lng: -105.2705456
 }
 const lyons = {
-    lat: -40.2247075,
+    lat: 40.2247075,
     lng: -105.271378
 }
 const golden = {
-    lat: -39.755543,
+    lat: 39.755543,
     lng: -105.2210997
 }
-
+const estesPark = {
+    lat: 40.3772059,
+    lng: -105.5216651
+}
 
 
 const fetchTrails = (lat, lng, setState) => {
@@ -49,26 +52,44 @@ export default function HomePage() {
 
             <button onClick={() => {
                 fetchTrails(boulder.lat, boulder.lng, setTrailsData)
-            }}>Boulder</button>
-            <button>Lyons</button>
-            <button>Golden</button>
-            {trailsData.map((trail, index) => {
-                return <div key={index}>
-                    <p>{trail.name}</p>
+            }}>
+                Boulder
+            </button>
+            <button onClick={() => {
+                fetchTrails(lyons.lat, lyons.lng, setTrailsData)
+            }}>
+                Lyons
+            </button>
+            <button onClick={() => {
+                fetchTrails(golden.lat, golden.lng, setTrailsData)
+            }}>
+                Golden
+            </button>
+            <button onClick={() => {
+                fetchTrails(estesPark.lat, estesPark.lng, setTrailsData)
+            }}>
+                Estes Park
+            </button>
+            {trailsData.length === 5 &&
+                <div id='trailsContainer'>
+                    <h1>Bike Trails in {trailsData[0].city}</h1>
+                    {trailsData.map((trail, index) => {
+                        return <div key={index} className="trailDiv">
+                            <p>{trail.name}</p>
 
-                    {trail.thumbnail
-                        ?
-                        <img src={trail.thumbnail} alt="{trail.name}" />
-                        :
-                        <h5>Sorry, no photo for this trail</h5>
-                    }
+                            {trail.thumbnail
+                                ?
+                                <img src={trail.thumbnail} alt="{trail.name}" />
+                                :
+                                <h5>Sorry, no photo for this trail</h5>
+                            }
 
-                    <p>Miles: {trail.length}</p>
-                    <p>Difficulty: {trail.difficulty}</p>
-                    <p>trail.description</p>
-                </div>
-            })
-            }
+                            <p>Miles: {trail.length}</p>
+                            <p>Difficulty: {trail.difficulty}</p>
+                            <p>{trail.description}</p>
+                        </div>
+                    })}
+                </div>}
         </main>
     )
 }

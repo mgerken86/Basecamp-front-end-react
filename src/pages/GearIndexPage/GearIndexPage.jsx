@@ -6,36 +6,57 @@ import { Link } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 
 
-
+  //get all gear_items from back end
+  const getGear = (setState) => {
+    axios.get('http://localhost:8000/rentals/')
+      .then(res => {
+        let data = res.data;
+        console.log(data)
+        setState(data);
+      })
+      .catch(err => { })
+  }
+    // call weather api for 3-day forecast
+    const getWeather = (setState) => {
+      const options = {
+        method: 'GET',
+        url: 'https://weatherapi-com.p.rapidapi.com/forecast.json',
+        params: {q: 'Boulder', days: '3'},
+        headers: {
+          'X-RapidAPI-Key': 'b706fa8596msha33725def79a97cp1b9fc1jsn8dfd397c7442',
+          'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+        }
+      };
+      
+      axios.request(options).then(function (response) {
+        console.log(response.data);
+        setState(response.data);
+      }).catch(function (error) {
+        console.error(error);
+      });
+    }
 
 
 
 export default function GearIndexPage(){
   const [gear, setGear] = useState([])
+  const [forecast, setForecast] = useState([])
   const navigate = useNavigate()
-  let data
-  
-  
-  const getGear = () => {
-    axios.get('http://localhost:8000/rentals/')
-      .then(res => {
-        data = res.data;
-        console.log(data)
-        setGear(data);
-      })
-      .catch(err => { })
-  }
 
 
   useEffect(() => {
-    getGear()
+    (async() => {
+      await getGear(setGear)
+      await getWeather(setForecast)
+    })()
+    
   }, [])
 
     return (
         <main>
             <h1>Gear Index Page</h1>
             <div className='container-left'>
-            {gear.map((gear, index) => { return <div key={index}>
+            {gear.length != 0 && gear.map((gear, index) => { return <div key={index}>
             <h2>{gear.name}</h2>
             <p>${gear.price}</p>
             <button 
