@@ -12,11 +12,11 @@ export default function ProtectedPage() {
   const navigate = useNavigate()
   const [showEdit, setShowEdit] = useState(false)
 
-  // console.log(user)
+  console.log(user)
 
 
   const getReservations = () => {
-    axios.get(`http://localhost:8000/myaccount/${user.user_id}`)
+    axios.get(`https://a-lodge-basecamp.herokuapp.com/myaccount/${user.user_id}`)
       .then(res => {
         let data = res.data;
         // console.log(data)
@@ -26,7 +26,7 @@ export default function ProtectedPage() {
   }
 
   const deleteReservation = (id) => {
-    axios.delete(`http://localhost:8000/reservations/${id}`)
+    axios.delete(`https://a-lodge-basecamp.herokuapp.com/reservations/${id}`)
       .then(res => {
         // console.log(res)
       })

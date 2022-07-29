@@ -14,7 +14,7 @@ export default function ReservationsIndexPage() {
 
 
     const getReservations = () => {
-        axios.get('http://localhost:8000/reservations/')
+        axios.get('https://a-lodge-basecamp.herokuapp.com/reservations/')
             .then(res => {
                 data = res.data;
                 console.log(data)

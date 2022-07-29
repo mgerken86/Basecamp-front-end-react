@@ -23,7 +23,7 @@ export default function NewGearForm({ setGear }) {
   
       const handleSubmit = () => {
         axios
-            .post("http://localhost:8000/rentals/", {
+            .post("https://a-lodge-basecamp.herokuapp.com/rentals/", {
                 name: formData.name,
                 desc: formData.desc,
                 price: formData.price,

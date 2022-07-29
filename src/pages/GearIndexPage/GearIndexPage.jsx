@@ -8,7 +8,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
   //get all gear_items from back end
   const getGear = (setState) => {
-    axios.get('http://localhost:8000/rentals/')
+    axios.get('https://a-lodge-basecamp.herokuapp.com/rentals/')
       .then(res => {
         let data = res.data;
         console.log(data)

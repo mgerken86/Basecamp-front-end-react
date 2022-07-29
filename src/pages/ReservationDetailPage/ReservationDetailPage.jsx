@@ -14,7 +14,7 @@ export default function ReservationDetailPage(){
 
     // console.log(reservation_id)
     const deleteReservation = (id) => {
-        axios.delete(`http://localhost:8000/reservations/${id}`)
+        axios.delete(`https://a-lodge-basecamp.herokuapp.com/reservations/${id}`)
         .then(res => {
           console.log(res)
         })

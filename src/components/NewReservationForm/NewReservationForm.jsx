@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 const getGear = (setState) => {
-    axios.get('http://localhost:8000/rentals/')
+    axios.get('https://a-lodge-basecamp.herokuapp.com/rentals/')
       .then(res => {
         let data = res.data;
         // console.log(data)
@@ -37,7 +37,7 @@ export default function NewReservationForm({  }) {
   
       const handleSubmit = () => {
         axios
-            .post("http://localhost:8000/reservations/", {
+            .post("https://a-lodge-basecamp.herokuapp.com/reservations/", {
                 start_date: formData.start_date,
                 end_date: formData.end_date,
                 //change this to dynamically choose the id of the gear items

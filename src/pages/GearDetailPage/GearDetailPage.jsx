@@ -13,7 +13,7 @@ export default function GearDetailPage(){
     const [showEdit, setShowEdit] = useState(false)
 
     const deleteGear = (id) => {
-        axios.delete(`http://localhost:8000/rentals/${id}`)
+        axios.delete(`https://a-lodge-basecamp.herokuapp.com/rentals/${id}`)
         .then(res => {
           console.log(res)
         })

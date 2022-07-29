@@ -4,7 +4,7 @@ import axios from 'axios'
 
 // fetch all gear items available to be able to edit reservation gear items to something else
 const getGear = (setState) => {
-    axios.get('http://localhost:8000/rentals/')
+    axios.get('https://a-lodge-basecamp.herokuapp.com/rentals/')
       .then(res => {
         let data = res.data;
         // console.log(data)
@@ -43,7 +43,7 @@ export default function EditReservationForm({ thisReservation }) {
   
       const handleSubmit = () => {
         axios
-            .put(`http://localhost:8000/reservations/${reservation.id}`, {
+            .put(`https://a-lodge-basecamp.herokuapp.com/${reservation.id}`, {
                 start_date: formData.start_date,
                 end_date: formData.end_date,
                 //change this to dynamically choose the id of the gear items
