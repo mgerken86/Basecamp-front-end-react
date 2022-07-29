@@ -47,9 +47,10 @@ export default function HomePage() {
     const { user } = useContext(AuthContext);
     return (
         <main>
+            {user && <>
             <h1>Home Page</h1>
             <h2>Hello, {user.username}</h2>
-
+            </>}
             <button onClick={() => {
                 fetchTrails(boulder.lat, boulder.lng, setTrailsData)
             }}>
