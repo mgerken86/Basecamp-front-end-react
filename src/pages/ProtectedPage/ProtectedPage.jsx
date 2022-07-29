@@ -3,19 +3,32 @@ import axios from "axios";
 import { useContext } from 'react';
 import AuthContext from '../../context/AuthContext';
 import { useNavigate } from "react-router-dom";
+import EditReservationForm from "../../components/EditReservationForm/EditReservationForm";
 
 
 export default function ProtectedPage() {
   const [userReservations, setUserReservations] = useState()
   const { user } = useContext(AuthContext);
   const navigate = useNavigate()
-  console.log(user)
+  const [showEdit, setShowEdit] = useState(false)
+
+  // console.log(user)
+
+
   const getReservations = () => {
     axios.get(`http://localhost:8000/myaccount/${user.user_id}`)
       .then(res => {
         let data = res.data;
-        console.log(data)
+        // console.log(data)
         setUserReservations(data);
+      })
+      .catch(err => { })
+  }
+
+  const deleteReservation = (id) => {
+    axios.delete(`http://localhost:8000/reservations/${id}`)
+      .then(res => {
+        // console.log(res)
       })
       .catch(err => { })
   }
@@ -30,6 +43,7 @@ export default function ProtectedPage() {
       <div className="container-left">
         {userReservations?.map((reservation, index) => {
           return <div key={index}>
+            {showEdit && <EditReservationForm thisReservation={reservation}/>}
             <p>Start Date: {reservation.start_date}</p>
             <p>End Date: {reservation.end_date}</p>
             <hr />
@@ -39,19 +53,25 @@ export default function ProtectedPage() {
                 <p>{gear.name}- ${gear.price}</p>
                 {/* <p>${gear.price}</p> */}
                 <p>Quantity: {reservation.qty}</p>
+                <p>Total Price: ${reservation.qty * gear.price}</p>
               </div>
             })}
             <button
-              onClick={() => {
-                navigate(`/reservations/${reservation.id}`,
+              onClick={() => setShowEdit(!showEdit)}>
+              {/* navigate(`/reservations/${reservation.id}`,
                   {
                     state: {
                       reservation: { reservation },
                     },
                   })
-              }}>
-              More Info
+              }
+              }}> */}
+              Edit Reservation
             </button>
+            <button onClick={async () => {
+              await deleteReservation(reservation.id)
+              navigate(0)
+            }}>Delete</button>
           </div>
         })}
       </div>

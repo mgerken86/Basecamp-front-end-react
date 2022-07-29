@@ -27,6 +27,9 @@ export default function ReservationsIndexPage() {
     useEffect(() => {
         getReservations()
     }, [])
+
+
+
     return (
         <main>
             <h1>Reservations Index Page</h1>
@@ -46,7 +49,6 @@ export default function ReservationsIndexPage() {
                             <p>{gear.name}</p>
                             {/* <p>${gear.price}</p> */}
                             <p>Quantity: {reservation.qty}</p>
-                            <p>{reservation.qty}</p>
                         </div>
                     })}
                 </div>
