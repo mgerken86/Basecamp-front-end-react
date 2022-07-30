@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useContext } from 'react';
 import AuthContext from '../../context/AuthContext';
 import { useNavigate } from "react-router-dom";
 import EditReservationForm from "../../components/EditReservationForm/EditReservationForm";
+import * as axiosRequests from '../../utils/axiosRequests'
 
 
 export default function ProtectedPage() {
@@ -12,29 +12,10 @@ export default function ProtectedPage() {
   const navigate = useNavigate()
   const [showEdit, setShowEdit] = useState(false)
 
-  console.log(user)
-
-
-  const getReservations = () => {
-    axios.get(`https://a-lodge-basecamp.herokuapp.com/myaccount/${user.user_id}`)
-      .then(res => {
-        let data = res.data;
-        // console.log(data)
-        setUserReservations(data);
-      })
-      .catch(err => { })
-  }
-
-  const deleteReservation = (id) => {
-    axios.delete(`https://a-lodge-basecamp.herokuapp.com/reservations/${id}`)
-      .then(res => {
-        // console.log(res)
-      })
-      .catch(err => { })
-  }
+  // console.log(user)
 
   useEffect(() => {
-    getReservations()
+    axiosRequests.getUserReservations(setUserReservations, user.user_id)
   }, []);
 
   return (
@@ -69,7 +50,7 @@ export default function ProtectedPage() {
               Edit Reservation
             </button>
             <button onClick={async () => {
-              await deleteReservation(reservation.id)
+              await axiosRequests.deleteReservation(reservation.id)
               navigate(0)
             }}>Delete</button>
           </div>

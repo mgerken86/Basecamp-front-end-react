@@ -6,6 +6,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { getReservations } from '../../utils/axiosRequests';
 
 const localizer = momentLocalizer(moment)
 
@@ -16,16 +17,6 @@ export default function ReservationsIndexPage() {
     const [showForm, setShowForm] = useState(false)
     const [events, setEvents] = useState([])
 
-
-    const getReservations = () => {
-        axios.get('https://a-lodge-basecamp.herokuapp.com/reservations/')
-            .then(res => {
-                let data = res.data;
-                console.log(data)
-                setReservations(data);
-            })
-            .catch(err => { })
-    }
 
     const getDateMarkers = () => {
         reservations.map(reservation => {
@@ -38,7 +29,7 @@ export default function ReservationsIndexPage() {
         })
     }
     useEffect(() => {
-        getReservations()
+        getReservations(setReservations)
     }, [])
 
     useEffect(() => {

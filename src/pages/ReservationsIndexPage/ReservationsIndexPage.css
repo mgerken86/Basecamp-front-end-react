@@ -10,22 +10,21 @@
 
 }
 #calendarBtn {
-    background-color: black;
+    background-color: var(--dGray);
     color: var(--aRed);
     font-size: 1em;
     padding: .4em 0;
     cursor: pointer;
 }
 #calendarBtn:hover {
-    color: black;
+    color: white;
     background-color: var(--aRed);
 }
 .rbc-off-range-bg {
-    background-color: var(--dGray) !important;
-    color: white !important;
+    background-color: var(--lGray) !important;
 }
 .rbc-off-range button {
-    color: white !important;
+    color: black !important;
 }
 .rbc-event {
     background-color: black !important;

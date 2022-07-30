@@ -1,5 +1,7 @@
 :root {
-  --dGray: #3e3e40;
+  --dGray: #212121;
+  --lGray: #d2d2d2;
+  --aGray: #ededed;
   --aRed: #dc1e26;
 }
 
@@ -20,7 +22,7 @@ main h1 {
 }
 
 body {
-  background-color: lightgray;
+  background-color: var(--aGray);
 }
 
 .main-container {

@@ -4,7 +4,7 @@
     justify-content: space-between;
     width: 100vw;
     height: 15vh;
-    background-color: black;
+    background-color: var(--dGray);
     padding: 0 1.5em;
 }
 

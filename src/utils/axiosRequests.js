@@ -33,3 +33,37 @@ export const getWeather = (setState) => {
         console.error(error);
     });
 }
+
+
+// gets all reservations
+export const getReservations = (setState) => {
+    axios.get('https://a-lodge-basecamp.herokuapp.com/reservations/')
+        .then(res => {
+            let data = res.data;
+            console.log(data)
+            setState(data);
+        })
+        .catch(err => { })
+}
+
+
+// used to get all logged in user reservations
+export const getUserReservations = (setState, id) => {
+    axios.get(`https://a-lodge-basecamp.herokuapp.com/myaccount/${id}`)
+      .then(res => {
+        let data = res.data;
+        // console.log(data)
+        setState(data);
+      })
+      .catch(err => { })
+  }
+
+
+//used to delete one reservation
+export const deleteReservation = (id) => {
+    axios.delete(`${baseURL}/reservations/${id}`)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => { })
+  }
