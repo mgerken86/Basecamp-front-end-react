@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+import { postGear } from '../../utils/axiosRequests';
 
 
 const starterData = {
     name: "",
     desc: "",
     price: 0,
-    qty: 0
+    qty: 0,
+    image_url: ''
   };
 
 
 export default function NewGearForm({ setGear }) {
     const [formData, setFormData] = useState(starterData)
+    const navigate = useNavigate()
   
       const changeData = (e) => {
         const newData = {
@@ -21,21 +25,6 @@ export default function NewGearForm({ setGear }) {
         setFormData(newData);
       }
   
-      const handleSubmit = () => {
-        axios
-            .post("https://a-lodge-basecamp.herokuapp.com/rentals/", {
-                name: formData.name,
-                desc: formData.desc,
-                price: formData.price,
-                qty: formData.qty,
-            })
-            .then((res) => {
-                
-            })
-            .catch((err) => {});
-
-        setFormData(starterData)
-    };
 
     return (
         <main>
@@ -82,12 +71,21 @@ export default function NewGearForm({ setGear }) {
                         required
                     />
                 </div>
+                <div>
+                    <label>Image Url</label>
+                    <input 
+                        type="text"
+                        name="image_url"
+                        value={formData.image_url}
+                        onChange={changeData}/>
+                </div>
                 {/* onClick function sets the state of the rooms to the new input arguments */}
                 <button
                     className="searchBtn"
 
                     onClick={async () => {
-                        await handleSubmit()
+                        await postGear(setFormData, formData, starterData)
+                        navigate(0)
                     }}>
                     Add Gear
                 </button>

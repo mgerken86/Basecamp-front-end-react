@@ -20,9 +20,26 @@ export default function GearIndexPage(){
     
   }, [])
 
+  useEffect(() => {
+    console.log(gear)
+  }, [gear])
+
     return (
         <main>
-            <h1>Gear Index Page</h1>
+          {/* <div id='vertDiv'></div> */}
+          <div className='titleCont'>
+            <img 
+            id='gearImg'
+            src="https://cdn.hiconsumption.com/wp-content/uploads/2018/09/Best-Used-Gear-Stores-Online-0-Hero-1087x725.jpg" 
+            alt="gear" />
+
+          
+          <div className='titleDiv'>
+          <h1 id='gearH1'>GEAR</h1>
+            <h2>CHECK OUT OUR AVAILABLE RENTALS</h2>
+            </div>
+          </div>
+            
             {forecast.current && <>
             <h2>Before renting, know the weather conditions!...</h2>
              
@@ -43,8 +60,9 @@ export default function GearIndexPage(){
               </div>
               </>}
             
-            <div className='container-left'>
-            {gear.length != 0 && gear.map((gear, index) => { return <div key={index}>
+            <div className='container-left gear-cont'>
+            {gear.length != 0 && gear.map((gear, index) => { return <div className='gear-item-cont' key={index}>
+            <img src={gear.image_url} alt="" />
             <h2>{gear.name}</h2>
             <p>${gear.price}</p>
             <button 

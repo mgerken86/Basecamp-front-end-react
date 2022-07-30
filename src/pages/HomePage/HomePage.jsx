@@ -1,7 +1,7 @@
 import './HomePage.css'
 import { useContext, useState } from 'react';
 import AuthContext from '../../context/AuthContext';
-import axios from 'axios';
+import * as axiosRequests from '../../utils/axiosRequests'
 
 const boulder = {
     lat: 40.0149856,
@@ -21,53 +21,33 @@ const estesPark = {
 }
 
 
-const fetchTrails = (lat, lng, setState) => {
-    const options = {
-        method: 'GET',
-        url: 'https://trailapi-trailapi.p.rapidapi.com/trails/explore/',
-        params: { lat: `${lat}`, lon: `${lng}`, per_page: '5' },
-        headers: {
-            'X-RapidAPI-Key': 'b706fa8596msha33725def79a97cp1b9fc1jsn8dfd397c7442',
-            'X-RapidAPI-Host': 'trailapi-trailapi.p.rapidapi.com'
-        }
-    };
-
-    axios.request(options).then(function (response) {
-        console.log(response.data.data);
-        setState(response.data.data);
-    }).catch(function (error) {
-        console.error(error);
-    });
-}
-
-
-
 export default function HomePage() {
     const [trailsData, setTrailsData] = useState([])
     const { user } = useContext(AuthContext);
     return (
-        <main>
+        <main id='homePage'>
+            <div id='vertDiv'></div>
             {user && <>
             <h1>Home Page</h1>
             <h2>Hello, {user.username}</h2>
             </>}
             <button onClick={() => {
-                fetchTrails(boulder.lat, boulder.lng, setTrailsData)
+                axiosRequests.fetchTrails(boulder.lat, boulder.lng, setTrailsData)
             }}>
                 Boulder
             </button>
             <button onClick={() => {
-                fetchTrails(lyons.lat, lyons.lng, setTrailsData)
+                axiosRequests.fetchTrails(lyons.lat, lyons.lng, setTrailsData)
             }}>
                 Lyons
             </button>
             <button onClick={() => {
-                fetchTrails(golden.lat, golden.lng, setTrailsData)
+                axiosRequests.fetchTrails(golden.lat, golden.lng, setTrailsData)
             }}>
                 Golden
             </button>
             <button onClick={() => {
-                fetchTrails(estesPark.lat, estesPark.lng, setTrailsData)
+                axiosRequests.fetchTrails(estesPark.lat, estesPark.lng, setTrailsData)
             }}>
                 Estes Park
             </button>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { editGear } from '../../utils/axiosRequests';
 
 
 
@@ -14,7 +14,7 @@ export default function EditGearForm({ gear }) {
         desc: gear.desc,
         price: gear.price,
         qty: gear.qty,
-        image_url: ''
+        image_url: gear.image_url
     })
 
 
@@ -26,28 +26,8 @@ export default function EditGearForm({ gear }) {
         setFormData(newData);
     }
 
-    const handleImageChange = (e) => {
-        let newData = { ...formData };
-        formData["image_url"] = e.target.files[0];
-        setFormData(newData);
-    };
 
-    const handleSubmit = () => {
-        axios
-            .put(`https://a-lodge-basecamp.herokuapp.com/${gear.id}`, {
-                name: formData.name,
-                desc: formData.desc,
-                price: formData.price,
-                qty: formData.qty,
-                image_url: formData.image_url
-            })
-            .then((res) => {
-                let data = res.data;
-                console.log(data)
-            })
-            .catch((err) => { });
-        navigate('/rentals')
-    };
+    
 
     return (
         <main>
@@ -95,17 +75,20 @@ export default function EditGearForm({ gear }) {
                     />
                 </div>
                 <div>
-                    <input type="file"
+                    <label>Image Url</label>
+                    <input 
+                        type="text"
                         name="image_url"
-                        accept="image/jpeg,image/png,image/gif"
-                        onChange={(e) => { handleImageChange(e) }}/>
+                        value={formData.image_url}
+                        onChange={changeData}/>
                 </div>
                 {/* onClick function sets the state of the rooms to the new input arguments */}
                 <button
                     className="searchBtn"
 
                     onClick={async () => {
-                        await handleSubmit()
+                        await editGear(gearItem.id, formData)
+                        navigate('/rentals')
                     }}>
                     Edit Gear
                 </button>

@@ -14,6 +14,44 @@ export const getGear = (setState) => {
 }
 
 
+// create new gear item
+export const postGear = (setState, formData, starterData) => {
+    axios
+        .post(`${baseURL}/rentals/`, {
+            name: formData.name,
+            desc: formData.desc,
+            price: formData.price,
+            qty: formData.qty,
+            image_url: formData.image_url,
+        })
+        .then((res) => {
+            
+        })
+        .catch((err) => {});
+
+    setState(starterData)
+};
+
+
+// edit gear item
+ export const editGear = (id, formData) => {
+    axios
+        .put(`${baseURL}/rentals/${id}`, {
+            name: formData.name,
+            desc: formData.desc,
+            price: formData.price,
+            qty: formData.qty,
+            image_url: formData.image_url
+        })
+        .then((res) => {
+            let data = res.data;
+            console.log(data)
+        })
+        .catch((err) => { });
+};
+
+
+
 //used for weather data on gear index
 export const getWeather = (setState) => {
     const options = {
@@ -37,7 +75,7 @@ export const getWeather = (setState) => {
 
 // gets all reservations
 export const getReservations = (setState) => {
-    axios.get('https://a-lodge-basecamp.herokuapp.com/reservations/')
+    axios.get(`${baseURL}/reservations/`)
         .then(res => {
             let data = res.data;
             console.log(data)
@@ -49,7 +87,7 @@ export const getReservations = (setState) => {
 
 // used to get all logged in user reservations
 export const getUserReservations = (setState, id) => {
-    axios.get(`https://a-lodge-basecamp.herokuapp.com/myaccount/${id}`)
+    axios.get(`${baseURL}/myaccount/${id}`)
       .then(res => {
         let data = res.data;
         // console.log(data)
@@ -67,3 +105,24 @@ export const deleteReservation = (id) => {
     })
     .catch(err => { })
   }
+
+
+// get trails on home page
+export const fetchTrails = (lat, lng, setState) => {
+    const options = {
+        method: 'GET',
+        url: 'https://trailapi-trailapi.p.rapidapi.com/trails/explore/',
+        params: { lat: `${lat}`, lon: `${lng}`, per_page: '5' },
+        headers: {
+            'X-RapidAPI-Key': 'b706fa8596msha33725def79a97cp1b9fc1jsn8dfd397c7442',
+            'X-RapidAPI-Host': 'trailapi-trailapi.p.rapidapi.com'
+        }
+    };
+
+    axios.request(options).then(function (response) {
+        console.log(response.data.data);
+        setState(response.data.data);
+    }).catch(function (error) {
+        console.error(error);
+    });
+}

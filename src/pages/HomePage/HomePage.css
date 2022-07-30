@@ -1,3 +1,20 @@
+#homePage {
+    display: relative;
+    height: 100vh;
+    background-image: url('https://boulder.a-lodge.com/wp-content/uploads/lodging_hero.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#vertDiv {
+    height: 100%;
+    width: 5vw;
+    background-color: var(--aRed);
+    position: absolute;
+    left: 0;
+}
+
 #trailsContainer {
     width: 100%;
     display: flex;

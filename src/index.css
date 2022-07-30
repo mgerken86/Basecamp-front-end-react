@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300&family=Nanum+Gothic:wght@800&display=swap');
+
+
 :root {
   --dGray: #212121;
   --lGray: #d2d2d2;
@@ -8,17 +11,23 @@
 *, html {
   box-sizing: border-box;
   margin: 0;
+  font-family: 'Cairo', sans-serif;
 }
 
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
 }
 main h1 {
-  color: var(--aRed);
+  /* background-color: var(--aRed); */
+  color: var(--aGray);
   font-size: 3em;
   margin: 1em;
+  font-family: 'Nanum Gothic', sans-serif;
+  text-align: left;
+  width: 80%;
 }
 
 body {

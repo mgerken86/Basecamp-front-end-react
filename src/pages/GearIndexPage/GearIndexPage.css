@@ -1,5 +1,39 @@
+.titleCont {
+    width: 100vw;
+    display: flex;
+    position: relative;
+}
+
+#gearH1 {
+    color: var(--aGray);
+    background-color: var(--aRed);
+    top: 0;
+    left: 15%;
+    font-size: 8em;
+    margin: 0;
+}
+#gearImg {
+    flex: 1;
+    width: 50vw;
+}
+.titleDiv {
+    flex: 1;
+}
+.titleDiv h2{
+    width: 100%;
+    background-color: var(--aRed);
+    color: var(--aGray);
+}
+
+
 .weatherCont {
     width: 60vw;
     display: flex;
     justify-content: space-around;
+}
+
+.gear-item-cont img {
+    width: 12em;
+    height: 8em;
+    object-fit: contain;
 }

@@ -1,9 +1,8 @@
 #calendarCont {
     height: 100%;
     width: 90vw;
-    background-color: aliceblue;
-    font-size: 1.2em;
-    /* color: dimgray; */
+    background-color: white;
+    /* font-size: 1.2em; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,24 +10,23 @@
 }
 #calendarBtn {
     background-color: var(--dGray);
-    color: var(--aRed);
-    font-size: 1em;
     padding: .4em 0;
-    cursor: pointer;
-}
-#calendarBtn:hover {
-    color: white;
-    background-color: var(--aRed);
+    color: var(--aRed);
+    font-weight: bolder;
 }
 .rbc-off-range-bg {
     background-color: var(--lGray) !important;
 }
+
 .rbc-off-range button {
-    color: black !important;
+    color: var(--dGray) !important;
 }
 .rbc-event {
-    background-color: black !important;
+    background-color: var(--dGray) !important;
+    color: var(--lGray);
 }
-.rbc-show-more, .rb-button-link, .rbc-event {
+
+.rbc-show-more, .rb-button-link {
     color: var(--aRed) !important;
 }
+

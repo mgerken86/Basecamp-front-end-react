@@ -11,7 +11,8 @@
 .nav-list {
     display: flex;
     justify-content: space-between;
-    width: 50vw;
+    width: 60vw;
+    padding: 1em;
 }
 
 .nav-list a {

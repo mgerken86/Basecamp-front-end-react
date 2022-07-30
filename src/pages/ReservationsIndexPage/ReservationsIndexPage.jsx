@@ -41,7 +41,7 @@ export default function ReservationsIndexPage() {
 
     return (
         <main>
-            <h1>Reservations</h1>
+            <h1 id='reservH1'>Reservations</h1>
 
             <div id='calendarCont'>
                 <button
