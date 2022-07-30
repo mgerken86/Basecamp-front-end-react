@@ -32,7 +32,7 @@ export default function HomePage() {
     useEffect(() => {
         setTimeout(() => {
             setShowHome(true)
-        }, 4000);
+        }, 9000);
     }, [])
 
 
@@ -41,16 +41,32 @@ export default function HomePage() {
             <div id='vertDiv'></div>
             {!showHome ?
                 <div id='animationCont'>
+                    <h1>
                     <MovingText
-                        type="slideInFromLeft"
-                        duration="1700ms"
-                        delay="1s"
+                        // type="slideInFromLeft"
+                        type="fadeInFromLeft"
+                        duration="2000ms"
+                        delay="0s"
                         direction="normal"
                         timing="ease"
-                        iteration="infinite"
+                        iteration={1}
                         fillMode="none">
-                        React-Moving-Text
+                        Rentals
                     </MovingText>
+                    </h1>
+                    <h1>
+                    <MovingText
+                        // type="slideInFromRight"
+                        type="fadeInFromRight"
+                        duration="2000ms"
+                        delay="2s"
+                        direction="normal"
+                        timing="ease"
+                        iteration={1}
+                        fillMode="none">
+                        Community
+                    </MovingText>
+                    </h1>
                 </div> : <>
                     {user && <>
                         <h1>Home Page</h1>
