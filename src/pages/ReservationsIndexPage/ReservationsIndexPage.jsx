@@ -7,6 +7,7 @@ import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { getReservations } from '../../utils/axiosRequests';
+import { motion } from 'framer-motion'
 
 const localizer = momentLocalizer(moment)
 
@@ -40,7 +41,11 @@ export default function ReservationsIndexPage() {
 
 
     return (
-        <main>
+        <motion.main
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
             <h1 id='reservH1'>Reservations</h1>
 
             <div id='calendarCont'>
@@ -84,6 +89,6 @@ export default function ReservationsIndexPage() {
                     </div>
                 })} */}
             </div>
-        </main>
+        </motion.main>
     )
 }

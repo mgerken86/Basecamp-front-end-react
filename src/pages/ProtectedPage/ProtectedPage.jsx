@@ -4,6 +4,7 @@ import AuthContext from '../../context/AuthContext';
 import { useNavigate } from "react-router-dom";
 import EditReservationForm from "../../components/EditReservationForm/EditReservationForm";
 import * as axiosRequests from '../../utils/axiosRequests'
+import { motion } from 'framer-motion'
 
 
 export default function ProtectedPage() {
@@ -19,12 +20,16 @@ export default function ProtectedPage() {
   }, []);
 
   return (
-    <main>
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <h1>My Account</h1>
       <div className="container-left">
         {userReservations?.map((reservation, index) => {
           return <div key={index}>
-            {showEdit && <EditReservationForm thisReservation={reservation}/>}
+            {showEdit && <EditReservationForm thisReservation={reservation} />}
             <p>Start Date: {reservation.start_date}</p>
             <p>End Date: {reservation.end_date}</p>
             <hr />
@@ -56,6 +61,6 @@ export default function ProtectedPage() {
           </div>
         })}
       </div>
-    </main>
+    </motion.main>
   );
 }

@@ -3,7 +3,7 @@ import NewGearForm from '../../components/NewGearForm/NewGearForm';
 import { useState, useEffect } from 'react';
 import * as axiosRequests from '../../utils/axiosRequests'
 import { useNavigate } from "react-router-dom";
-
+import { motion } from 'framer-motion'
 
 
 export default function GearIndexPage() {
@@ -26,7 +26,11 @@ export default function GearIndexPage() {
   }, [gear])
 
   return (
-    <main>
+    <motion.main 
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      exit={{opacity:0}}
+    >
       {/* <div id='vertDiv'></div> */}
       <div className='titleCont'>
         <img
@@ -88,6 +92,6 @@ export default function GearIndexPage() {
         })}
         <NewGearForm setGear={setGear} />
       </div>
-    </main>
+    </motion.main>
   )
 }

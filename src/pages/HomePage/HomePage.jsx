@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from 'react';
 import AuthContext from '../../context/AuthContext';
 import * as axiosRequests from '../../utils/axiosRequests'
 import MovingText from 'react-moving-text'
+import { motion } from 'framer-motion'
 
 const boulder = {
     lat: 40.0149856,
@@ -52,12 +53,17 @@ export default function HomePage() {
 
 
     return (
-        <main id='homePage'>
+        <motion.main
+            id='homePage'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
             <div id='vertDiv'></div>
             {!showHome ?
-                <div 
-                onClick={() => setShowHome(true)}
-                id='animationCont'>
+                <div
+                    onClick={() => setShowHome(true)}
+                    id='animationCont'>
                     <h1>
                         <MovingText
                             onAnimationEnd={handleChainAnimation}
@@ -120,6 +126,6 @@ export default function HomePage() {
                             })}
                         </div>}
                 </>}
-        </main>
+        </motion.main>
     )
 }
