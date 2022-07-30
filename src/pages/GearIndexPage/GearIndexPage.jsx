@@ -34,13 +34,13 @@ export default function GearIndexPage() {
       {/* <div id='vertDiv'></div> */}
       <div className='titleCont'>
         <img
-          id='gearImg'
+          className='gearImg'
           src="https://cdn.hiconsumption.com/wp-content/uploads/2018/09/Best-Used-Gear-Stores-Online-0-Hero-1087x725.jpg"
           alt="gear" />
 
 
         <div className='titleDiv'>
-          <h1 id='gearH1'>GEAR</h1>
+          <h1 className='gearH1'>GEAR</h1>
           <h2>CHECK OUT OUR AVAILABLE RENTALS</h2>
           <p>Browse our gear (and the weather forecast) before making a reservation!</p>
         </div>

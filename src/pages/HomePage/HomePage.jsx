@@ -1,5 +1,5 @@
 import './HomePage.css'
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import AuthContext from '../../context/AuthContext';
 import * as axiosRequests from '../../utils/axiosRequests'
 import MovingText from 'react-moving-text'
@@ -23,7 +23,7 @@ const estesPark = {
 }
 
 const animationsForChaining = ["slideInFromLeft", "slideOutToRight", "slideInFromRight", "slideOutToLeft", "flipFromTop", "flipToBottom", "popIn", "jelly", "zoomOut"]
-// each word gets 2, because each gets 2 animations
+// each word gets 2, because each gets 2 animations per word
 const animatedTextArr = ['RENTALS', 'RENTALS', 'EVENTS', 'EVENTS', 'COMMUNITY', 'COMMUNITY', 'BASECAMP', 'BASECAMP', 'BASECAMP']
 
 
@@ -34,6 +34,10 @@ export default function HomePage() {
     const [animationIndex, setAnimationIndex] = useState(0)
     const [animationType, setAnimationType] = useState(animationsForChaining[0])
     const [animatedText, setAnimatedText] = useState(animatedTextArr[0])
+    const [trailIndex, setTrailIndex] = useState(0)
+
+    const timeout = useRef(null)
+    let trail = trailsData[trailIndex]
 
 
     // black out the home page w/ animation text for 9 secs
@@ -42,6 +46,24 @@ export default function HomePage() {
             setShowHome(true)
         }, 18000);
     }, [])
+
+    const resetTimeout = () => {
+        if (timeout.current) {
+            clearTimeout(timeout.current);
+        }
+    }
+    //continously clear and re-set timeout to change trailsIndex
+    useEffect(() => {
+        resetTimeout();
+        timeout.current = setTimeout(
+            () =>
+                setTrailIndex((prevIndex) =>
+                    prevIndex === trailsData.length - 1 ? 0 : prevIndex + 1
+                ), 5000)
+        return () => {
+            resetTimeout()
+        };
+    }, [trailIndex])
 
 
 
@@ -82,48 +104,55 @@ export default function HomePage() {
 
                 </div> : <>
                     {user && <>
-                        <h1>Home Page</h1>
+                        <h1>Basecamp</h1>
                         <h2>Hello, {user.username}</h2>
                     </>}
                     <button onClick={() => {
                         axiosRequests.fetchTrails(boulder.lat, boulder.lng, setTrailsData)
+                        setTrailIndex(0)
                     }}>
                         Boulder
                     </button>
                     <button onClick={() => {
                         axiosRequests.fetchTrails(lyons.lat, lyons.lng, setTrailsData)
+                        setTrailIndex(0)
                     }}>
                         Lyons
                     </button>
                     <button onClick={() => {
                         axiosRequests.fetchTrails(golden.lat, golden.lng, setTrailsData)
+                        setTrailIndex(0)
                     }}>
                         Golden
                     </button>
                     <button onClick={() => {
                         axiosRequests.fetchTrails(estesPark.lat, estesPark.lng, setTrailsData)
+                        setTrailIndex(0)
                     }}>
                         Estes Park
                     </button>
                     {trailsData.length === 5 &&
-                        <div id='trailsContainer'>
-                            <h1>Bike Trails in {trailsData[0].city}</h1>
-                            {trailsData.map((trail, index) => {
-                                return <div key={index} className="trailDiv">
-                                    <p>{trail.name}</p>
+                        <div className='titleCont'>
+                            {trail.thumbnail
+                                ?
+                                <img className='gearImg' src={trail.thumbnail} alt="{trail.name}" />
+                                :
+                                <h2>Sorry, no photo for this trail</h2>
+                            }
+                            <div className='titleDiv'>
+                                <h1>{trail.name}</h1>
+                                <p>Miles: {trail.length}</p>
+                            <p>Difficulty: {trail.difficulty}</p>
+                            <p>{trail.description}</p>
+                            </div>
+                            
+                    
 
-                                    {trail.thumbnail
-                                        ?
-                                        <img src={trail.thumbnail} alt="{trail.name}" />
-                                        :
-                                        <h5>Sorry, no photo for this trail</h5>
-                                    }
 
-                                    <p>Miles: {trail.length}</p>
-                                    <p>Difficulty: {trail.difficulty}</p>
-                                    <p>{trail.description}</p>
-                                </div>
-                            })}
+
+                            
+
+
                         </div>}
                 </>}
         </motion.main>
