@@ -6,6 +6,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { data } from 'jquery';
 
 const localizer = momentLocalizer(moment)
 
@@ -14,6 +15,7 @@ export default function ReservationsIndexPage() {
     const [reservations, setReservations] = useState([])
     const navigate = useNavigate()
     const [showForm, setShowForm] = useState(false)
+    const [events, setEvents] = useState([])
 
 
     const getReservations = () => {
@@ -26,31 +28,59 @@ export default function ReservationsIndexPage() {
             .catch(err => { })
     }
 
+    const getDateMarkers = () => {
+        reservations.map(reservation => {
+            console.log(reservation)
+            setEvents([...events, {
+                start: moment(reservation.start_date).toDate(),
+                end: moment(reservation.end_date).toDate(),
+                title: reservation.gear_item[0].name
+            }])
+    })
+}
 
     useEffect(() => {
         getReservations()
     }, [])
 
+    useEffect(() => {
+        
+            getDateMarkers()
+      
+        }, [reservations])
+
+        useEffect(() => {
+        
+            console.log(events)
+      
+        }, [events])
 
 
     return (
         <main>
-            <h1>Reservations Index Page</h1>
+            <h1>Reservations</h1>
             <div id='calendarCont'>
                 <Calendar
                     localizer={localizer}
-                    //   events={myEventsList}
+                    events={reservations.map(reservation => {
+                        return {
+                            start: moment(reservation.start_date).toDate(),
+                            end: moment(reservation.end_date).toDate(),
+                            title: `${reservation.gear_item[0].name}: Quantity: ${reservation.gear_item[0].qty}`
+                        }
+                    })}
                     startAccessor="start"
                     endAccessor="end"
                     style={{ height: 500 }}
                 />
-            </div>
-            <div className='container-left'>
                 <button onClick={() => setShowForm(!showForm)}>New Reservation</button>
                 {showForm &&
                     <div>
                         <NewReservationForm />
                     </div>}
+            </div>
+            <div className='container-left'>
+                
                 {reservations.map((reservation, index) => {
                     return <div key={index}>
                         <p>Start Date: {reservation.start_date}</p>

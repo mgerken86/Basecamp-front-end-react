@@ -1,5 +1,6 @@
 #calendarCont {
     height: 100%;
+    width: 90vw;
     background-color: aliceblue;
     font-size: 1.5em;
 }
