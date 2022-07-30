@@ -2,7 +2,7 @@ import './ReservationsIndexPage.css'
 import NewReservationForm from '../../components/NewReservationForm/NewReservationForm';
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -64,7 +64,7 @@ export default function ReservationsIndexPage() {
                     })}
                     startAccessor="start"
                     endAccessor="end"
-                    style={{ height: 600 }}
+                    style={{ height: 800 }}
                 />
             </div>
             <div className='container-left'>

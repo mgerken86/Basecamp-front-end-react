@@ -4,25 +4,35 @@
     position: relative;
 }
 
-#gearH1 {
-    color: var(--aGray);
-    background-color: var(--aRed);
-    top: 0;
-    left: 15%;
-    font-size: 8em;
-    margin: 0;
-}
+
+
 #gearImg {
     flex: 1;
     width: 50vw;
 }
 .titleDiv {
     flex: 1;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-.titleDiv h2{
+.titleDiv h1{
     width: 100%;
     background-color: var(--aRed);
     color: var(--aGray);
+    margin: 0;
+    font-size: 4.5em;
+}
+.titleDiv h2 {
+    color: var(--dGray);
+    text-align: center;
+    font-size: 1.8em;
+}
+.titleDiv p {
+    font-size: 1.5em;
+    margin: .5em 1.4em;
 }
 
 
