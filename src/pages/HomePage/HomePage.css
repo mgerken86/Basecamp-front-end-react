@@ -30,7 +30,7 @@
     /* border: 2em solid var(--aRed); */
 }
 #animationCont h1 {
-    font-size: 7em;
+    font-size: 12vw;
     color: var(--aRed);
     text-align: center;
     position: fixed;
@@ -97,4 +97,17 @@
     border-radius: 1em;
     margin: 1em;
     color: var(--aGray);
+}
+
+
+
+@media only screen and (max-width: 1000px) {
+    #animationCont h1 {
+        font-size: 14vw !important;
+    }
+}
+@media only screen and (max-width: 660px) {
+    #animationCont h1 {
+        font-size: 16vw !important;
+    }
 }
