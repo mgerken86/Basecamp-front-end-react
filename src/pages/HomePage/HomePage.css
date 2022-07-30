@@ -1,10 +1,11 @@
 #homePage {
     display: relative;
-    height: 100vh;
+    min-height: 100vh;
     background-image: url('https://boulder.a-lodge.com/wp-content/uploads/lodging_hero.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    /* overflow: hidden; */
 }
 #animationCont {
     height: 100vh;
@@ -14,7 +15,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    z-index: 3;
+    z-index: 5;
     background: var(--dGray);
     position: fixed;
     top: 0;
@@ -35,11 +36,12 @@
 }
 
 #vertDiv {
-    height: 100%;
-    width: 5vw;
+    min-height: 100%;
+    width: 4vw;
     background-color: var(--aRed);
     position: absolute;
     left: 0;
+    z-index: 4;
 }
 
 #trailsContainer {
@@ -55,9 +57,32 @@
     height: 30vh;
 }
 
-.trailDiv {
+.trailsDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 0;
+}
+#trailH1 {
+    text-align: center;
+    background-color: var(--dGray);
+    margin: 0;
+    width: 100vw;
+    display: inline;
+}
+#trailTitle {
+    background-color: var(--dGray);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+#trailTitle button {
+    background-color: var(--aRed);
+    justify-self: center;
+    align-self: center;
+    padding: 1em 3em;
+    border-radius: 1em;
 }

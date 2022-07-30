@@ -29,6 +29,7 @@ const animatedTextArr = ['RENTALS', 'RENTALS', 'EVENTS', 'EVENTS', 'COMMUNITY', 
 
 export default function HomePage() {
     const [trailsData, setTrailsData] = useState([])
+    const [showTrails, setShowTrails] = useState(false)
     const { user } = useContext(AuthContext);
     const [showHome, setShowHome] = useState(false)
     const [animationIndex, setAnimationIndex] = useState(0)
@@ -81,7 +82,7 @@ export default function HomePage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
-            <div id='vertDiv'></div>
+            {/* <div id='vertDiv'></div> */}
             {!showHome ?
                 <div
                     onClick={() => setShowHome(true)}
@@ -110,28 +111,40 @@ export default function HomePage() {
                     <button onClick={() => {
                         axiosRequests.fetchTrails(boulder.lat, boulder.lng, setTrailsData)
                         setTrailIndex(0)
+                        setShowTrails(true)
                     }}>
                         Boulder
                     </button>
                     <button onClick={() => {
                         axiosRequests.fetchTrails(lyons.lat, lyons.lng, setTrailsData)
                         setTrailIndex(0)
+                        setShowTrails(true)
                     }}>
                         Lyons
                     </button>
                     <button onClick={() => {
                         axiosRequests.fetchTrails(golden.lat, golden.lng, setTrailsData)
                         setTrailIndex(0)
+                        setShowTrails(true)
                     }}>
                         Golden
                     </button>
                     <button onClick={() => {
                         axiosRequests.fetchTrails(estesPark.lat, estesPark.lng, setTrailsData)
                         setTrailIndex(0)
+                        setShowTrails(true)
                     }}>
                         Estes Park
                     </button>
-                    {trailsData.length === 5 &&
+                    {showTrails && trailsData.length === 5 && <div className='trailsDiv'>
+                        <div id='trailTitle'>
+                            <h1 id="trailH1">Trails in {trail.city}</h1>
+                            <button
+                                id='trailBtn'
+                                onClick={() => setShowTrails(false)}
+                            >Hide</button>
+                        </div>
+
                         <div className='titleCont'>
                             {trail.thumbnail
                                 ?
@@ -142,18 +155,11 @@ export default function HomePage() {
                             <div className='titleDiv'>
                                 <h1>{trail.name}</h1>
                                 <p>Miles: {trail.length}</p>
-                            <p>Difficulty: {trail.difficulty}</p>
-                            <p>{trail.description}</p>
+                                <p>Difficulty: {trail.difficulty}</p>
+                                <p>{trail.description}</p>
                             </div>
-                            
-                    
-
-
-
-                            
-
-
-                        </div>}
+                        </div>
+                    </div>}
                 </>}
         </motion.main>
     )
