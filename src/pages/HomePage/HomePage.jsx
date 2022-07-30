@@ -86,7 +86,13 @@ export default function HomePage() {
             {!showHome ?
                 <div
                     onClick={() => setShowHome(true)}
-                    id='animationCont'>
+                    id='animationCont'
+                    >
+                    <img 
+                    id='homeLogoImg'
+                    src='/images/logo.png' 
+                    alt="logo" 
+                    />
                     <h1>
                         <MovingText
                             onAnimationEnd={handleChainAnimation}
