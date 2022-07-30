@@ -30,10 +30,10 @@ export default function HomePage() {
     const [trailsData, setTrailsData] = useState([])
     const { user } = useContext(AuthContext);
     const [showHome, setShowHome] = useState(false)
-    const [ animationIndex, setAnimationIndex ] = useState(0)
-  const [ animationType, setAnimationType ] = useState(animationsForChaining[0])
-  const [animatedText, setAnimatedText] = useState(animatedTextArr[0])
-    
+    const [animationIndex, setAnimationIndex] = useState(0)
+    const [animationType, setAnimationType] = useState(animationsForChaining[0])
+    const [animatedText, setAnimatedText] = useState(animatedTextArr[0])
+
 
     // black out the home page w/ animation text for 9 secs
     useEffect(() => {
@@ -44,35 +44,36 @@ export default function HomePage() {
 
 
 
-  
-
-  const handleChainAnimation = async () => {
-    await setAnimatedText(animatedTextArr[animationIndex+1])
-    await setAnimationType(animationsForChaining[animationIndex+1])
-    setAnimationIndex(animationIndex+1)
-  }
+    const handleChainAnimation = async () => {
+        await setAnimatedText(animatedTextArr[animationIndex + 1])
+        await setAnimationType(animationsForChaining[animationIndex + 1])
+        setAnimationIndex(animationIndex + 1)
+    }
 
 
     return (
         <main id='homePage'>
             <div id='vertDiv'></div>
             {!showHome ?
-                <div id='animationCont'>
+                <div 
+                onClick={() => setShowHome(true)}
+                id='animationCont'>
                     <h1>
-                    <MovingText
-                        onAnimationEnd={handleChainAnimation}
-                        type={animationType}
-                        // type="fadeInFromLeft"
-                        duration="2000ms"
-                        delay="0s"
-                        direction="normal"
-                        timing="ease"
-                        iteration={1}
-                        fillMode="none">
-                        {animatedText}
-                    </MovingText>
+                        <MovingText
+                            onAnimationEnd={handleChainAnimation}
+                            type={animationType}
+                            // type="fadeInFromLeft"
+                            duration="2000ms"
+                            delay="0s"
+                            direction="normal"
+                            timing="ease"
+                            iteration={1}
+                            fillMode="none">
+                            {animatedText}
+                        </MovingText>
                     </h1>
-                    
+                    <p>(Click anywhere to continue)</p>
+
                 </div> : <>
                     {user && <>
                         <h1>Home Page</h1>
