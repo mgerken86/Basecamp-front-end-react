@@ -2,5 +2,34 @@
     height: 100%;
     width: 90vw;
     background-color: aliceblue;
-    font-size: 1.5em;
+    font-size: 1.2em;
+    /* color: dimgray; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+#calendarBtn {
+    background-color: black;
+    color: var(--aRed);
+    font-size: 1em;
+    padding: .4em 0;
+    cursor: pointer;
+}
+#calendarBtn:hover {
+    color: black;
+    background-color: var(--aRed);
+}
+.rbc-off-range-bg {
+    background-color: var(--dGray) !important;
+    color: white !important;
+}
+.rbc-off-range button {
+    color: white !important;
+}
+.rbc-event {
+    background-color: black !important;
+}
+.rbc-show-more, .rb-button-link, .rbc-event {
+    color: var(--aRed) !important;
 }

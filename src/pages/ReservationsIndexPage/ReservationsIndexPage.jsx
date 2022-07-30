@@ -6,7 +6,6 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { data } from 'jquery';
 
 const localizer = momentLocalizer(moment)
 
@@ -36,52 +35,50 @@ export default function ReservationsIndexPage() {
                 end: moment(reservation.end_date).toDate(),
                 title: reservation.gear_item[0].name
             }])
-    })
-}
-
+        })
+    }
     useEffect(() => {
         getReservations()
     }, [])
 
     useEffect(() => {
-        
-            getDateMarkers()
-      
-        }, [reservations])
 
-        useEffect(() => {
-        
-            console.log(events)
-      
-        }, [events])
+        getDateMarkers()
+
+    }, [reservations])
 
 
     return (
         <main>
             <h1>Reservations</h1>
+
             <div id='calendarCont'>
+                <button
+                    id='calendarBtn'
+                    onClick={() => setShowForm(!showForm)}>
+                    New Reservation
+                </button>
+                {showForm &&
+                    <div>
+                        <NewReservationForm />
+                    </div>}
                 <Calendar
                     localizer={localizer}
                     events={reservations.map(reservation => {
                         return {
                             start: moment(reservation.start_date).toDate(),
                             end: moment(reservation.end_date).toDate(),
-                            title: `${reservation.gear_item[0].name}: Quantity: ${reservation.gear_item[0].qty}`
+                            title: `${reservation.gear_item[0].name} (Qty: ${reservation.gear_item[0].qty})`
                         }
                     })}
                     startAccessor="start"
                     endAccessor="end"
-                    style={{ height: 500 }}
+                    style={{ height: 600 }}
                 />
-                <button onClick={() => setShowForm(!showForm)}>New Reservation</button>
-                {showForm &&
-                    <div>
-                        <NewReservationForm />
-                    </div>}
             </div>
             <div className='container-left'>
-                
-                {reservations.map((reservation, index) => {
+
+                {/* {reservations.map((reservation, index) => {
                     return <div key={index}>
                         <p>Start Date: {reservation.start_date}</p>
                         <p>End Date: {reservation.end_date}</p>
@@ -89,12 +86,12 @@ export default function ReservationsIndexPage() {
                             return <div key={index}>
                                 <h3>Gear Item:</h3>
                                 <p>{gear.name}</p>
-                                {/* <p>${gear.price}</p> */}
+                                <p>${gear.price}</p>
                                 <p>Quantity: {reservation.qty}</p>
                             </div>
                         })}
                     </div>
-                })}
+                })} */}
             </div>
         </main>
     )

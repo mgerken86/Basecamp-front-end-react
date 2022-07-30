@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import AuthContext from '../../context/AuthContext';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 
 const getGear = (setState) => {
@@ -19,6 +20,7 @@ export default function NewReservationForm({  }) {
     const { user } = useContext(AuthContext);
     const [formData, setFormData] = useState({})
     const [gear, setGear] = useState([])
+    const navigate = useNavigate()
 
     // console.log(user)
 
@@ -112,6 +114,7 @@ export default function NewReservationForm({  }) {
 
                     onClick={async () => {
                         await handleSubmit()
+                        navigate(0)
                     }}>
                     New Reservation
                 </button>

@@ -1,3 +1,8 @@
+:root {
+  --dGray: #3e3e40;
+  --aRed: #dc1e26;
+}
+
 *, html {
   box-sizing: border-box;
   margin: 0;
