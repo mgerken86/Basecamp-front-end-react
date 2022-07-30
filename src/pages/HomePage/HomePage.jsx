@@ -21,19 +21,36 @@ const estesPark = {
     lng: -105.5216651
 }
 
+const animationsForChaining = ["slideInFromLeft", "slideOutToRight", "slideInFromRight", "slideOutToLeft", "flipFromTop", "flipToBottom", "popIn", "jelly", "zoomOut"]
+// each word gets 2, because each gets 2 animations
+const animatedTextArr = ['RENTALS', 'RENTALS', 'EVENTS', 'EVENTS', 'COMMUNITY', 'COMMUNITY', 'BASECAMP', 'BASECAMP', 'BASECAMP']
+
 
 export default function HomePage() {
     const [trailsData, setTrailsData] = useState([])
     const { user } = useContext(AuthContext);
     const [showHome, setShowHome] = useState(false)
+    const [ animationIndex, setAnimationIndex ] = useState(0)
+  const [ animationType, setAnimationType ] = useState(animationsForChaining[0])
+  const [animatedText, setAnimatedText] = useState(animatedTextArr[0])
     
 
-
+    // black out the home page w/ animation text for 9 secs
     useEffect(() => {
         setTimeout(() => {
             setShowHome(true)
-        }, 9000);
+        }, 18000);
     }, [])
+
+
+
+  
+
+  const handleChainAnimation = async () => {
+    await setAnimatedText(animatedTextArr[animationIndex+1])
+    await setAnimationType(animationsForChaining[animationIndex+1])
+    setAnimationIndex(animationIndex+1)
+  }
 
 
     return (
@@ -43,30 +60,19 @@ export default function HomePage() {
                 <div id='animationCont'>
                     <h1>
                     <MovingText
-                        // type="slideInFromLeft"
-                        type="fadeInFromLeft"
+                        onAnimationEnd={handleChainAnimation}
+                        type={animationType}
+                        // type="fadeInFromLeft"
                         duration="2000ms"
                         delay="0s"
                         direction="normal"
                         timing="ease"
                         iteration={1}
                         fillMode="none">
-                        Rentals
+                        {animatedText}
                     </MovingText>
                     </h1>
-                    <h1>
-                    <MovingText
-                        // type="slideInFromRight"
-                        type="fadeInFromRight"
-                        duration="2000ms"
-                        delay="2s"
-                        direction="normal"
-                        timing="ease"
-                        iteration={1}
-                        fillMode="none">
-                        Community
-                    </MovingText>
-                    </h1>
+                    
                 </div> : <>
                     {user && <>
                         <h1>Home Page</h1>
