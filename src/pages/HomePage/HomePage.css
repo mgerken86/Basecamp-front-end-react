@@ -23,9 +23,11 @@
 }
 #homeLogoImg {
     z-index: 0;
-    max-height: 90vh;
+    max-height: 60vh;
     width: 50vw;
     opacity: .2;
+    position: fixed;
+    top: 25%;
     /* padding: 5em; */
     /* border: 2em solid var(--aRed); */
 }
@@ -38,11 +40,14 @@
     top: 25%;
     font-weight: 900;
 }
-#animationCont p {
+#animationCont h2 {
     position: fixed;
-    bottom: 3em;
+    bottom: 0%;
     color: var(--aRed);
     z-index: 2;
+    opacity: .2;
+    font-size: 6vw;
+    font-weight: 900;
 }
 
 #vertDiv {

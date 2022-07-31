@@ -94,9 +94,9 @@ export default function HomePage() {
 
 
 
-    const handleChainAnimation = async () => {
-        await setAnimatedText(animatedTextArr[animationIndex + 1])
-        await setAnimationType(animationsForChaining[animationIndex + 1])
+    const handleChainAnimation = () => {
+         setAnimatedText(animatedTextArr[animationIndex + 1])
+         setAnimationType(animationsForChaining[animationIndex + 1])
         setAnimationIndex(animationIndex + 1)
     }
 
@@ -133,7 +133,7 @@ export default function HomePage() {
                             {animatedText}
                         </MovingText>
                     </h1>
-                    <p>(Click anywhere to continue)</p>
+                    <h2>(Click anywhere to continue)</h2>
 
                 </div> : <>
                     {user && <>
