@@ -126,3 +126,37 @@ export const fetchTrails = (lat, lng, setState) => {
         console.error(error);
     });
 }
+
+export const fetchRestaurants = (lat, lng, setState) => {
+
+const options = {
+  method: 'GET',
+  url: 'https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng',
+  params: {
+    latitude: lat,
+    longitude: lng,
+    limit: '10',
+    currency: 'USD',
+    distance: '2',
+    open_now: 'false',
+    lunit: 'km',
+    lang: 'en_US'
+  },
+  headers: {
+    'X-RapidAPI-Key': 'b706fa8596msha33725def79a97cp1b9fc1jsn8dfd397c7442',
+    'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+  }
+};
+
+axios.request(options).then(function (response) {
+	// console.log(response.data.data);
+    // put data in array and filter out the ads that don't have names
+    let reservationsArr = response.data.data
+	
+    reservationsArr = reservationsArr.filter(restaurant => restaurant.name !== undefined)
+    console.log(reservationsArr)
+    setState(reservationsArr)
+}).catch(function (error) {
+	console.error(error);
+});
+}

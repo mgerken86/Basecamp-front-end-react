@@ -29,16 +29,22 @@ const animatedTextArr = ['RENTALS', 'RENTALS', 'EVENTS', 'EVENTS', 'COMMUNITY', 
 
 export default function HomePage() {
     const [trailsData, setTrailsData] = useState([])
+    const [restaurantsData, setRestaurantsData] = useState([])
     const [showTrails, setShowTrails] = useState(false)
+    const [showRestaurants, setShowRestaurants] = useState(false)
     const { user } = useContext(AuthContext);
     const [showHome, setShowHome] = useState(false)
     const [animationIndex, setAnimationIndex] = useState(0)
     const [animationType, setAnimationType] = useState(animationsForChaining[0])
     const [animatedText, setAnimatedText] = useState(animatedTextArr[0])
     const [trailIndex, setTrailIndex] = useState(0)
+    const [restaurantsIndex, setRestaurantsIndex] = useState(0)
 
     const timeout = useRef(null)
+    const restaurantTimeout = useRef(null)
+
     let trail = trailsData[trailIndex]
+    let restaurant = restaurantsData[restaurantsIndex]
 
 
     // black out the home page w/ animation text for 9 secs
@@ -53,6 +59,12 @@ export default function HomePage() {
             clearTimeout(timeout.current);
         }
     }
+
+    const resetRestaurantTimeout = () => {
+        if (restaurantTimeout.current) {
+            clearTimeout(restaurantTimeout.current);
+        }
+    }
     //continously clear and re-set timeout to change trailsIndex
     useEffect(() => {
         resetTimeout();
@@ -65,6 +77,20 @@ export default function HomePage() {
             resetTimeout()
         };
     }, [trailIndex])
+
+
+    useEffect(() => {
+        resetRestaurantTimeout();
+        restaurantTimeout.current = setTimeout(
+            () =>
+                setRestaurantsIndex((prevIndex) =>
+                    prevIndex === restaurantsData.length - 1 ? 0 : prevIndex + 1
+                ), 5000)
+
+        return () => {
+            resetRestaurantTimeout()
+        };
+    }, [restaurantsIndex])
 
 
 
@@ -114,34 +140,67 @@ export default function HomePage() {
                         <h1>Basecamp</h1>
                         <h2>Hello, {user.username}</h2>
                     </>}
+                    {/* Trails buttons */}
                     <button onClick={() => {
                         axiosRequests.fetchTrails(boulder.lat, boulder.lng, setTrailsData)
                         setTrailIndex(0)
                         setShowTrails(true)
                     }}>
-                        Boulder
+                        Boulder Trails
                     </button>
                     <button onClick={() => {
                         axiosRequests.fetchTrails(lyons.lat, lyons.lng, setTrailsData)
                         setTrailIndex(0)
                         setShowTrails(true)
                     }}>
-                        Lyons
+                        Lyons Trails
                     </button>
                     <button onClick={() => {
                         axiosRequests.fetchTrails(golden.lat, golden.lng, setTrailsData)
                         setTrailIndex(0)
                         setShowTrails(true)
                     }}>
-                        Golden
+                        Golden Trails
                     </button>
                     <button onClick={() => {
                         axiosRequests.fetchTrails(estesPark.lat, estesPark.lng, setTrailsData)
                         setTrailIndex(0)
                         setShowTrails(true)
                     }}>
-                        Estes Park
+                        Estes Park Trails
                     </button>
+
+
+                    {/* Restaurants buttons */}
+                    <button onClick={() => {
+                        axiosRequests.fetchRestaurants(boulder.lat, boulder.lng, setRestaurantsData)
+                        setRestaurantsIndex(0)
+                        setShowRestaurants(true)
+                    }}>
+                        Boulder Restaurants
+                    </button>
+                    <button onClick={() => {
+                        axiosRequests.fetchRestaurants(lyons.lat, lyons.lng, setRestaurantsData)
+                        setRestaurantsIndex(0)
+                        setShowRestaurants(true)
+                    }}>
+                        Lyons Restaurants
+                    </button>
+                    <button onClick={() => {
+                        axiosRequests.fetchRestaurants(golden.lat, golden.lng, setRestaurantsData)
+                        setRestaurantsIndex(0)
+                        setShowRestaurants(true)
+                    }}>
+                        Golden Restaurants
+                    </button>
+                    <button onClick={() => {
+                        axiosRequests.fetchRestaurants(estesPark.lat, estesPark.lng, setRestaurantsData)
+                        setRestaurantsIndex(0)
+                        setShowRestaurants(true)
+                    }}>
+                        Estes Park Restaurants
+                    </button>
+
                     {showTrails && trailsData.length === 5 && <div className='trailsDiv'>
                         <div id='trailTitle'>
                             <h1 id="trailH1">Trails in {trail.city}</h1>
@@ -166,6 +225,38 @@ export default function HomePage() {
                             </div>
                         </div>
                     </div>}
+
+                    {showRestaurants && restaurantsData.length && <div className='trailsDiv'>
+                        <div id='trailTitle'>
+                            <h1 id="trailH1">Restaurants in {restaurant.address_obj.city}</h1>
+                            <button
+                                id='trailBtn'
+                                onClick={() => setShowRestaurants(false)}
+                            >Hide</button>
+                        </div>
+
+                        <div className='titleCont'>
+                            {restaurant.photo
+                                ?
+                                <img className='gearImg' src={restaurant.photo.images.medium.url} alt="{trail.name}" />
+                                :
+                                <h2>Sorry, no photo for this restaurant</h2>
+                            }
+                            <div className='titleDiv'>
+                            {restaurant.name
+                                ?
+                                <h1>{restaurant.name}</h1>
+                                :
+                                <h2>Sorry, there is no name for this restaurant</h2>
+                            }
+                                
+                                <p>{restaurant.price}</p>
+                                <p>Rating: {restaurant.rating}</p>
+                                <p>{restaurant.description}</p>
+                            </div>
+                        </div>
+                    </div>} 
+
                 </>}
         </motion.main>
     )
