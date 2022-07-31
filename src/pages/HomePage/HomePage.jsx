@@ -22,9 +22,11 @@ const estesPark = {
     lng: -105.5216651
 }
 
-const animationsForChaining = ["slideInFromLeft", "slideOutToRight", "slideInFromRight", "slideOutToLeft", "flipFromTop", "flipToBottom", "popIn", "jelly", "zoomOut"]
+const animationsForChaining = ["slideInFromLeft", "slideOutToRight", "slideInFromRight", "slideOutToLeft", "flipFromTop", "flipToBottom", "popIn", "zoomOut"]
+// const animationsForChaining = ["slideInFromLeft", "flipToBottom", "slideInFromRight", "flipToBottom", "slideInFromTop", "flipToBottom", "popIn", "zoomOut"]
+// const animationsForChaining = ["slideInFromLeft", "flipToBottom", "slideInFromRight", "flipToBottom", "slideInFromTop", "flipToBottom", "popIn", "zoomOut"]
 // each word gets 2, because each gets 2 animations per word
-const animatedTextArr = ['RENTALS', 'RENTALS', 'EVENTS', 'EVENTS', 'COMMUNITY', 'COMMUNITY', 'BASECAMP', 'BASECAMP', 'BASECAMP']
+const animatedTextArr = ['RENTALS', 'RENTALS', 'EVENTS', 'EVENTS', 'COMMUNITY', 'COMMUNITY', 'BASECAMP', 'BASECAMP']
 
 
 export default function HomePage() {
@@ -51,8 +53,9 @@ export default function HomePage() {
     useEffect(() => {
         setTimeout(() => {
             setShowHome(true)
-        }, 18000);
+        }, 16000);
     }, [])
+
 
     const resetTimeout = () => {
         if (timeout.current) {
@@ -72,7 +75,7 @@ export default function HomePage() {
             () =>
                 setTrailIndex((prevIndex) =>
                     prevIndex === trailsData.length - 1 ? 0 : prevIndex + 1
-                ), 5000)
+                ), 4000)
         return () => {
             resetTimeout()
         };
@@ -85,7 +88,7 @@ export default function HomePage() {
             () =>
                 setRestaurantsIndex((prevIndex) =>
                     prevIndex === restaurantsData.length - 1 ? 0 : prevIndex + 1
-                ), 5000)
+                ), 4000)
 
         return () => {
             resetRestaurantTimeout()
@@ -99,6 +102,7 @@ export default function HomePage() {
          setAnimationType(animationsForChaining[animationIndex + 1])
         setAnimationIndex(animationIndex + 1)
     }
+
 
 
     return (
