@@ -7,50 +7,7 @@
     background-repeat: no-repeat;
     /* overflow: hidden; */
 }
-#animationCont {
-    height: 100vh;
-    width: 100vw;
-    background: rgba(34, 34, 34, 1);
-    background: rgba(34, 34, 34, .9);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    z-index: 5;
-    /* background: var(--dGray); */
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-#homeLogoImg {
-    z-index: 0;
-    max-height: 60vh;
-    width: 50vw;
-    opacity: .2;
-    position: fixed;
-    top: 25%;
-    /* padding: 5em; */
-    /* border: 2em solid var(--aRed); */
-}
-#animationCont h1 {
-    font-size: 12vw;
-    color: var(--aRed);
-    text-align: center;
-    position: fixed;
-    height: 100vh;
-    top: 25%;
-    font-weight: 900;
-}
-#animationCont h2 {
-    position: fixed;
-    bottom: 0%;
-    color: var(--aRed);
-    z-index: 2;
-    opacity: .2;
-    font-size: 6vw;
-    font-weight: 900;
-}
+
 
 #vertDiv {
     min-height: 100%;
@@ -75,11 +32,18 @@
 }
 
 .trailsDiv {
+    height: 80vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin: -40vh auto;
 }
 #trailH1 {
     text-align: center;

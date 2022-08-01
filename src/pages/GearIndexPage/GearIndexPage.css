@@ -27,6 +27,7 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
+    cursor: pointer;
 }
 .titleDiv h1{
     width: 100%;
