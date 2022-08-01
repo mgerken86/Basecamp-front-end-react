@@ -72,6 +72,25 @@
     align-items: center;
 }
 
+
+.gear-cont {
+    width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.gear-item-cont {
+    margin-top: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
 .gear-item-cont img {
     width: 12em;
     height: 8em;

@@ -79,8 +79,8 @@ export default function GearIndexPage() {
 
 
 
-      <div className='container-left gear-cont'>
-
+      <div className='gear-cont'>
+              
         {/* {gear.length != 0 && gear.map((gear, index) => { */}
         {gear?.map((gear, index) => {
           return <div className='gear-item-cont' key={index}>

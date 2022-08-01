@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import EditGearForm from '../../components/EditGearForm/EditGearForm';
+import { motion } from 'framer-motion'
 
 
 
@@ -27,7 +28,11 @@ export default function GearDetailPage({ gearItem, user, setShowDetailPage }){
     console.log(gearItem)
 
     return (
-        <main id='detailPage'>
+        <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        id='detailPage'>
             <h1>{gearItem.name}</h1>
             <h2>${gearItem.price}</h2>
             <button onClick={()=> setShowDetailPage(false)}>X</button>
@@ -40,6 +45,6 @@ export default function GearDetailPage({ gearItem, user, setShowDetailPage }){
             {showEdit && <EditGearForm gear={gearItem}/>}
             </>}
             
-        </main>
+        </motion.main>
     )
 }
