@@ -35,7 +35,7 @@ main {
 
 .headerCont div {
   background-color: var(--aRed);
-  height: 4px;
+  height: 8px;
   width: 23%;
 }
 
@@ -44,7 +44,7 @@ main {
   background-color: var(--dGray);
   color: var(--aGray);
   font-size: 3em;
-  margin: .3em;
+  margin: .3em 0;
   font-family: 'Nanum Gothic', sans-serif;
   /* text-align: left; */
   display: inline-block;
