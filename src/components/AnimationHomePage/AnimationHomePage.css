@@ -16,21 +16,27 @@
 }
 #homeLogoImg {
     z-index: 0;
-    max-height: 60vh;
+    height: 60vh;
     width: 50vw;
     opacity: .2;
     position: fixed;
-    top: 25%;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: -30vh auto;
     /* padding: 5em; */
     /* border: 2em solid var(--aRed); */
 }
-#animationCont h1 {
+#animationCont h3 {
     font-size: 12vw;
     color: var(--aRed);
     text-align: center;
     position: fixed;
     height: 100vh;
-    top: 25%;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: -12vw auto;
     font-weight: 900;
 }
 #animationCont h2 {

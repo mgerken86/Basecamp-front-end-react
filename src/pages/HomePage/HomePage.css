@@ -51,6 +51,7 @@
     margin: 0;
     width: 100vw;
     display: inline;
+    color: var(--aGray);
 }
 #trailTitle {
     background-color: var(--dGray);

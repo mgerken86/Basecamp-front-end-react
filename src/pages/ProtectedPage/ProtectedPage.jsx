@@ -27,7 +27,11 @@ export default function ProtectedPage() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <h1>My Account</h1>
+      <div className='headerCont'>
+                        <div></div>
+                        <h1>ORDER HISTORY</h1>
+                        <div></div>
+                    </div>
       <div className="container-left">
         {userReservations?.map((reservation, index) => {
           return <div 

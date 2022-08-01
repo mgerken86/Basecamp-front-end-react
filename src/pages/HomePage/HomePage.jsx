@@ -103,10 +103,11 @@ export default function HomePage() {
             {/* <div id='vertDiv'></div> */}
             {!showHome ? <AnimationHomePage setShowHome={ setShowHome }/>
                  : <> 
-                    {user && <>
-                        <h1>Basecamp</h1>
-                        <h2>Hello, {user.username}</h2>
-                    </>}
+                    {user && <div className='headerCont'>
+                        <div></div>
+                        <h1>BASECAMP</h1>
+                        <div></div>
+                    </div>}
                     {/* Trails buttons */}
                     <button onClick={() => {
                         axiosRequests.fetchTrails(boulder.lat, boulder.lng, setTrailsData)

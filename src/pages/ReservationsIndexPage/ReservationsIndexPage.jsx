@@ -47,7 +47,11 @@ export default function ReservationsIndexPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
-            <h1 id='reservH1'>Reservations</h1>
+            <div className='headerCont'>
+                        <div></div>
+                        <h1>RESERVATIONS</h1>
+                        <div></div>
+                    </div>
 
             <div id='calendarCont'>
                 <button

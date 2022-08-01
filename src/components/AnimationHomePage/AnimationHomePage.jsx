@@ -34,7 +34,7 @@ export default function AnimationHomePage({ setShowHome }) {
                 src='/images/logo.png'
                 alt="logo"
             />
-            <h1>
+            <h3>
                 <MovingText
                     onAnimationEnd={handleChainAnimation}
                     type={animationType}
@@ -47,7 +47,7 @@ export default function AnimationHomePage({ setShowHome }) {
                     fillMode="none">
                     {animatedText}
                 </MovingText>
-            </h1>
+            </h3>
             <h2>(Click anywhere to continue)</h2>
 
         </div>

@@ -20,15 +20,39 @@ main {
   align-items: center;
   height: 100%;
 }
-main h1 {
-  /* background-color: var(--aRed); */
+
+.headerCont {
+  background-color: rgba(237, 237, 237, .7);
+  width: 80%;
+  height: auto;
+  display: flex;
+  margin: 3em;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  padding: .3em;
+}
+
+.headerCont div {
+  background-color: var(--aRed);
+  height: 4px;
+  width: 23%;
+}
+
+.headerCont h1 {
+  /* width: 40vw; */
+  background-color: var(--dGray);
   color: var(--aGray);
   font-size: 3em;
-  margin: 1em;
+  margin: .3em;
   font-family: 'Nanum Gothic', sans-serif;
-  text-align: left;
-  width: 80%;
+  /* text-align: left; */
+  display: inline-block;
+  text-align: center;
+  border-radius: 10px;
+  padding: .3em 1em;
 }
+
 
 body {
   background-color: var(--aGray);

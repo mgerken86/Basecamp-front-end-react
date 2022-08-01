@@ -68,7 +68,7 @@ export default function GearIndexPage() {
                 </div>
               })}
             </motion.div> : <>
-              <h1 className='gearH1'>GEAR</h1>
+              <h1 className='gearH1'>RENTALS</h1>
               <h2>Browse our gear (and the weather forecast) before making a reservation!</h2>
 
               {forecast.current &&
