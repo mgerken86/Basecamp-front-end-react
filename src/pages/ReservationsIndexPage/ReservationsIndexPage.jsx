@@ -21,7 +21,7 @@ export default function ReservationsIndexPage() {
 
     const getDateMarkers = () => {
         reservations.map(reservation => {
-            console.log(reservation)
+            // console.log(reservation)
             setEvents([...events, {
                 start: moment(reservation.start_date).toDate(),
                 end: moment(reservation.end_date).toDate(),

@@ -3,7 +3,7 @@
     display: flex;
     position: relative;
     background: var(--dGray);
-    height: 70vh;
+    min-height: 50vh;
 }
 .titleCont h2 {
     flex: 1;
@@ -17,7 +17,7 @@
 .gearImg {
     flex: 1;
     width: 50vw;
-    height: 70vh;
+    min-height: 50vh;
 }
 .titleDiv {
     flex: 1;
@@ -39,17 +39,37 @@
     color: var(--dGray);
     text-align: center;
     font-size: 1.8em;
+    margin-top: 1em;
 }
 .titleDiv p {
     font-size: 1.5em;
     margin: .5em 1.4em;
+    color: var(--dGray);
 }
 
-
-.weatherCont {
-    width: 60vw;
+#weatherDiv {
+    width: 100%;
     display: flex;
     justify-content: space-around;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--aGray);
+    border-top: 2px solid var(--dGray);
+    border-bottom: 2px solid var(--dGray);
+}
+
+.weatherCont {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .gear-item-cont img {

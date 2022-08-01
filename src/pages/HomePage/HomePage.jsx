@@ -1,8 +1,8 @@
 import './HomePage.css'
+import AnimationHomePage from '../../components/AnimationHomePage/AnimationHomePage';
 import { useContext, useState, useEffect, useRef } from 'react';
 import AuthContext from '../../context/AuthContext';
 import * as axiosRequests from '../../utils/axiosRequests'
-import MovingText from 'react-moving-text'
 import { motion } from 'framer-motion'
 
 const boulder = {
@@ -22,11 +22,6 @@ const estesPark = {
     lng: -105.5216651
 }
 
-const animationsForChaining = ["slideInFromLeft", "slideOutToRight", "slideInFromRight", "slideOutToLeft", "flipFromTop", "flipToBottom", "popIn", "zoomOut"]
-// const animationsForChaining = ["slideInFromLeft", "flipToBottom", "slideInFromRight", "flipToBottom", "slideInFromTop", "flipToBottom", "popIn", "zoomOut"]
-// const animationsForChaining = ["slideInFromLeft", "flipToBottom", "slideInFromRight", "flipToBottom", "slideInFromTop", "flipToBottom", "popIn", "zoomOut"]
-// each word gets 2, because each gets 2 animations per word
-const animatedTextArr = ['RENTALS', 'RENTALS', 'EVENTS', 'EVENTS', 'COMMUNITY', 'COMMUNITY', 'BASECAMP', 'BASECAMP']
 
 
 export default function HomePage() {
@@ -36,9 +31,7 @@ export default function HomePage() {
     const [showRestaurants, setShowRestaurants] = useState(false)
     const { user } = useContext(AuthContext);
     const [showHome, setShowHome] = useState(false)
-    const [animationIndex, setAnimationIndex] = useState(0)
-    const [animationType, setAnimationType] = useState(animationsForChaining[0])
-    const [animatedText, setAnimatedText] = useState(animatedTextArr[0])
+
     const [trailIndex, setTrailIndex] = useState(0)
     const [restaurantsIndex, setRestaurantsIndex] = useState(0)
 
@@ -53,7 +46,7 @@ export default function HomePage() {
     useEffect(() => {
         setTimeout(() => {
             setShowHome(true)
-        }, 16000);
+        }, 14500);
     }, [])
 
 
@@ -97,12 +90,7 @@ export default function HomePage() {
 
 
 
-    const handleChainAnimation = () => {
-         setAnimatedText(animatedTextArr[animationIndex + 1])
-         setAnimationType(animationsForChaining[animationIndex + 1])
-        setAnimationIndex(animationIndex + 1)
-    }
-
+    
 
 
     return (
@@ -113,33 +101,8 @@ export default function HomePage() {
             exit={{ opacity: 0 }}
         >
             {/* <div id='vertDiv'></div> */}
-            {!showHome ?
-                <div
-                    onClick={() => setShowHome(true)}
-                    id='animationCont'
-                    >
-                    <img 
-                    id='homeLogoImg'
-                    src='/images/logo.png' 
-                    alt="logo" 
-                    />
-                    <h1>
-                        <MovingText
-                            onAnimationEnd={handleChainAnimation}
-                            type={animationType}
-                            // type="fadeInFromLeft"
-                            duration="2000ms"
-                            delay="0s"
-                            direction="normal"
-                            timing="ease"
-                            iteration={1}
-                            fillMode="none">
-                            {animatedText}
-                        </MovingText>
-                    </h1>
-                    <h2>(Click anywhere to continue)</h2>
-
-                </div> : <>
+            {!showHome ? <AnimationHomePage setShowHome={ setShowHome }/>
+                 : <> 
                     {user && <>
                         <h1>Basecamp</h1>
                         <h2>Hello, {user.username}</h2>
