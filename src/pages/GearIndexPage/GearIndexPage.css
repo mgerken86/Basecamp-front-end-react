@@ -95,25 +95,33 @@
 
 
 .gear-cont {
-    width: 80vw;
+    margin-top: 5em;
+    width: 100vw;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-
+    /* align-items: center; */
+    justify-content: space-evenly;
+    gap: 3em;
+    background-color: var(--dGray);
+    padding: 1em;
 }
 
 .gear-item-cont {
-    margin-top: 3em;
+    width: 40vw;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
+    background-color: var(--aGray);
+    color: var(--aGray);
+    /* border: 2px solid var(--aRed); */
 }
 
 .gear-item-cont img {
-    width: 12em;
-    height: 8em;
-    object-fit: contain;
+    width: 40vw;
+    height: 55vh;
+    object-fit: cover;
+    /* margin-top: 1em; */
+    /* border-radius: 10px; */
 }

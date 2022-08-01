@@ -1,5 +1,8 @@
 #reservationsPage {
     background: url('https://boulder.a-lodge.com/wp-content/uploads/Events_Hero_Desktop.jpg') repeat center center fixed; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -11,27 +14,58 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+    /* align-items: center; */
+    border: 2px solid var(--aRed);
 }
 #calendarBtn {
-    background-color: var(--dGray);
+    background-color: var(--aRed);
+    width: 30%;
     padding: .4em 0;
-    color: var(--aRed);
+    color: var(--aGray);
+    font-size: 1.5em;
     font-weight: bolder;
+    align-self: center;
+    margin: 1em auto;
+}
+#calendarBtn:hover {
+    background-color: var(--dGray);
 }
 .rbc-off-range-bg {
-    background-color: var(--lGray) !important;
+    background-color: var(--dGray) !important;
 }
 
 .rbc-off-range button {
-    color: var(--dGray) !important;
+    color: var(--aGray) !important;
 }
 .rbc-event {
-    background-color: var(--dGray) !important;
-    color: var(--lGray);
+    background-color: var(--lGray) !important;
+}
+.rbc-event-content {
+    color: var(--aRed);
 }
 
 .rbc-show-more, .rb-button-link {
     color: var(--aRed) !important;
+}
+
+.allReservations {
+    margin: 3em auto;
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    background-color: rgba(237, 237, 237, .4);
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 3em;
+    padding: 3em;
+    
+}
+
+.rezCont {
+    background-color: var(--dGray);
+    color: var(--aGray);
+    padding: .5em;
+    border-radius: 10px;
+    border: 2px solid var(--aRed);
 }
 

@@ -10,7 +10,7 @@
     /* Will not center vertically and won't work in IE6/7. */
     left: 0;
     right: 0;
-    background: rgba(34, 34, 34, .9);
+    background: rgba(34, 34, 34, 1);
     color: var(--aGray);
     border-radius: 18px;
 }

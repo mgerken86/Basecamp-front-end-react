@@ -2,7 +2,7 @@
     height: 100vh;
     width: 100vw;
     background: rgba(34, 34, 34, 1);
-    background: rgba(34, 34, 34, .9);
+    /* background: rgba(34, 34, 34, .9); */
     display: flex;
     flex-direction: column;
     align-items: center;

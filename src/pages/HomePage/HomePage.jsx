@@ -108,7 +108,9 @@ export default function HomePage() {
                         <h1>BASECAMP</h1>
                         <div></div>
                     </div>}
+                    <h1 id='usernameH1'>Welcome Home, {user.username}</h1>
                     {/* Trails buttons */}
+                    <div className='btnsContainer'>
                     <button onClick={() => {
                         axiosRequests.fetchTrails(boulder.lat, boulder.lng, setTrailsData)
                         setTrailIndex(0)
@@ -137,9 +139,11 @@ export default function HomePage() {
                     }}>
                         Estes Park Trails
                     </button>
+                    </div>
 
 
                     {/* Restaurants buttons */}
+                    <div className='btnsContainer'>
                     <button onClick={() => {
                         axiosRequests.fetchRestaurants(boulder.lat, boulder.lng, setRestaurantsData)
                         setRestaurantsIndex(0)
@@ -168,6 +172,7 @@ export default function HomePage() {
                     }}>
                         Estes Park Restaurants
                     </button>
+                    </div>
 
                     {showTrails && trailsData.length === 5 && <div className='trailsDiv'>
                         <div id='trailTitle'>

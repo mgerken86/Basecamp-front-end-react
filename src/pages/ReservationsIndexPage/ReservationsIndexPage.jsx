@@ -48,10 +48,10 @@ export default function ReservationsIndexPage() {
             exit={{ opacity: 0 }}
         >
             <div className='headerCont'>
-                        <div></div>
-                        <h1>RESERVATIONS</h1>
-                        <div></div>
-                    </div>
+                <div></div>
+                <h1>RESERVATIONS</h1>
+                <div></div>
+            </div>
 
             <div id='calendarCont'>
                 <button
@@ -77,10 +77,9 @@ export default function ReservationsIndexPage() {
                     style={{ height: 800 }}
                 />
             </div>
-            <div className='container-left'>
-
-                {/* {reservations.map((reservation, index) => {
-                    return <div key={index}>
+            <div className='allReservations'>
+                {reservations.map((reservation, index) => {
+                    return <div key={index} className='rezCont'>
                         <p>Start Date: {reservation.start_date}</p>
                         <p>End Date: {reservation.end_date}</p>
                         {reservation.gear_item.map((gear, index) => {
@@ -91,8 +90,9 @@ export default function ReservationsIndexPage() {
                                 <p>Quantity: {reservation.qty}</p>
                             </div>
                         })}
+
                     </div>
-                })} */}
+                })}
             </div>
         </motion.main>
     )
