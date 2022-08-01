@@ -46,38 +46,44 @@ export default function GearIndexPage() {
           alt="gear" />
 
 
-        <div 
-        className='titleDiv' 
-        onClick={()=> setShowForecast(!showForecast)}>
-        {showForecast ?
-              <div className='weatherCont'>
-                {forecast.forecast.forecastday.map((day, index) => {
-                  return <div key={index}>
-                    <h5>{day.date}</h5>
-                    <img src={day.day.condition.icon} alt="" />
-                    <p>{day.day.condition.text}</p>
-                    <p>{day.day.daily_chance_of_rain}% chance of rain</p>
-                    <p>High: {day.day.maxtemp_f}°</p>
-                    <p>Low: {day.day.mintemp_f}°</p>
-                  </div>
-                })}
-              </div> : <>
+        <div
+          className='titleDiv'
+          onClick={() => setShowForecast(!showForecast)}>
+          {showForecast ?
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className='weatherCont'>
+              {forecast.forecast.forecastday.map((day, index) => {
+                return <div key={index} className="weatherInfo">
+                  <h5>{day.date}</h5>
+                  <img src={day.day.condition.icon} alt="" />
+                  <hr />
+                  {/* <p>{day.day.condition.text}</p> */}
+                  <p>High: {day.day.maxtemp_f}°</p>
+                  <p>Low: {day.day.mintemp_f}°</p>
+                  <hr />
+                  <p>{day.day.daily_chance_of_rain}% chance of rain</p>
+                </div>
+              })}
+            </motion.div> : <>
               <h1 className='gearH1'>GEAR</h1>
               <h2>Browse our gear (and the weather forecast) before making a reservation!</h2>
-    
-              {forecast.current && 
-              <div id='weatherDiv'>
-                {/* <h2>Before renting, know the weather conditions!...</h2> */}
-                <img src={forecast.current.condition.icon} alt="" />
-                <p>Currently: {forecast.current.condition.text} and {forecast.current.temp_f}°</p>
-              </div>}
+
+              {forecast.current &&
+                <div id='weatherDiv'>
+                  {/* <h2>Before renting, know the weather conditions!...</h2> */}
+                  <img src={forecast.current.condition.icon} alt="" />
+                  <p>Currently: {forecast.current.condition.text} and {forecast.current.temp_f}°</p>
+                </div>}
               {/* <h2>CHECK OUT OUR AVAILABLE RENTALS</h2> */}
               <p>Whether you're looking to rest in or rock out, our rentals will give you the freedom to customize your adventure.</p>
-              </>}
-            </div>
-          </div>
+            </>}
+        </div>
+      </div>
 
-      <div className='gear-cont'>    
+      <div className='gear-cont'>
         {/* {gear.length != 0 && gear.map((gear, index) => { */}
         {gear?.map((gear, index) => {
           return <div className='gear-item-cont' key={index}>

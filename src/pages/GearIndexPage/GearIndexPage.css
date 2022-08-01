@@ -71,6 +71,24 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    font-size: .8em;
+}
+.weatherCont img {
+    height: 35%;
+    background: var(--aGray);
+    /* border-bottom: 2px solid var(--dGray); */
+}
+
+.weatherInfo {
+    height: 100%;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-right: 2px solid var(--dGray);
+}
+.weatherInfo h5 {
+    background-color: var(--aGray);
 }
 
 
