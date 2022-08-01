@@ -15,7 +15,6 @@ export default function GearIndexPage() {
   const [gear, setGear] = useState([])
   const [forecast, setForecast] = useState([])
   const [showForecast, setShowForecast] = useState(false)
-  const [showDetailPage, setShowDetailPage] = useState(false)
   const { user } = useContext(AuthContext);
   const navigate = useNavigate()
 
@@ -73,7 +72,7 @@ export default function GearIndexPage() {
 
           </div>}
           {/* <h2>CHECK OUT OUR AVAILABLE RENTALS</h2> */}
-          <p>Whether you're looking to get out or cozy up, our rentals will give you the freedom to customize your adventure.</p>
+          <p>Whether you're looking to rest in or rock out, our rentals will give you the freedom to customize your adventure.</p>
 
         </div>
       </div>
@@ -81,25 +80,19 @@ export default function GearIndexPage() {
 
 
       <div className='container-left gear-cont'>
-        
+
         {/* {gear.length != 0 && gear.map((gear, index) => { */}
         {gear?.map((gear, index) => {
           return <div className='gear-item-cont' key={index}>
-            {!showDetailPage ? 
-              <GearIndexCard 
+            <GearIndexCard
               gear={gear}
-              setShowDetailPage={setShowDetailPage}
-              key={index}/>
-              
-           : <GearDetailPage 
-            gearItem={gear}
-            setShowDetailPage={setShowDetailPage} 
-            user={user}/>}
+              user={user}
+              key={index} />
           </div>
         })}
-        
+
         {user.user_id === 1 && <NewGearForm setGear={setGear} />}
-        
+
       </div>
     </motion.main>
   )

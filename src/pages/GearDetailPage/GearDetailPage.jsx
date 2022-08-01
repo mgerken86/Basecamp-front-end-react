@@ -29,11 +29,11 @@ export default function GearDetailPage({ gearItem, user, setShowDetailPage }){
     return (
         <main id='detailPage'>
             <h1>{gearItem.name}</h1>
-            <button onClick={()=> setShowDetailPage(false)}></button>
-            <h3></h3>
-            <p>{gearItem.desc}</p>
-            <p>${gearItem.price}</p>
+            <h2>${gearItem.price}</h2>
+            <button onClick={()=> setShowDetailPage(false)}>X</button>
+            <img src={gearItem.image_url} alt="" />
             <p>Quantity: {gearItem.qty}</p>
+            <p>{gearItem.desc}</p>
             {user.user_id ===1 && <>
                 <button onClick={()=> deleteGear(gearItem.id)}>Delete</button>
             <button onClick={()=> setShowEdit(!showEdit)}>Edit</button>

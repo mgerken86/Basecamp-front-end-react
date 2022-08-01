@@ -1,24 +1,20 @@
-export default function GearIndexCard({ gear, setShowDetailPage }) {
+import { useState } from "react"
+import GearDetailPage from "../../pages/GearDetailPage/GearDetailPage"
+
+export default function GearIndexCard({ gear, user }) {
+    const [showDetailPage, setShowDetailPage] = useState(false)
+
     return (
         <>
         <img src={gear.image_url} alt="" />
             <h2>{gear.name}</h2>
-            <p>${gear.price}</p>
-            <p>Stock Amount: {gear.qty}</p>
             <button
-              onClick={() => {setShowDetailPage(true)
-                // navigate(`/rentals/${gear.id}`,
-                //   {
-                //     state: {
-                //       gear: { gear },
-                //       user: { user }
-                //     },
-                //   })
-              }}>
+              onClick={() => {setShowDetailPage(true)}}>
               More Info
             </button>
             <hr />
             <br />
+        {showDetailPage && <GearDetailPage gearItem={gear} setShowDetailPage={setShowDetailPage} user={user}/>}
         </>
     )
 }

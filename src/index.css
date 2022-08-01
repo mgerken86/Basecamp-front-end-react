@@ -62,3 +62,11 @@ body {
   flex-direction: column;
   justify-content: space-around;
 }
+
+button {
+  background-color: var(--aRed);
+  color: var(--aGray);
+  padding: 1em 3em;
+  border-radius: 15px;
+  cursor: pointer;
+}
