@@ -25,16 +25,16 @@ export const postGear = (setState, formData, starterData) => {
             image_url: formData.image_url,
         })
         .then((res) => {
-            
+
         })
-        .catch((err) => {});
+        .catch((err) => { });
 
     setState(starterData)
 };
 
 
 // edit gear item
- export const editGear = (id, formData) => {
+export const editGear = (id, formData) => {
     axios
         .put(`${baseURL}/rentals/${id}`, {
             name: formData.name,
@@ -88,23 +88,42 @@ export const getReservations = (setState) => {
 // used to get all logged in user reservations
 export const getUserReservations = (setState, id) => {
     axios.get(`${baseURL}/myaccount/${id}`)
-      .then(res => {
-        let data = res.data;
-        // console.log(data)
-        setState(data);
-      })
-      .catch(err => { })
-  }
+        .then(res => {
+            let data = res.data;
+            // console.log(data)
+            setState(data);
+        })
+        .catch(err => { })
+}
 
 
 //used to delete one reservation
 export const deleteReservation = (id) => {
     axios.delete(`${baseURL}/reservations/${id}`)
-    .then(res => {
-      console.log(res)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => { })
+}
+
+
+//edit a reservation
+export const editReservation = (id, data, user) => {
+    axios.put(`${baseURL}/reservations/${id}`, {
+    start_date: data.start_date,
+    end_date: data.end_date,
+    //change this to dynamically choose the id of the gear items
+    gear_item_ids: [data.gear_item_ids],
+    // gear_item: formData.gear_item,
+    qty: data.qty,
+    user: user.user_id
+})
+    .then((res) => {
+        console.log(res)
     })
-    .catch(err => { })
-  }
+    .catch((err) => console.log(err));
+}
+
 
 
 // get trails on home page
@@ -130,37 +149,37 @@ export const fetchTrails = (lat, lng, setState) => {
 
 export const fetchRestaurants = (lat, lng, setState) => {
 
-const options = {
-  method: 'GET',
-  url: 'https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng',
-  params: {
-    latitude: lat,
-    longitude: lng,
-    limit: '10',
-    currency: 'USD',
-    distance: '2',
-    open_now: 'false',
-    lunit: 'km',
-    lang: 'en_US'
-  },
-  headers: {
-    // 'X-RapidAPI-Key': 'b706fa8596msha33725def79a97cp1b9fc1jsn8dfd397c7442',
-    'X-RapidAPI-Key': 'b00ef5d09cmsh0fcc399427b9deap187b8djsn0c860bac4d4d',
-    'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-  }
-};
+    const options = {
+        method: 'GET',
+        url: 'https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng',
+        params: {
+            latitude: lat,
+            longitude: lng,
+            limit: '10',
+            currency: 'USD',
+            distance: '2',
+            open_now: 'false',
+            lunit: 'km',
+            lang: 'en_US'
+        },
+        headers: {
+            // 'X-RapidAPI-Key': 'b706fa8596msha33725def79a97cp1b9fc1jsn8dfd397c7442',
+            'X-RapidAPI-Key': 'b00ef5d09cmsh0fcc399427b9deap187b8djsn0c860bac4d4d',
+            'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+        }
+    };
 
-axios.request(options).then(function (response) {
-	// console.log(response.data.data);
-    // put data in array and filter out the ads that don't have names
-    let reservationsArr = response.data.data
-	
-    reservationsArr = reservationsArr.filter(restaurant => restaurant.name !== undefined)
-    console.log(reservationsArr)
-    setState(reservationsArr)
-}).catch(function (error) {
-	console.error(error);
-});
+    axios.request(options).then(function (response) {
+        // console.log(response.data.data);
+        // put data in array and filter out the ads that don't have names
+        let reservationsArr = response.data.data
+
+        reservationsArr = reservationsArr.filter(restaurant => restaurant.name !== undefined)
+        console.log(reservationsArr)
+        setState(reservationsArr)
+    }).catch(function (error) {
+        console.error(error);
+    });
 }
 
 export const fetchAttractions = (lat, lng, setState) => {
@@ -168,22 +187,22 @@ export const fetchAttractions = (lat, lng, setState) => {
         method: 'GET',
         url: 'https://travel-advisor.p.rapidapi.com/attractions/list-by-latlng',
         params: {
-          longitude: lat,
-          latitude: lng,
-          lunit: 'km',
-          currency: 'USD',
-          lang: 'en_US'
+            longitude: lat,
+            latitude: lng,
+            lunit: 'km',
+            currency: 'USD',
+            lang: 'en_US'
         },
         headers: {
-          'X-RapidAPI-Key': 'b00ef5d09cmsh0fcc399427b9deap187b8djsn0c860bac4d4d',
-          'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+            'X-RapidAPI-Key': 'b00ef5d09cmsh0fcc399427b9deap187b8djsn0c860bac4d4d',
+            'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
         }
-      };
-      
-      axios.request(options).then(function (response) {
-          console.log(response.data.data);
-          setState(response.data.data);
-      }).catch(function (error) {
-          console.error(error);
-      });
+    };
+
+    axios.request(options).then(function (response) {
+        console.log(response.data.data);
+        setState(response.data.data);
+    }).catch(function (error) {
+        console.error(error);
+    });
 }

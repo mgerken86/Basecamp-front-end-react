@@ -18,12 +18,16 @@
 #detailPage h1 {
     text-align: center;
 }
-#detailPage button {
+.gearBtn {
     position: absolute;
     top: 1em;
     right: 1em;
     font-size: 2em;
     padding: 0 .4em;
+}
+.editBtn {
+    top: 1em;
+    margin: 3em;
 }
 #detailPage img {
     height: 40vh;

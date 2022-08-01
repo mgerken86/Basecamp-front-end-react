@@ -10,3 +10,8 @@
     display: flex;
     flex-direction: column;
 }
+
+.ordersCont {
+    background-color: var(--aGray);
+    padding: 1em;
+}

@@ -31,7 +31,7 @@ export default function EditGearForm({ gear }) {
 
     return (
         <main>
-            <div className="listSearch">
+            <div id="loginCont">
                 <div>
                     <label>Name</label>
                     <input
@@ -88,7 +88,7 @@ export default function EditGearForm({ gear }) {
 
                     onClick={async () => {
                         await editGear(gearItem.id, formData)
-                        navigate('/rentals')
+                        navigate(0)
                     }}>
                     Edit Gear
                 </button>
