@@ -162,3 +162,28 @@ axios.request(options).then(function (response) {
 	console.error(error);
 });
 }
+
+export const fetchAttractions = (lat, lng, setState) => {
+    const options = {
+        method: 'GET',
+        url: 'https://travel-advisor.p.rapidapi.com/attractions/list-by-latlng',
+        params: {
+          longitude: lat,
+          latitude: lng,
+          lunit: 'km',
+          currency: 'USD',
+          lang: 'en_US'
+        },
+        headers: {
+          'X-RapidAPI-Key': 'b00ef5d09cmsh0fcc399427b9deap187b8djsn0c860bac4d4d',
+          'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+        }
+      };
+      
+      axios.request(options).then(function (response) {
+          console.log(response.data.data);
+          setState(response.data.data);
+      }).catch(function (error) {
+          console.error(error);
+      });
+}
