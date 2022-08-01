@@ -6,6 +6,7 @@
     height: 15vh;
     background-color: var(--dGray);
     padding: 0 1.5em;
+    border-bottom: 4px solid var(--aGray);
 }
 
 .nav-list {

@@ -1,3 +1,4 @@
+import './ProtectedPage.css'
 import { useEffect, useState } from "react";
 import { useContext } from 'react';
 import AuthContext from '../../context/AuthContext';
@@ -21,6 +22,7 @@ export default function ProtectedPage() {
 
   return (
     <motion.main
+    id="accountPage"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -28,7 +30,9 @@ export default function ProtectedPage() {
       <h1>My Account</h1>
       <div className="container-left">
         {userReservations?.map((reservation, index) => {
-          return <div key={index}>
+          return <div 
+          key={index}
+            className='reservationsHistory'>
             {showEdit && <EditReservationForm thisReservation={reservation} />}
             <p>Start Date: {reservation.start_date}</p>
             <p>End Date: {reservation.end_date}</p>

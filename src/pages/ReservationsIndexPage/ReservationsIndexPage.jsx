@@ -42,6 +42,7 @@ export default function ReservationsIndexPage() {
 
     return (
         <motion.main
+            id='reservationsPage'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -64,7 +65,7 @@ export default function ReservationsIndexPage() {
                         return {
                             start: moment(reservation.start_date).toDate(),
                             end: moment(reservation.end_date).toDate(),
-                            title: `${reservation.gear_item[0].name} (Qty: ${reservation.gear_item[0].qty})`
+                            title: `${reservation.gear_item[0].name} (Qty: ${reservation.qty})`
                         }
                     })}
                     startAccessor="start"
