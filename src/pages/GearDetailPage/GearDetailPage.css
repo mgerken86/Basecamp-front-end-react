@@ -1,0 +1,14 @@
+#detailPage {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    background: rgba(34, 34, 34, .9);
+    color: var(--aGray);
+}
+#detailPage h1 {
+    text-align: center;
+}

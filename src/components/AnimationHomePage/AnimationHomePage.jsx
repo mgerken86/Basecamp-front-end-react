@@ -1,5 +1,6 @@
 import MovingText from 'react-moving-text'
 import { useState } from 'react'
+import './AnimationHomePage.css'
 
 
 // const animationsForChaining = ["slideInFromLeft", "slideOutToRight", "slideInFromRight", "slideOutToLeft", "flipFromTop", "flipToBottom", "popIn", "zoomOut"]

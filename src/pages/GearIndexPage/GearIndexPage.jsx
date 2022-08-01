@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { motion } from 'framer-motion'
 import { useContext } from 'react';
 import AuthContext from '../../context/AuthContext';
+import GearDetailPage from '../GearDetailPage/GearDetailPage';
+import GearIndexCard from '../../components/GearIndexCard/GearIndexCard';
 
 
 
@@ -13,6 +15,7 @@ export default function GearIndexPage() {
   const [gear, setGear] = useState([])
   const [forecast, setForecast] = useState([])
   const [showForecast, setShowForecast] = useState(false)
+  const [showDetailPage, setShowDetailPage] = useState(false)
   const { user } = useContext(AuthContext);
   const navigate = useNavigate()
 
@@ -78,29 +81,23 @@ export default function GearIndexPage() {
 
 
       <div className='container-left gear-cont'>
+        
         {/* {gear.length != 0 && gear.map((gear, index) => { */}
         {gear?.map((gear, index) => {
           return <div className='gear-item-cont' key={index}>
-            <img src={gear.image_url} alt="" />
-            <h2>{gear.name}</h2>
-            <p>${gear.price}</p>
-            <p>Stock Amount: {gear.qty}</p>
-            <button
-              onClick={() => {
-                navigate(`/rentals/${gear.id}`,
-                  {
-                    state: {
-                      gear: { gear },
-                      user: { user }
-                    },
-                  })
-              }}>
-              More Info
-            </button>
-            <hr />
-            <br />
+            {!showDetailPage ? 
+              <GearIndexCard 
+              gear={gear}
+              setShowDetailPage={setShowDetailPage}
+              key={index}/>
+              
+           : <GearDetailPage 
+            gearItem={gear}
+            setShowDetailPage={setShowDetailPage} 
+            user={user}/>}
           </div>
         })}
+        
         {user.user_id === 1 && <NewGearForm setGear={setGear} />}
         
       </div>
