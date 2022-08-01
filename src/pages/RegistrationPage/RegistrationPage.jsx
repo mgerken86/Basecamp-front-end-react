@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import { motion } from 'framer-motion'
+import { Link } from "react-router-dom";
 
 export default function RegistrationPage() {
     const [username, setUsername] = useState("");
@@ -19,10 +20,12 @@ export default function RegistrationPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
+            <div id="loginCont">
+            <h1>Register</h1>
             <form onSubmit={handleSubmit}>
-                <h1>Register</h1>
+
                 <hr />
-                <div>
+                {/* <div> */}
                     <label htmlFor="username">Username</label>
                     <input
                         type="text"
@@ -31,8 +34,8 @@ export default function RegistrationPage() {
                         placeholder="Username"
                         required
                     />
-                </div>
-                <div>
+                {/* </div> */}
+                {/* <div> */}
                     <label htmlFor="password">Password</label>
                     <input
                         type="password"
@@ -41,9 +44,9 @@ export default function RegistrationPage() {
                         placeholder="Password"
                         required
                     />
-                </div>
-                <div>
-                    <label htmlFor="confirm-password">Confirm Password</label>
+                {/* </div> */}
+                {/* <div> */}
+                    <label htmlFor="confirm-password">Confirm</label>
                     <input
                         type="password"
                         id="confirm-password"
@@ -52,9 +55,21 @@ export default function RegistrationPage() {
                         required
                     />
                     <p>{password2 !== password ? "Passwords do not match" : ""}</p>
-                </div>
+                {/* </div> */}
                 <button>Register</button>
+                <hr />
+
+
             </form>
+            <div className="loginBtnCont">
+            <Link to="/">
+                <button>Home</button>
+            </Link>
+            <Link to='/login'>
+                <button>Log In</button>
+            </Link>
+            </div>
+            </div>
         </motion.main>
     );
 }

@@ -63,7 +63,7 @@ export default function GearIndexPage() {
                   {/* <p>{day.day.condition.text}</p> */}
                   <p>High: {day.day.maxtemp_f}°</p>
                   <p>Low: {day.day.mintemp_f}°</p>
-                  <hr />
+                  {/* <hr /> */}
                   <p>{day.day.daily_chance_of_rain}% chance of rain</p>
                 </div>
               })}

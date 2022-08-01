@@ -1,0 +1,40 @@
+
+#loginCont {
+    height: 100vh !important;
+    width: 100vw;
+    background: rgba(34, 34, 34, 1) !important;
+    /* background: rgba(34, 34, 34, .9); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 5;
+    /* background: var(--dGray); */
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#loginCont label, h1 {
+    color: var(--aRed);
+}
+#loginCont input {
+    background-color: var(--aGray);
+    color: var(--dGray);
+    margin: 1em;
+}
+
+form {
+    margin: 1em;
+}
+form button {
+    margin-bottom: 1em;
+}
+.loginBtnCont {
+    display: flex;
+    gap: 3em;
+}
+.loginBtnCont button {
+    padding: .3em .8em;
+}

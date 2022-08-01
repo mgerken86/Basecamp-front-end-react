@@ -45,7 +45,7 @@ main {
   background-color: var(--dGray);
   color: var(--aGray);
   font-size: 3em;
-  margin: .3em 0;
+  margin: .3em .5em;
   font-family: 'Nanum Gothic', sans-serif;
   /* text-align: left; */
   display: inline-block;
