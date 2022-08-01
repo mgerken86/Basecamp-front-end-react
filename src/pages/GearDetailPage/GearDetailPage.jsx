@@ -39,7 +39,7 @@ export default function GearDetailPage({ gearItem, user, setShowDetailPage }){
             <img src={gearItem.image_url} alt="" />
             <p>Quantity: {gearItem.qty}</p>
             <p>{gearItem.desc}</p>
-            {user.user_id ===1 && <>
+            {user && user.user_id ===1 && <>
                 <button onClick={()=> deleteGear(gearItem.id)}>Delete</button>
             <button onClick={()=> setShowEdit(!showEdit)}>Edit</button>
             {showEdit && <EditGearForm gear={gearItem}/>}

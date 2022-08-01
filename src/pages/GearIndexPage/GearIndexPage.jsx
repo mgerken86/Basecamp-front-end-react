@@ -93,8 +93,8 @@ export default function GearIndexPage() {
               key={index} />
           </div>
         })}
-
-        {user.user_id === 1 && <NewGearForm setGear={setGear} />}
+        {/* only the admin can see the new gear form */}
+        {user && user.user_id === 1 ? <NewGearForm setGear={setGear} /> : null}
 
       </div>
     </motion.main>

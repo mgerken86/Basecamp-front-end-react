@@ -9,7 +9,7 @@ export default function NavBar() {
   return (
     <nav>
       <div className="nav-link">
-      <Link to="/">
+        <Link to="/">
           <img
             id="logoImg"
             src="/images/A-Lodge_logo.png"
@@ -17,13 +17,11 @@ export default function NavBar() {
           />
         </Link>
         <ul className="nav-list">
-          {/* <Link><a href="{% url 'about' %}">About</a></Link> */}
-          <Link to="/rentals">Rentals</Link>
-
-          <Link to="/reservations">Reservations</Link>
-
+        <Link to="/rentals">Rentals</Link>
+              <Link to="/reservations">Reservations</Link>
           {user ? (
             <>
+              
               <Link to="/myaccount">My Account</Link>
               <Link to="/login" onClick={logoutUser}>Logout</Link>
             </>
