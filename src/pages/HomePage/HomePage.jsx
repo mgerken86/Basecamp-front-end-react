@@ -106,12 +106,13 @@ export default function HomePage() {
             {/* <div id='vertDiv'></div> */}
             {!showHome ? <AnimationHomePage setShowHome={setShowHome} />
                 : <>
-                    {user && <div className='headerCont'>
+                    <div className='headerCont'>
                         <div></div>
                         <h1>BASECAMP</h1>
                         <div></div>
-                    </div>}
-                    <h1 id='usernameH1'>Welcome Home, {user.username}</h1>
+                    </div>
+                    {user && <h1 id='usernameH1'>Welcome Home, {user.username}</h1>}
+                    
                     <div id='btnToggles'>
                         <button onClick={() => {
                             setShowTrailsBtns(!showTrailsBtns)
