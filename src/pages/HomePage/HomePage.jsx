@@ -111,7 +111,7 @@ export default function HomePage() {
                         <h1>BASECAMP</h1>
                         <div></div>
                     </div>
-                    {user && <h1 id='usernameH1'>Welcome Home, {user.username}</h1>}
+                    {user && <h1 id='usernameH1'>Welcome home, {user.username}</h1>}
                     
                     <div id='btnToggles'>
                         <button onClick={() => {

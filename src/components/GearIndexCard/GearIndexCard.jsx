@@ -7,7 +7,7 @@ export default function GearIndexCard({ gear, user }) {
     return (
         <>
         <img src={gear.image_url} alt="" />
-            <h2>{gear.name}</h2>
+            <h2 id="gearH2">{gear.name}</h2>
             <button
               onClick={() => {setShowDetailPage(true)}}>
               More Info

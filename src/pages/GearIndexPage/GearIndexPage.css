@@ -125,3 +125,7 @@
     /* margin-top: 1em; */
     /* border-radius: 10px; */
 }
+
+#gearH2 {
+    color: var(--dGray);
+}

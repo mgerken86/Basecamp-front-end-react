@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { editGear } from '../../utils/axiosRequests';
+import * as axiosRequests from '../../utils/axiosRequests';
 
 
 
@@ -26,7 +26,10 @@ export default function EditGearForm({ gear }) {
         setFormData(newData);
     }
 
-
+    const handleSubmit = (id, data) => {
+        axiosRequests.editGear(id, data)
+                        navigate(0)
+    }
     
 
     return (
@@ -84,11 +87,8 @@ export default function EditGearForm({ gear }) {
                 </div>
                 {/* onClick function sets the state of the rooms to the new input arguments */}
                 <button
-                    className="searchBtn"
-
-                    onClick={async () => {
-                        await editGear(gearItem.id, formData)
-                        navigate(0)
+                    onClick={() => {
+                        handleSubmit(gearItem.id, formData)
                     }}>
                     Edit Gear
                 </button>

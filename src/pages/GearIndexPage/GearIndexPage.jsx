@@ -18,7 +18,7 @@ export default function GearIndexPage() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate()
 
-  console.log(user)
+  // console.log(user)
 
   useEffect(() => {
     (async () => {

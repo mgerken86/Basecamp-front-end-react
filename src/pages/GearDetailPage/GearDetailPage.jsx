@@ -1,5 +1,5 @@
 import './GearDetailPage.css'
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import EditGearForm from '../../components/EditGearForm/EditGearForm';
@@ -8,24 +8,21 @@ import { motion } from 'framer-motion'
 
 
 export default function GearDetailPage({ gearItem, user, setShowDetailPage }) {
-    // const { state } = useLocation();
-    // const { gear, user } = state
-    // const { user } = state
-    // const [gearItem, setGearItem] = useState(gear.gear)
-    // const [gearItem, setGearItem] = useState(gear)
     const [showEdit, setShowEdit] = useState(false)
+    const navigate = useNavigate()
 
-    console.log(user)
+    // console.log(user)
 
     const deleteGear = (id) => {
         axios.delete(`https://a-lodge-basecamp.herokuapp.com/rentals/${id}`)
             .then(res => {
                 console.log(res)
+                navigate(0)
             })
             .catch(err => { })
     }
 
-    console.log(gearItem)
+    // console.log(gearItem)
 
     return (
         <motion.main

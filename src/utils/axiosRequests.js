@@ -7,7 +7,7 @@ export const getGear = (setState) => {
     axios.get(`${baseURL}/rentals/`)
         .then(res => {
             let data = res.data;
-            console.log(data)
+            // console.log(data)
             setState(data);
         })
         .catch(err => { })
@@ -36,6 +36,7 @@ export const postGear = (setState, formData, starterData) => {
 // edit gear item
 export const editGear = (id, formData) => {
     axios
+        // .put(`${baseURL}/rentals/${id}`, {
         .put(`${baseURL}/rentals/${id}`, {
             name: formData.name,
             desc: formData.desc,
