@@ -23,7 +23,7 @@ export default function NavBar() {
             <>
               
               <Link to="/myaccount">My Account</Link>
-              <Link to="/login" onClick={logoutUser}>Logout</Link>
+              <Link to="/" onClick={logoutUser}>Logout</Link>
             </>
           ) : (
             <>

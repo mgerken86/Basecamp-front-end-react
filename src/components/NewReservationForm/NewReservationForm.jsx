@@ -49,7 +49,7 @@ export default function NewReservationForm({  }) {
                 user: user.user_id
             })
             .then((res) => {
-                
+                navigate(0)
             })
             .catch((err) => {});
     };
@@ -112,9 +112,8 @@ export default function NewReservationForm({  }) {
                 <button
                     className="searchBtn"
 
-                    onClick={async () => {
-                        await handleSubmit()
-                        navigate(0)
+                    onClick={() => {
+                        handleSubmit()
                     }}>
                     New Reservation
                 </button>
