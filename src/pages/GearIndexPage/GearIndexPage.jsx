@@ -2,11 +2,9 @@ import './GearIndexPage.css'
 import NewGearForm from '../../components/NewGearForm/NewGearForm';
 import { useState, useEffect } from 'react';
 import * as axiosRequests from '../../utils/axiosRequests'
-import { useNavigate } from "react-router-dom";
 import { motion } from 'framer-motion'
 import { useContext } from 'react';
 import AuthContext from '../../context/AuthContext';
-import GearDetailPage from '../GearDetailPage/GearDetailPage';
 import GearIndexCard from '../../components/GearIndexCard/GearIndexCard';
 
 
@@ -16,7 +14,6 @@ export default function GearIndexPage() {
   const [forecast, setForecast] = useState([])
   const [showForecast, setShowForecast] = useState(false)
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate()
 
   // console.log(user)
 

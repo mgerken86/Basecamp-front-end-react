@@ -2,6 +2,9 @@ import axios from "axios";
 
 const baseURL = 'https://a-lodge-basecamp.herokuapp.com'
 
+
+
+
 // used to retrieve all gear_items
 export const getGear = (setState) => {
     axios.get(`${baseURL}/rentals/`)
@@ -53,27 +56,6 @@ export const editGear = (id, formData) => {
 
 
 
-//used for weather data on gear index
-export const getWeather = (setState) => {
-    const options = {
-        method: 'GET',
-        url: 'https://weatherapi-com.p.rapidapi.com/forecast.json',
-        params: { q: 'Boulder', days: '3' },
-        headers: {
-            'X-RapidAPI-Key': 'b706fa8596msha33725def79a97cp1b9fc1jsn8dfd397c7442',
-            'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
-        }
-    };
-
-    axios.request(options).then(function (response) {
-        // console.log(response.data);
-        setState(response.data);
-    }).catch(function (error) {
-        console.error(error);
-    });
-}
-
-
 // gets all reservations
 export const getReservations = (setState) => {
     axios.get(`${baseURL}/reservations/`)
@@ -115,7 +97,6 @@ export const editReservation = (id, data, user) => {
     end_date: data.end_date,
     //change this to dynamically choose the id of the gear items
     gear_item_ids: [data.gear_item_ids],
-    // gear_item: formData.gear_item,
     qty: data.qty,
     user: user.user_id
 })
@@ -126,6 +107,26 @@ export const editReservation = (id, data, user) => {
 }
 
 
+
+
+//used for weather data on gear index
+export const getWeather = (setState) => {
+    const options = {
+        method: 'GET',
+        url: 'https://weatherapi-com.p.rapidapi.com/forecast.json',
+        params: { q: 'Boulder', days: '3' },
+        headers: {
+            'X-RapidAPI-Key': 'b706fa8596msha33725def79a97cp1b9fc1jsn8dfd397c7442',
+            'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+        }
+    };
+
+    axios.request(options).then(function (response) {
+        setState(response.data);
+    }).catch(function (error) {
+        console.error(error);
+    });
+}
 
 // get trails on home page
 export const fetchTrails = (lat, lng, setState) => {
@@ -141,7 +142,6 @@ export const fetchTrails = (lat, lng, setState) => {
     };
 
     axios.request(options).then(function (response) {
-        console.log(response.data.data);
         setState(response.data.data);
     }).catch(function (error) {
         console.error(error);
@@ -170,12 +170,9 @@ export const fetchRestaurants = (lat, lng, setState) => {
     };
 
     axios.request(options).then(function (response) {
-        // console.log(response.data.data);
         // put data in array and filter out the ads that don't have names
         let reservationsArr = response.data.data
-
         reservationsArr = reservationsArr.filter(restaurant => restaurant.name !== undefined)
-        console.log(reservationsArr)
         setState(reservationsArr)
     }).catch(function (error) {
         console.error(error);

@@ -24,7 +24,8 @@ main {
 
 .headerCont {
   background-color: rgba(237, 237, 237, .7);
-  width: 80%;
+  background: linear-gradient(90deg, rgba(237, 237, 237, .2), rgba(237, 237, 237, 1), rgba(237, 237, 237, .2));
+  width: 90%;
   height: auto;
   display: flex;
   margin: 3em;
