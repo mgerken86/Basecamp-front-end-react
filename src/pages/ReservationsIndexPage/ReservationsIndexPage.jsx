@@ -77,7 +77,7 @@ export default function ReservationsIndexPage() {
                     style={{ height: 800 }}
                 />
             </div>
-            <div className='allReservations'>
+            {/* <div className='allReservations'>
                 {reservations.map((reservation, index) => {
                     return <div key={index} className='rezCont'>
                         <p>Start Date: {reservation.start_date}</p>
@@ -93,7 +93,7 @@ export default function ReservationsIndexPage() {
 
                     </div>
                 })}
-            </div>
+            </div> */}
         </motion.main>
     )
 }

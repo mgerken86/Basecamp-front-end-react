@@ -164,7 +164,6 @@ export const fetchRestaurants = (lat, lng, setState) => {
             lang: 'en_US'
         },
         headers: {
-            // 'X-RapidAPI-Key': 'b706fa8596msha33725def79a97cp1b9fc1jsn8dfd397c7442',
             'X-RapidAPI-Key': 'b00ef5d09cmsh0fcc399427b9deap187b8djsn0c860bac4d4d',
             'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
         }
