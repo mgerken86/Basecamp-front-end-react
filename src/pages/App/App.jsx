@@ -11,7 +11,7 @@ export default function App() {
         <AuthProvider>
         <NavBar/>
         <AnimatedRoutes/>
-          </AuthProvider>
+        </AuthProvider>
       </div>
     );
   }
