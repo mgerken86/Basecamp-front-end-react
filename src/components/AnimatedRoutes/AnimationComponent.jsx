@@ -7,6 +7,7 @@ import ReservationsIndexPage from "../../pages/ReservationsIndexPage/Reservation
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import RegistrationPage from "../../pages/RegistrationPage/RegistrationPage";
 import ProtectedPage from "../../pages/ProtectedPage/ProtectedPage";
+import MessageBoardPage from "../../pages/MessageBoardPage/MessageBoardPage";
 import { AnimatePresence } from 'framer-motion'
 
 export default function AnimatedRoutes() {
@@ -23,6 +24,7 @@ export default function AnimatedRoutes() {
                 <Route path="/myaccount" element={<ProtectedPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegistrationPage />} />
+                <Route path="/messageboard" element={<MessageBoardPage />} />
             </Routes>
         </AnimatePresence>
     )

@@ -1,2 +1,5 @@
-
+#messageBoardPage {
+    background-color: var(--lGray);
+    min-height: 100vh;
+}
 

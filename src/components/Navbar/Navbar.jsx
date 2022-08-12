@@ -17,11 +17,12 @@ export default function NavBar() {
           />
         </Link>
         <ul className="nav-list">
-        <Link to="/rentals">Rentals</Link>
-              <Link to="/reservations">Reservations</Link>
+          <Link to="/rentals">Rentals</Link>
+          <Link to="/reservations">Reservations</Link>
+          <Link to="/messageboard">Message Board</Link>
           {user ? (
             <>
-              
+
               <Link to="/myaccount">My Account</Link>
               <Link to="/" onClick={logoutUser}>Logout</Link>
             </>
