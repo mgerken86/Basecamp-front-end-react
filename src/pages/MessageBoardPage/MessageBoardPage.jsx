@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './MessageBoardPage.css'
+import Post from '../../components/Post/Post'
 import { getPosts } from '../../utils/axiosRequests'
 import { motion } from 'framer-motion'
 
@@ -20,10 +21,9 @@ export default function MessageBoardPage() {
             exit={{ opacity: 0 }}
         >
             <div className='headerCont'>
-        <div></div>
-        <h1>MESSAGE BOARD</h1>
-        <div></div>
-      </div>
+                <h1>MESSAGE BOARD</h1>
+            </div>
+            {posts.map(post => <Post post={post} />)}
         </motion.main>
     )
 }
