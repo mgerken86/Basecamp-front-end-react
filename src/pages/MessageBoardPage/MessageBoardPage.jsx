@@ -25,7 +25,7 @@ export default function MessageBoardPage() {
                 <h1>MESSAGE BOARD</h1>
             </div>
             <NewPostForm />
-            {posts.map(post => <Post post={post} />)}
+            {posts.map((post, i) => <Post post={post} key={i} />)}
         </motion.main>
     )
 }

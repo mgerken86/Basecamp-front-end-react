@@ -112,7 +112,7 @@ export const getPosts = (setState) => {
     axios.get(`${baseURL}/posts/`)
         .then(res => {
             let data = res.data;
-            // console.log(data)
+            console.log(data)
             setState(data);
         })
         .catch(err => { })
@@ -120,10 +120,11 @@ export const getPosts = (setState) => {
 
 // gets all Posts
 export const getTopics = (setState) => {
-    axios.get(`${baseURL}/topics/`)
+    // axios.get(`${baseURL}/topics/`)
+    axios.get("http://localhost:8000/topics/")
         .then(res => {
             let data = res.data;
-            // console.log(data)
+            console.log(data)
             setState(data);
         })
         .catch(err => { })

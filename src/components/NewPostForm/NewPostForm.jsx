@@ -8,7 +8,7 @@ import { getTopics } from '../../utils/axiosRequests'
 
 export default function NewPostForm({  }) {
     const { user } = useContext(AuthContext);
-    const [formData, setFormData] = useState({})
+    const [formData, setFormData] = useState({title: '', body: ''})
     const [topics, setTopics] = useState([])
     const navigate = useNavigate()
 
@@ -29,7 +29,8 @@ export default function NewPostForm({  }) {
   
       const handleSubmit = () => {
         axios
-            .post("https://a-lodge-basecamp.herokuapp.com/posts/", {
+            // .post("https://a-lodge-basecamp.herokuapp.com/posts/", {
+            .post("http://localhost:8000/posts/", {
                 title: formData.title,
                 body: formData.body,
                 //change this to dynamically choose the id of the gear items
