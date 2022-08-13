@@ -3,17 +3,7 @@ import { useContext } from 'react';
 import AuthContext from '../../context/AuthContext';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-
-
-const getGear = (setState) => {
-    axios.get('https://a-lodge-basecamp.herokuapp.com/rentals/')
-      .then(res => {
-        let data = res.data;
-        // console.log(data)
-        setState(data)
-      })
-      .catch(err => { })
-  }
+import { getGear } from '../../utils/axiosRequests'
 
 
 export default function NewReservationForm({  }) {
