@@ -3,6 +3,7 @@ import './MessageBoardPage.css'
 import Post from '../../components/Post/Post'
 import { getPosts } from '../../utils/axiosRequests'
 import { motion } from 'framer-motion'
+import NewPostForm from '../../components/NewPostForm/NewPostForm'
 
 
 export default function MessageBoardPage() {
@@ -23,6 +24,7 @@ export default function MessageBoardPage() {
             <div className='headerCont'>
                 <h1>MESSAGE BOARD</h1>
             </div>
+            <NewPostForm />
             {posts.map(post => <Post post={post} />)}
         </motion.main>
     )
