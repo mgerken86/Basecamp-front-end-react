@@ -109,8 +109,8 @@ export const editReservation = (id, data, user) => {
 
 // gets all Posts
 export const getPosts = (setState) => {
-    // axios.get(`${baseURL}/posts/`)
-    axios.get(`http://localhost:8000/posts/`)
+    axios.get(`${baseURL}/posts/`)
+    // axios.get(`http://localhost:8000/posts/`)
         .then(res => {
             let data = res.data;
             // console.log(data)
