@@ -34,8 +34,8 @@ export default function NewPostForm({  }) {
                 title: formData.title,
                 body: formData.body,
                 //change this to dynamically choose the id of the gear items
-                // topic: [formData.gear_item_ids],
-                user: user.user_id
+                user: user.user_id,
+                topic: formData.topic_ids
             })
             .then((res) => {
                 navigate(0)
