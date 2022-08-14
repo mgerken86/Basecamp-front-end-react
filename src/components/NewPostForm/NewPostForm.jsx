@@ -66,19 +66,19 @@ export default function NewPostForm({  }) {
                         required
                     />
                 </div>
-                {/* If there's gear, map through the gear items and make radio inputs for each */}
+                {/* If there's topics, map through the topics and make radio inputs for each */}
                 {topics !== null && 
                 <div>
                     {topics.map((item, index) => {
                         return <>
-                        {/* <input
+                        <input
                         id={item.name}
                         type="radio"
-                        name="gear_item_ids"
+                        name="topic_ids"
                         value={item.id}
                         onChange={changeData}
                         required
-                    /> */}
+                    />
                     <label for={item.name}>{item.name}</label>
                     </>
                     })}
