@@ -4,6 +4,7 @@ import AuthContext from '../../context/AuthContext';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { getTopics } from '../../utils/axiosRequests'
+import './NewPostForm.css'
 
 
 export default function NewPostForm({  }) {
@@ -44,7 +45,7 @@ export default function NewPostForm({  }) {
     };
 
     return (
-        <main>
+        <main id='newPostForm'>
             <div className="listSearch">
                 <div>
                     <label>Title</label>
