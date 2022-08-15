@@ -118,10 +118,23 @@ export const getPosts = (setState) => {
         .catch(err => { })
 }
 
-// gets all Posts
+
+// gets Comment
+export const getComment = (setState, comment_id) => {
+    axios.get(`${baseURL}/comments/${comment_id}`)
+        .then(res => {
+            let data = res.data;
+            console.log(data)
+            setState(data);
+        })
+        .catch(err => { })
+}
+
+
+// gets all Topics
 export const getTopics = (setState) => {
-    // axios.get(`${baseURL}/topics/`)
-    axios.get("http://localhost:8000/topics/")
+    axios.get(`${baseURL}/topics/`)
+    // axios.get("http://localhost:8000/topics/")
         .then(res => {
             let data = res.data;
             console.log(data)
