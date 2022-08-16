@@ -71,17 +71,18 @@ export default function NewPostForm({  }) {
                 {topics !== null && 
                 <div>
                     {topics.map((item, index) => {
-                        return <>
+                        return <div key={index}>
                         <input
                         id={item.name}
+                        key={index}
                         type="radio"
                         name="topic_ids"
                         value={item.id}
                         onChange={changeData}
                         required
                     />
-                    <label for={item.name}>{item.name}</label>
-                    </>
+                    <label htmlFor={item.name}>{item.name}</label>
+                    </div>
                     })}
                     
                     

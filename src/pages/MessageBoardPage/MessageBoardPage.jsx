@@ -22,7 +22,7 @@ export default function MessageBoardPage() {
             exit={{ opacity: 0 }}
         >
             <div className='headerCont'>
-                <h1>MESSAGE BOARD</h1>
+                <h1>MESSAGE BOARD (in progress)</h1>
             </div>
             <NewPostForm />
             {posts.map((post, i) => <Post post={post} key={i} />)}

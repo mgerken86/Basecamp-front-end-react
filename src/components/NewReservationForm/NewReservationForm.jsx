@@ -71,7 +71,7 @@ export default function NewReservationForm({  }) {
                 {gear !== null && 
                 <div>
                     {gear.map((item, index) => {
-                        return <>
+                        return <div key={index}>
                         <input
                         className="SearchInput"
                         id={item.name}
@@ -81,8 +81,8 @@ export default function NewReservationForm({  }) {
                         onChange={changeData}
                         required
                     />
-                    <label for={item.name}>{item.name}</label>
-                    </>
+                    <label htmlFor={item.name}>{item.name}</label>
+                    </div>
                     })}
                     
                     
