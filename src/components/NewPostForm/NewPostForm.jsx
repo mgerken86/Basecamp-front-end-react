@@ -29,14 +29,13 @@ export default function NewPostForm({  }) {
       }
   
       const handleSubmit = () => {
+        console.log(formData)
         axios
-            // .post("https://a-lodge-basecamp.herokuapp.com/posts/", {
-            .post("http://localhost:8000/posts/", {
+            .post("https://a-lodge-basecamp.herokuapp.com/posts/", {
+                topic: formData.topic_ids,
+                user: user.user_id,
                 title: formData.title,
                 body: formData.body,
-                //change this to dynamically choose the id of the gear items
-                user: user.user_id,
-                topic: formData.topic_ids
             })
             .then((res) => {
                 navigate(0)

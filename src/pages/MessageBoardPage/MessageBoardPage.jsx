@@ -22,10 +22,12 @@ export default function MessageBoardPage() {
             exit={{ opacity: 0 }}
         >
             <div className='headerCont'>
-                <h1>MESSAGE BOARD (in progress)</h1>
+                <h1>MESSAGE BOARD</h1>
             </div>
             <NewPostForm />
-            {posts.map((post, i) => <Post post={post} key={i} />)}
+            {/* sort method on posts to order by newest first */}
+            {[...posts].reverse().map((post, i) => {console.log('reverse', posts)
+                return <Post post={post} key={i} />})}
         </motion.main>
     )
 }

@@ -28,17 +28,18 @@ export default function NewReservationForm({  }) {
       }
   
       const handleSubmit = () => {
+        console.log(formData)
         axios
             .post("https://a-lodge-basecamp.herokuapp.com/reservations/", {
                 start_date: formData.start_date,
                 end_date: formData.end_date,
                 //change this to dynamically choose the id of the gear items
                 gear_item_ids: [formData.gear_item_ids],
-                // gear_item: formData.gear_item,
                 qty: formData.qty,
                 user: user.user_id
             })
             .then((res) => {
+                console.log(res)
                 navigate(0)
             })
             .catch((err) => {});
