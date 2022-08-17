@@ -29,10 +29,10 @@ export default function Post({ post }) {
                 {comments.length > 0 &&
                     <button onClick={() => setShowComments(!showComments)}>Show Comments ({comments.length})</button>}
             </div>
-            {/* {showCommentForm && <NewCommentForm postId={post.id}/>}
-            {showComments && post.comments.map((comment, i) => {
+            {showCommentForm && <NewCommentForm postId={post.id}/>}
+            {showComments && comments.map((comment, i) => {
                 return <Comment comment={comment} key={i} />
-            })} */}
+            })}
 
         </div>
     )
