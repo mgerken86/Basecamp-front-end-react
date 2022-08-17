@@ -26,8 +26,7 @@ export default function MessageBoardPage() {
             </div>
             <NewPostForm />
             {/* sort method on posts to order by newest first */}
-            {[...posts].reverse().map((post, i) => {console.log('reverse', posts)
-                return <Post post={post} key={i} />})}
+            {[...posts].reverse().map((post, i) => <Post post={post} key={i} />)}
         </motion.main>
     )
 }

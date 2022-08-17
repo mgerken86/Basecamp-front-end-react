@@ -9,9 +9,15 @@ export default function Comment({ comment }) {
     }, [])
 
     return (
+        
         <div>
-            <h2>{thisComment.user}</h2>
+            {thisComment && <>
+            <h2>{thisComment.this_user}</h2>
             <p>{thisComment.body}</p>
+            <p>{thisComment.created_at}</p>
+            <hr />
+            </>}
         </div>
+
     )
 }
