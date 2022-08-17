@@ -49,6 +49,7 @@ export default function NewPostForm({  }) {
                 <div>
                     <label>Title</label>
                     <input
+                    className='postInput'
                         type="text"
                         name="title"
                         value={formData.title}
@@ -60,6 +61,7 @@ export default function NewPostForm({  }) {
                     <label>Body</label>
                     <textarea  
                         // type="textarea"
+                        className='postInput'
                         name="body"
                         value={formData.body}
                         onChange={changeData}
@@ -68,7 +70,7 @@ export default function NewPostForm({  }) {
                 </div>
                 {/* If there's topics, map through the topics and make radio inputs for each */}
                 {topics !== null && 
-                <div>
+                <div className='topicsList'>
                     {topics.map((item, index) => {
                         return <div key={index}>
                         <input
