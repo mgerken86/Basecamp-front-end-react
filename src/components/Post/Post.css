@@ -3,3 +3,13 @@
     width: 80vw;
     margin: 1em;
 }
+
+#Post h1, h2 {
+    text-align: center;
+}
+
+#commentBtnsCont {
+    display: flex;
+    justify-content: space-between;
+    margin: 2em 2em .4em;
+}

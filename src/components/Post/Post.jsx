@@ -24,10 +24,10 @@ export default function Post({ post }) {
             <h3>{moment(post.created_at).format('MM/DD/YYYY')}</h3>
             <p>{post.body}</p>
             <hr />
-            <div>
+            <div id='commentBtnsCont'>
                 <button onClick={()=> setShowCommentForm(!showCommentForm)}>Add Comment</button>
                 {comments.length > 0 &&
-                    <button onClick={() => setShowComments(!showComments)}>Show Comments ({comments.length})</button>}
+                    <button onClick={() => setShowComments(!showComments)}>{!showComments ? 'Show' : 'Hide'} Comments ({comments.length})</button>}
             </div>
             {showCommentForm && <NewCommentForm postId={post.id}/>}
             {showComments && comments.map((comment, i) => {

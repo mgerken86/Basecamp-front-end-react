@@ -1,9 +1,7 @@
 #messageBoardPage {
     background-color: var(--lGray);
-    background-image: url('https://boulder.a-lodge.com/wp-content/uploads/Community-Room_Saloon_Gallery_9_Desktop.jpg');
+    background: url('https://boulder.a-lodge.com/wp-content/uploads/Community-Room_Saloon_Gallery_9_Desktop.jpg') no-repeat center center fixed; 
+    /* background-image: url('https://boulder.a-lodge.com/wp-content/uploads/Community-Room_Saloon_Gallery_9_Desktop.jpg'); */
     background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
 }
 
