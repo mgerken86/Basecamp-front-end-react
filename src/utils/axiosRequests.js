@@ -113,22 +113,24 @@ export const getPosts = (setState) => {
     axios.get(`http://localhost:8000/posts/`)
         .then(res => {
             let data = res.data;
-            // console.log(data)
+            console.log(data)
             setState(data);
         })
         .catch(err => { })
 }
 
 
-// gets Comment
-export const getComment = (setState, comment_id) => {
+// gets single Post Comments
+export const getPostComments = (setState, postId) => {
     // axios.get(`${baseURL}/comments/${comment_id}`)
-    axios.get(`http://localhost:8000/comments/${comment_id}`)
-    // axios.get(`http://localhost:8000/comments/`)
+    // axios.get(`http://localhost:8000/comments/${comment_id}`)
+    axios.get(`http://localhost:8000/comments/`)
         .then(res => {
             let data = res.data;
             console.log(data)
-            setState(data);
+            const newData = [...data].filter(object => object.this_post === postId)
+            console.log('new Data: ', newData)
+            setState(newData);
         })
         .catch(err => { })
 }
