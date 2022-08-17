@@ -109,8 +109,8 @@ export const editReservation = (id, data, user) => {
 
 // gets all Posts
 export const getPosts = (setState) => {
-    // axios.get(`${baseURL}/posts/`)
-    axios.get(`http://localhost:8000/posts/`)
+    axios.get(`${baseURL}/posts/`)
+    // axios.get(`http://localhost:8000/posts/`)
         .then(res => {
             let data = res.data;
             console.log(data)
@@ -122,14 +122,14 @@ export const getPosts = (setState) => {
 
 // gets single Post Comments
 export const getPostComments = (setState, postId) => {
-    // axios.get(`${baseURL}/comments/${comment_id}`)
+    axios.get(`${baseURL}/comments/`)
     // axios.get(`http://localhost:8000/comments/${comment_id}`)
-    axios.get(`http://localhost:8000/comments/`)
+    // axios.get(`http://localhost:8000/comments/`)
         .then(res => {
             let data = res.data;
-            console.log(data)
+            // console.log(data)
             const newData = [...data].filter(object => object.this_post === postId)
-            console.log('new Data: ', newData)
+            // console.log('new Data: ', newData)
             setState(newData);
         })
         .catch(err => { })

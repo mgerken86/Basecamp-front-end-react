@@ -22,7 +22,7 @@ export default function NewCommentForm({ postId }) {
       }
   
       const handleSubmit = () => {
-        console.log(formData)
+        console.log(formData, user.user_id, postId)
         axios
             .post("https://a-lodge-basecamp.herokuapp.com/comments/", {
             // .post("http://localhost:8000/comments/", {
