@@ -18,10 +18,10 @@ export default function Post({ post }) {
     console.log('comments',comments)
     return (
         <div id='Post' className='ordersCont'>
-            <h1>{post.title}</h1>
-            <h2>{post.this_user}</h2>
-            <h3>{post.this_topic}</h3>
-            <h3>{moment(post.created_at).format('MM/DD/YYYY')}</h3>
+            <h1>"{post.title}"</h1>
+            <h2>-{post.this_user}</h2>
+            <h3><i>{post.this_topic}</i></h3>
+            <h3>{moment(post.created_at).format('MM/DD/YYYY hh:mm a')}</h3>
             <p>{post.body}</p>
             <hr />
             <div id='commentBtnsCont'>
@@ -30,7 +30,7 @@ export default function Post({ post }) {
                     <button onClick={() => setShowComments(!showComments)}>{!showComments ? 'Show' : 'Hide'} Comments ({comments.length})</button>}
             </div>
             {showCommentForm && <NewCommentForm postId={post.id}/>}
-            {showComments && comments.map((comment, i) => {
+            {showComments && [...comments].reverse().map((comment, i) => {
                 return <Comment comment={comment} key={i} />
             })}
 

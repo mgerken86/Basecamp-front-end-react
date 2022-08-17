@@ -1,0 +1,6 @@
+#Comment {
+    background-color: var(--lGray);
+    border: 2px solid var(--dGray);
+    margin: 1em 0;
+    padding: 1em;
+}

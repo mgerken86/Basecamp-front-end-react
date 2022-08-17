@@ -39,10 +39,11 @@ export default function NewCommentForm({ postId }) {
     return (
         <main id='newPostForm'>
                 <div>
-                    <label>Body</label>
+                    {/* <label>Body</label> */}
                     <textarea  
                         // type="textarea"
                         className='postInput'
+                        placeholder='Text'
                         name="body"
                         value={formData.body}
                         onChange={changeData}

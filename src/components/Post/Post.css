@@ -2,6 +2,7 @@
     background-color: var(--aGray);
     width: 80vw;
     margin: 1em;
+    border: 3px solid var(--dGray);
 }
 
 #Post h1, h2 {

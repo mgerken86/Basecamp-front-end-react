@@ -47,9 +47,10 @@ export default function NewPostForm({  }) {
         <main id='newPostForm'>
             <div className="listSearch">
                 <div>
-                    <label>Title</label>
+                    {/* <label>Title</label> */}
                     <input
                     className='postInput'
+                        placeholder='Title'
                         type="text"
                         name="title"
                         value={formData.title}
@@ -58,10 +59,11 @@ export default function NewPostForm({  }) {
                     />
                 </div>
                 <div>
-                    <label>Body</label>
+                    {/* <label>Body</label> */}
                     <textarea  
                         // type="textarea"
                         className='postInput'
+                        placeholder='Text'
                         name="body"
                         value={formData.body}
                         onChange={changeData}
