@@ -1,3 +1,5 @@
 #Post {
     background-color: var(--aGray);
+    width: 80vw;
+    margin: 1em;
 }
