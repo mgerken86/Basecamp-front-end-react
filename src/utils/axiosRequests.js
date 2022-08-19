@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const baseURL = 'https://a-lodge-basecamp.herokuapp.com'
 
 
@@ -48,8 +49,7 @@ export const editGear = (id, formData) => {
             image_url: formData.image_url
         })
         .then((res) => {
-            let data = res.data;
-            console.log(data)
+            console.log(res.data)
         })
         .catch((err) => { });
 };
@@ -119,6 +119,23 @@ export const getPosts = (setState) => {
         .catch(err => { })
 }
 
+
+//edit a post
+export const editPost = (id, data, navigate) => {
+    axios.put(`${baseURL}/posts/${id}`, {
+    topic: data.topic,
+    user: data.user,
+    title: data.title,
+    body: data.body,
+})
+    .then((res) => {
+        // console.log(res)
+        navigate(0)
+    })
+    .catch((err) => console.log(err));
+}
+
+
 //used to delete one post
 export const deletePost = (id) => {
     axios.delete(`${baseURL}/posts/${id}`)
@@ -132,12 +149,10 @@ export const deletePost = (id) => {
 // gets single Post Comments
 export const getPostComments = (setState, postId) => {
     axios.get(`${baseURL}/comments/`)
-    // axios.get(`http://localhost:8000/comments/${comment_id}`)
     // axios.get(`http://localhost:8000/comments/`)
         .then(res => {
-            let data = res.data;
-            // console.log(data)
-            const newData = [...data].filter(object => object.this_post === postId)
+            // console.log(res.data)
+            const newData = [...res.data].filter(object => object.this_post === postId)
             // console.log('new Data: ', newData)
             setState(newData);
         })

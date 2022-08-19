@@ -29,7 +29,7 @@ export default function NewPostForm({  }) {
       }
   
       const handleSubmit = () => {
-        console.log(formData)
+        // console.log(formData)
         axios
             .post("https://a-lodge-basecamp.herokuapp.com/posts/", {
                 topic: formData.topic_ids,

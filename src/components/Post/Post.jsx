@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import AuthContext from '../../context/AuthContext';
 import { getPostComments, deletePost } from '../../utils/axiosRequests'
 import { useNavigate } from 'react-router-dom'
+import EditPostForm from '../EditPostForm/EditPostForm'
 
 
 
@@ -33,6 +34,7 @@ export default function Post({ post }) {
                 setShowEditForm(!showEditForm)
             }}>+ Edit My Post</button>
         </div>}
+        {!showEditForm ? <>
             <h1>"{post.title}"</h1>
             <h2>-{post.this_user}</h2>
             <h3><i>{post.this_topic}</i></h3>
@@ -48,7 +50,7 @@ export default function Post({ post }) {
             {showComments && [...comments].reverse().map((comment, i) => {
                 return <Comment comment={comment} key={i} />
             })}
-
+        </> : <EditPostForm post={post} user={user}/>}
         </div>
     )
 }

@@ -1,33 +1,28 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import './EditPostForm.css'
+import { editPost } from '../../utils/axiosRequests';
 
 
-export default function EditPostForm({ post }) {
-    const [formData, setFormData] = useState({title: post.title, body: post.body})
+export default function EditPostForm({ post, user }) {
+    const [formData, setFormData] = useState({
+        title: post.title,
+        body: post.body,
+        topic: post.topic,
+        user: post.user
+    })
     const navigate = useNavigate()
 
-      const changeData = (e) => {
+    // console.log(post)
+
+    const changeData = (e) => {
         const newData = {
-          ...formData,
-          [e.target.name]: e.target.value,
+            ...formData,
+            [e.target.name]: e.target.value,
         };
         setFormData(newData);
-      }
-  
-      const handleSubmit = () => {
-        console.log(formData)
-        axios
-            .put("https://a-lodge-basecamp.herokuapp.com/posts/", {
-                title: formData.title,
-                body: formData.body,
-            })
-            .then((res) => {
-                navigate(0)
-            })
-            .catch((err) => {});
-    };
+    }
+
 
     return (
         <main id='newPostForm'>
@@ -35,7 +30,7 @@ export default function EditPostForm({ post }) {
                 <div>
                     {/* <label>Title</label> */}
                     <input
-                    className='postInput'
+                        className='postInput'
                         placeholder='Title'
                         type="text"
                         name="title"
@@ -46,7 +41,7 @@ export default function EditPostForm({ post }) {
                 </div>
                 <div>
                     {/* <label>Body</label> */}
-                    <textarea  
+                    <textarea
                         // type="textarea"
                         className='postInput'
                         placeholder='Text'
@@ -75,15 +70,13 @@ export default function EditPostForm({ post }) {
                     })}
                     
                     
-                </div>}
-                
+                </div>} */}
+
                 <button
                     className="searchBtn"
-                    onClick={() => {
-                        handleSubmit()
-                    }}>
-                    Create Post
-                </button> */}
+                    onClick={() => editPost(post.id, formData, navigate)}>
+                    Edit Post
+                </button>
             </div>
         </main>
     )
