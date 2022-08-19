@@ -3,7 +3,7 @@ import Comment from '../Comment/Comment'
 import NewCommentForm from '../NewCommentForm/NewCommentForm'
 import moment from 'moment'
 import { useEffect, useState } from 'react'
-import { getPostComments } from '../../utils/axiosRequests'
+import { getPostComments, deletePost } from '../../utils/axiosRequests'
 
 
 
@@ -18,6 +18,7 @@ export default function Post({ post }) {
     console.log('comments',comments)
     return (
         <div id='Post' className='ordersCont'>
+            <button onClick={()=> deletePost(post.id)}>X</button>
             <h1>"{post.title}"</h1>
             <h2>-{post.this_user}</h2>
             <h3><i>{post.this_topic}</i></h3>

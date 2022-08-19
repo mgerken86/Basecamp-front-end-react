@@ -119,6 +119,15 @@ export const getPosts = (setState) => {
         .catch(err => { })
 }
 
+//used to delete one post
+export const deletePost = (id) => {
+    axios.delete(`${baseURL}/posts/${id}`)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => { })
+}
+
 
 // gets single Post Comments
 export const getPostComments = (setState, postId) => {
