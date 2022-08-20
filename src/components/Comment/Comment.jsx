@@ -19,7 +19,9 @@ export default function Comment({ comment, user }) {
                 {comment.this_user === user.username && <div>
                     <button onClick={() => {
                         setShowEditForm(!showEditForm)
-                    }}>Edit My Comment</button>
+                    }}>
+                        {!showEditForm ? "Edit My Comment" : "Hide Edit Form"}
+                        </button>
                 </div>}
             </div>}
         </div>
