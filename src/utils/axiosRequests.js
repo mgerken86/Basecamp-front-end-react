@@ -159,6 +159,20 @@ export const getPostComments = (setState, postId) => {
         .catch(err => { })
 }
 
+//edit a comment
+export const editComment = (id, data, navigate) => {
+    axios.put(`${baseURL}/posts/${id}`, {
+    user: data.user,
+    title: data.title,
+    body: data.body,
+})
+    .then((res) => {
+        console.log(res)
+        navigate(0)
+    })
+    .catch((err) => console.log(err));
+}
+
 
 // gets all Topics
 export const getTopics = (setState) => {
