@@ -29,7 +29,7 @@ export default function MessageBoardPage() {
                 <h1>MESSAGE BOARD</h1>
             </div>
             {user ? <button
-            onClick={() => setShowPostForm(!showPostForm)}>New Post</button> : <h2>You must be logged in to make a post</h2>}
+            onClick={() => setShowPostForm(!showPostForm)}>New Post</button> : <h1>You must be logged in to make a post</h1>}
             
             {showPostForm && <NewPostForm />}
             

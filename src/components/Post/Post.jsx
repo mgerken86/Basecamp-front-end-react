@@ -3,16 +3,13 @@ import Comment from '../Comment/Comment'
 import NewCommentForm from '../NewCommentForm/NewCommentForm'
 import moment from 'moment'
 import { useEffect, useState } from 'react'
-import { useContext } from 'react';
-import AuthContext from '../../context/AuthContext';
 import { getPostComments, deletePost } from '../../utils/axiosRequests'
 import { useNavigate } from 'react-router-dom'
 import EditPostForm from '../EditPostForm/EditPostForm'
 
 
 
-export default function Post({ post }) {
-    const { user } = useContext(AuthContext);
+export default function Post({ post, user }) {
     const [comments, setComments] = useState([])
     const [showComments, setShowComments] = useState(false)
     const [showCommentForm, setShowCommentForm] = useState(false)
@@ -36,11 +33,13 @@ export default function Post({ post }) {
             </> : <EditPostForm post={post} />}
             <div className='commentBtnsCont'>
                 <div>
+                    {user ? 
                     <button onClick={() => setShowCommentForm(!showCommentForm)}>Add Comment</button>
+                : <h2>You must be logged in to comment</h2>}
                     {comments.length > 0 &&
                         <button onClick={() => setShowComments(!showComments)}>{!showComments ? 'Show' : 'Hide'} Comments ({comments.length})</button>}
                 </div>
-                {post.this_user === user.username && <div>
+                {user && post.this_user === user.username && <div>
                     <button onClick={async () => {
                         await deletePost(post.id)
                         navigate(0)

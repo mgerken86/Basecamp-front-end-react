@@ -16,7 +16,7 @@ export default function Comment({ comment, user }) {
                     <p>{thisComment.body}</p>
                     <hr />
                 </> : <EditCommentForm comment={comment} />}
-                {comment.this_user === user.username && <div>
+                {user && comment.this_user === user.username && <div>
                     <button onClick={() => {
                         setShowEditForm(!showEditForm)
                     }}>
