@@ -161,7 +161,7 @@ export const getPostComments = (setState, postId) => {
 
 //edit a comment
 export const editComment = (id, data, navigate) => {
-    axios.put(`${baseURL}/posts/${id}`, {
+    axios.put(`${baseURL}/comments/${id}`, {
     user: data.user,
     title: data.title,
     body: data.body,
@@ -171,6 +171,15 @@ export const editComment = (id, data, navigate) => {
         navigate(0)
     })
     .catch((err) => console.log(err));
+}
+
+// delete one comment
+export const deleteComment = (id) => {
+    axios.delete(`${baseURL}/comments/${id}`)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => { })
 }
 
 
