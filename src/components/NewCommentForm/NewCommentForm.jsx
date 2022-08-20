@@ -56,7 +56,7 @@ export default function NewCommentForm({ postId }) {
                     onClick={() => {
                         handleSubmit()
                     }}>
-                    Create Post
+                    Create Comment
                 </button>
 
         </main>

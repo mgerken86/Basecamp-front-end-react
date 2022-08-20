@@ -52,7 +52,7 @@ export default function Post({ post }) {
             </div>
             {showCommentForm && <NewCommentForm postId={post.id} />}
             {showComments && [...comments].reverse().map((comment, i) => {
-                return <Comment comment={comment} key={i} />
+                return <Comment comment={comment} user={user} key={i} />
             })}
 
         </div>
