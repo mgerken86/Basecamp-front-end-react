@@ -33,7 +33,7 @@ export default function Post({ post }) {
                 <h3>{moment(post.created_at).format('MM/DD/YYYY hh:mm a')}</h3>
                 <p>{post.body}</p>
                 <hr />
-            </> : <EditPostForm post={post} user={user} />}
+            </> : <EditPostForm post={post} />}
             <div className='commentBtnsCont'>
                 <div>
                     <button onClick={() => setShowCommentForm(!showCommentForm)}>Add Comment</button>

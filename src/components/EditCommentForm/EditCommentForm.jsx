@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './EditCommentForm.css'
-import { editComment } from '../../utils/axiosRequests';
+import { deleteComment, editComment } from '../../utils/axiosRequests';
 
 
-export default function EditCommentForm({ comment, user }) {
+export default function EditCommentForm({ comment }) {
     const [formData, setFormData] = useState({
-        title: comment.title,
         body: comment.body,
-        user: post.user
+        user: comment.user,
+        post: comment.post
+
     })
     const navigate = useNavigate()
 
@@ -27,17 +28,6 @@ export default function EditCommentForm({ comment, user }) {
         <main id='newPostForm'>
             <div className="listSearch">
                 <div>
-                    <input
-                        className='postInput'
-                        placeholder='Title'
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={changeData}
-                        required
-                    />
-                </div>
-                <div>
                     <textarea
                         className='postInput'
                         placeholder='Text'
@@ -50,8 +40,12 @@ export default function EditCommentForm({ comment, user }) {
 
                 <button
                     className="searchBtn"
-                    onClick={() => editPost(post.id, formData, navigate)}>
-                    Edit Post
+                    onClick={() => editComment(comment.id, formData, navigate)}>
+                    Edit Comment
+                </button>
+                <button
+                    onClick={() => deleteComment(comment.id, navigate)}>
+                    Delete My Comment
                 </button>
             </div>
         </main>

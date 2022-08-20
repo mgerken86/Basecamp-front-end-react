@@ -4,7 +4,7 @@ import './EditPostForm.css'
 import { editPost } from '../../utils/axiosRequests';
 
 
-export default function EditPostForm({ post, user }) {
+export default function EditPostForm({ post }) {
     const [formData, setFormData] = useState({
         title: post.title,
         body: post.body,
