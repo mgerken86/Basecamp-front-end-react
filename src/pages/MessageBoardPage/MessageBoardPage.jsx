@@ -21,6 +21,13 @@ export default function MessageBoardPage() {
     }, [])
 
 
+    const filterPosts = async (topic) => {
+        // await getPosts(setPosts)
+        let filteredPosts = posts.filter(post => post.this_topic === topic)
+        // console.log(filteredPosts)
+        return setPosts(filteredPosts)
+    }
+
     return (
         <motion.main
             id='messageBoardPage'
@@ -37,11 +44,15 @@ export default function MessageBoardPage() {
             {showPostForm && <NewPostForm />}
             <div>
                 <button>All Topics</button>
-                {topics.map((topic, idx) => <button key={idx}>{topic.name}</button>)}
+                {topics.map((topic, idx) => <button 
+                onClick={()=> filterPosts(topic.name)}
+                key={idx}>
+                    {topic.name}
+                    </button>)}
             </div>
 
             {/* sort method on posts to order by newest first */}
-            {[...posts].reverse().map((post, i) => <Post post={post} user={user} key={i} />)}
+            {posts && [...posts].reverse().map((post, i) => <Post post={post} user={user} key={i} />)}
         </motion.main>
     )
 }
