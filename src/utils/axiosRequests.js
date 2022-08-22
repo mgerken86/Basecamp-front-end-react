@@ -93,28 +93,34 @@ export const deleteReservation = (id) => {
 //edit a reservation
 export const editReservation = (id, data, user) => {
     axios.put(`${baseURL}/reservations/${id}`, {
-    start_date: data.start_date,
-    end_date: data.end_date,
-    //change this to dynamically choose the id of the gear items
-    gear_item_ids: [data.gear_item_ids],
-    qty: data.qty,
-    user: user.user_id
-})
-    .then((res) => {
-        console.log(res)
+        start_date: data.start_date,
+        end_date: data.end_date,
+        //change this to dynamically choose the id of the gear items
+        gear_item_ids: [data.gear_item_ids],
+        qty: data.qty,
+        user: user.user_id
     })
-    .catch((err) => console.log(err));
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((err) => console.log(err));
 }
 
 
 // gets all Posts
-export const getPosts = (setState) => {
+export const getPosts = (setState, topic) => {
     axios.get(`${baseURL}/posts/`)
-    // axios.get(`http://localhost:8000/posts/`)
+        // axios.get(`http://localhost:8000/posts/`)
         .then(res => {
             let data = res.data;
             // console.log(data)
-            setState(data);
+            if (topic === 'all') {
+                setState(data);
+            } else {
+                let filteredPosts = data.filter(post => post.this_topic === topic)
+                setState(filteredPosts)
+            }
+
         })
         .catch(err => { })
 }
@@ -123,16 +129,16 @@ export const getPosts = (setState) => {
 //edit a post
 export const editPost = (id, data, navigate) => {
     axios.put(`${baseURL}/posts/${id}`, {
-    topic: data.topic,
-    user: data.user,
-    title: data.title,
-    body: data.body,
-})
-    .then((res) => {
-        // console.log(res)
-        navigate(0)
+        topic: data.topic,
+        user: data.user,
+        title: data.title,
+        body: data.body,
     })
-    .catch((err) => console.log(err));
+        .then((res) => {
+            // console.log(res)
+            navigate(0)
+        })
+        .catch((err) => console.log(err));
 }
 
 
@@ -149,7 +155,7 @@ export const deletePost = (id) => {
 // gets single Post Comments
 export const getPostComments = (setState, postId) => {
     axios.get(`${baseURL}/comments/`)
-    // axios.get(`http://localhost:8000/comments/`)
+        // axios.get(`http://localhost:8000/comments/`)
         .then(res => {
             // console.log(res.data)
             const newData = [...res.data].filter(object => object.this_post === postId)
@@ -162,16 +168,16 @@ export const getPostComments = (setState, postId) => {
 //edit a comment
 export const editComment = (id, data, navigate) => {
     axios.put(`${baseURL}/comments/${id}`, {
-    user: data.user,
-    body: data.body,
-    post: data.post,
+        user: data.user,
+        body: data.body,
+        post: data.post,
 
-})
-    .then((res) => {
-        console.log(res)
-        navigate(0)
     })
-    .catch((err) => console.log(err));
+        .then((res) => {
+            console.log(res)
+            navigate(0)
+        })
+        .catch((err) => console.log(err));
 }
 
 // delete one comment
@@ -189,7 +195,7 @@ export const deleteComment = (id, navigate) => {
 // gets all Topics
 export const getTopics = (setState) => {
     axios.get(`${baseURL}/topics/`)
-    // axios.get("http://localhost:8000/topics/")
+        // axios.get("http://localhost:8000/topics/")
         .then(res => {
             let data = res.data;
             // console.log(data)

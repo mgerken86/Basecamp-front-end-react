@@ -16,16 +16,14 @@ export default function MessageBoardPage() {
     const [showPostForm, setShowPostForm] = useState(false)
 
     useEffect(() => {
-        getPosts(setPosts)
+        getPosts(setPosts, 'all')
         getTopics(setTopics)
     }, [])
 
 
-    const filterPosts = async (topic) => {
+    const filterPosts = (topic) => {
         // await getPosts(setPosts)
-        let filteredPosts = posts.filter(post => post.this_topic === topic)
-        // console.log(filteredPosts)
-        return setPosts(filteredPosts)
+        
     }
 
     return (
@@ -43,9 +41,9 @@ export default function MessageBoardPage() {
 
             {showPostForm && <NewPostForm />}
             <div>
-                <button>All Topics</button>
+                <button onClick={()=> getPosts(setPosts, 'all')}>All Topics</button>
                 {topics.map((topic, idx) => <button 
-                onClick={()=> filterPosts(topic.name)}
+                onClick={()=> getPosts(setPosts, topic.name)}
                 key={idx}>
                     {topic.name}
                     </button>)}
