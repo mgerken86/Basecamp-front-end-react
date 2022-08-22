@@ -4,6 +4,7 @@ import AuthContext from '../../context/AuthContext';
 import './MessageBoardPage.css'
 import Post from '../../components/Post/Post'
 import { getPosts } from '../../utils/axiosRequests'
+import { getTopics } from '../../utils/axiosRequests'
 import { motion } from 'framer-motion'
 import NewPostForm from '../../components/NewPostForm/NewPostForm'
 
@@ -11,10 +12,12 @@ import NewPostForm from '../../components/NewPostForm/NewPostForm'
 export default function MessageBoardPage() {
     const { user } = useContext(AuthContext);
     const [posts, setPosts] = useState([])
+    const [topics, setTopics] = useState([])
     const [showPostForm, setShowPostForm] = useState(false)
 
     useEffect(() => {
         getPosts(setPosts)
+        getTopics(setTopics)
     }, [])
 
 
@@ -29,10 +32,14 @@ export default function MessageBoardPage() {
                 <h1>MESSAGE BOARD</h1>
             </div>
             {user ? <button
-            onClick={() => setShowPostForm(!showPostForm)}>New Post</button> : <h1>You must be logged in to make a post</h1>}
-            
+                onClick={() => setShowPostForm(!showPostForm)}>New Post</button> : <h1>You must be logged in to make a post</h1>}
+
             {showPostForm && <NewPostForm />}
-            
+            <div>
+                <button>All Topics</button>
+                {topics.map((topic, idx) => <button key={idx}>{topic.name}</button>)}
+            </div>
+
             {/* sort method on posts to order by newest first */}
             {[...posts].reverse().map((post, i) => <Post post={post} user={user} key={i} />)}
         </motion.main>
