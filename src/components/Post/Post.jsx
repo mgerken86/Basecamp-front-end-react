@@ -42,7 +42,7 @@ export default function Post({ post, user }) {
                 {user && post.this_user === user.username && <div>
                     <button onClick={() => {
                         setShowEditForm(!showEditForm)
-                    }}>Edit My Post</button>
+                    }}>{!showEditForm ? "Edit My Post" : "Hide Edit Form"}</button>
                 </div>}
             </div>
             {showCommentForm && <NewCommentForm postId={post.id} />}
