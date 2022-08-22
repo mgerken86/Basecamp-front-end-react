@@ -3,7 +3,7 @@ import Comment from '../Comment/Comment'
 import NewCommentForm from '../NewCommentForm/NewCommentForm'
 import moment from 'moment'
 import { useEffect, useState } from 'react'
-import { getPostComments, deletePost } from '../../utils/axiosRequests'
+import { getPostComments } from '../../utils/axiosRequests'
 import { useNavigate } from 'react-router-dom'
 import EditPostForm from '../EditPostForm/EditPostForm'
 
@@ -40,10 +40,6 @@ export default function Post({ post, user }) {
                         <button onClick={() => setShowComments(!showComments)}>{!showComments ? 'Show' : 'Hide'} Comments ({comments.length})</button>}
                 </div>
                 {user && post.this_user === user.username && <div>
-                    <button onClick={async () => {
-                        await deletePost(post.id)
-                        navigate(0)
-                    }}>Delete My Post</button>
                     <button onClick={() => {
                         setShowEditForm(!showEditForm)
                     }}>Edit My Post</button>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './EditPostForm.css'
-import { editPost } from '../../utils/axiosRequests';
+import { editPost, deletePost } from '../../utils/axiosRequests';
 
 
 export default function EditPostForm({ post }) {
@@ -77,6 +77,10 @@ export default function EditPostForm({ post }) {
                     onClick={() => editPost(post.id, formData, navigate)}>
                     Edit Post
                 </button>
+                <button onClick={async () => {
+                        await deletePost(post.id)
+                        navigate(0)
+                    }}>Delete My Post</button>
             </div>
         </main>
     )
