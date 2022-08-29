@@ -1,18 +1,22 @@
 import './ReservationsIndexPage.css'
 import NewReservationForm from '../../components/NewReservationForm/NewReservationForm';
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import AuthContext from '../../context/AuthContext';
 import { useNavigate } from "react-router-dom";
 import { Calendar, momentLocalizer } from 'react-big-calendar'
-import moment from 'moment'
+import Moment from 'moment'
+import { extendMoment } from 'moment-range';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { getReservations } from '../../utils/axiosRequests';
 import { motion } from 'framer-motion'
 
-const localizer = momentLocalizer(moment)
+const moment = extendMoment(Moment);
+const localizer = momentLocalizer(Moment)
 
 
 export default function ReservationsIndexPage() {
+    const { user } = useContext(AuthContext);
     const [reservations, setReservations] = useState([])
     const navigate = useNavigate()
     const [showForm, setShowForm] = useState(false)
@@ -61,7 +65,7 @@ export default function ReservationsIndexPage() {
                 </button>
                 {showForm &&
                     <div>
-                        <NewReservationForm />
+                        <NewReservationForm user={user}/>
                     </div>}
                 <Calendar
                     localizer={localizer}

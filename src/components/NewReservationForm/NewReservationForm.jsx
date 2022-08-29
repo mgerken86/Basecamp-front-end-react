@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useContext } from 'react';
-import AuthContext from '../../context/AuthContext';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { getGear } from '../../utils/axiosRequests'
 
 
-export default function NewReservationForm({  }) {
-    const { user } = useContext(AuthContext);
+export default function NewReservationForm({ user }) {
     const [formData, setFormData] = useState({})
     const [gear, setGear] = useState([])
     const navigate = useNavigate()
