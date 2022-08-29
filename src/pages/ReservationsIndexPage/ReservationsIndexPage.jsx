@@ -43,6 +43,12 @@ export default function ReservationsIndexPage() {
 
     }, [reservations])
 
+    useEffect(() => {
+
+        console.log(events)
+
+    }, [events])
+
 
     return (
         <motion.main
