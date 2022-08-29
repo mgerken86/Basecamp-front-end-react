@@ -29,6 +29,7 @@ export default function ReservationsIndexPage() {
             setEvents([...events, {
                 start: moment(reservation.start_date).toDate(),
                 end: moment(reservation.end_date).toDate(),
+                range: moment().range(reservation.start_date, reservation.end_date),
                 title: reservation.gear_item[0].name
             }])
         })
@@ -45,7 +46,7 @@ export default function ReservationsIndexPage() {
 
     useEffect(() => {
 
-        console.log(events)
+        console.log(...events)
 
     }, [events])
 
