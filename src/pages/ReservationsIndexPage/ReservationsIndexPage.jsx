@@ -58,11 +58,13 @@ export default function ReservationsIndexPage() {
             </div>
 
             <div id='calendarCont'>
-                <button
+                {user ? <button
                     id='calendarBtn'
                     onClick={() => setShowForm(!showForm)}>
                     New Reservation
-                </button>
+                </button> :
+                <h1>You must be logged in to make a reservation</h1>}
+                
                 {showForm &&
                     <div>
                         <NewReservationForm user={user}/>
