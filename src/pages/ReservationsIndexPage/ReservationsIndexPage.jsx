@@ -8,7 +8,7 @@ import { Calendar, momentLocalizer } from 'react-big-calendar'
 import Moment from 'moment'
 import { extendMoment } from 'moment-range';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { getReservations } from '../../utils/axiosRequests';
+import { getReservations, getGear } from '../../utils/axiosRequests';
 import { motion } from 'framer-motion'
 
 const moment = extendMoment(Moment);
@@ -20,18 +20,20 @@ export default function ReservationsIndexPage() {
     const [reservations, setReservations] = useState([])
     const navigate = useNavigate()
     const [showForm, setShowForm] = useState(false)
-    const [events, setEvents] = useState([])
+    const [dateRanges, setDateRanges] = useState([])
 
 
-    const getDateMarkers = () => {
+    const getDateRange = () => {
         reservations.map(reservation => {
-            // console.log(reservation)
-            setEvents([...events, {
-                start: moment(reservation.start_date).toDate(),
-                end: moment(reservation.end_date).toDate(),
-                range: moment().range(reservation.start_date, reservation.end_date),
-                title: reservation.gear_item[0].name
-            }])
+            console.log(reservation)
+            let dates = []
+            let startDate = moment(reservation.start_date)
+            let endDate = moment(reservation.end_date)
+            for (let current = startDate; current <= endDate; current.add(1, 'd')) {
+                dates.push(current.format("YYYY-MM-DD"))
+            }
+            // console.log(dates)
+            setDateRanges(dates)
         })
     }
     useEffect(() => {
@@ -39,16 +41,12 @@ export default function ReservationsIndexPage() {
     }, [])
 
     useEffect(() => {
-
-        getDateMarkers()
-
+        getDateRange()
     }, [reservations])
 
     useEffect(() => {
-
-        console.log(...events)
-
-    }, [events])
+        // console.log(dateRanges)
+    }, [dateRanges])
 
 
     return (
