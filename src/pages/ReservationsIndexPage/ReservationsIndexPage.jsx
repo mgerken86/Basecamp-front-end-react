@@ -26,10 +26,9 @@ export default function ReservationsIndexPage() {
 
     const getDateRange = () => {
         reservations.map(reservation => {
-            // console.log(reservation)
+            // get the gear item of the reservation
             let gearItem = gear.filter(item => item.id === reservation.gear_item[0].id)
             console.log('gearItem: ', gearItem)
-
             let dates = []
             let startDate = moment(reservation.start_date)
             let endDate = moment(reservation.end_date)

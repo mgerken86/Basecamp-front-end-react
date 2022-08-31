@@ -1,8 +1,12 @@
 import axios from "axios";
 
 
-// const baseURL = 'localhost://'
 const baseURL = 'https://a-lodge-basecamp.herokuapp.com'
+
+const weatherAPIKey = process.env.REACT_APP_WEATHER_API_KEY
+const trailsAPIKey = process.env.REACT_APP_TRAILS_API_KEY
+
+
 
 
 // used to retrieve all gear_items
@@ -212,7 +216,7 @@ export const getWeather = (setState) => {
         url: 'https://weatherapi-com.p.rapidapi.com/forecast.json',
         params: { q: 'Boulder', days: '3' },
         headers: {
-            'X-RapidAPI-Key': 'b706fa8596msha33725def79a97cp1b9fc1jsn8dfd397c7442',
+            'X-RapidAPI-Key': weatherAPIKey,
             'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
         }
     };
@@ -232,7 +236,7 @@ export const fetchTrails = (lat, lng, setState) => {
         params: { lat: `${lat}`, lon: `${lng}`, per_page: '5' },
         headers: {
             'X-RapidAPI-Key': 'b706fa8596msha33725def79a97cp1b9fc1jsn8dfd397c7442',
-            // 'X-RapidAPI-Key': 'b00ef5d09cmsh0fcc399427b9deap187b8djsn0c860bac4d4d',
+            'X-RapidAPI-Key': trailsAPIKey,
             'X-RapidAPI-Host': 'trailapi-trailapi.p.rapidapi.com'
         }
     };
