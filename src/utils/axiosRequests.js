@@ -33,7 +33,7 @@ export const postGear = (setState, formData, starterData) => {
         })
         .then((res) => {
         })
-        .catch((err) => { 
+        .catch((err) => {
             console.log(err)
         });
     setState(starterData)
@@ -64,7 +64,7 @@ export const getReservations = (setState) => {
             let data = res.data;
             setState(data);
         })
-        .catch(err => { 
+        .catch(err => {
             console.log(err)
         })
 }
@@ -79,7 +79,7 @@ export const getUserReservations = (setState, id) => {
         })
         .catch(err => {
             console.log(err)
-         })
+        })
 }
 
 
