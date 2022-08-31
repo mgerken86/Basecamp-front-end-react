@@ -18,6 +18,7 @@ const localizer = momentLocalizer(Moment)
 export default function ReservationsIndexPage() {
     const { user } = useContext(AuthContext);
     const [reservations, setReservations] = useState([])
+    const [gear, setGear] = useState([])
     const navigate = useNavigate()
     const [showForm, setShowForm] = useState(false)
     const [dateRanges, setDateRanges] = useState([])
@@ -25,7 +26,10 @@ export default function ReservationsIndexPage() {
 
     const getDateRange = () => {
         reservations.map(reservation => {
-            console.log(reservation)
+            // console.log(reservation)
+            let gearItem = gear.filter(item => item.id === reservation.gear_item[0].id)
+            console.log('gearItem: ', gearItem)
+
             let dates = []
             let startDate = moment(reservation.start_date)
             let endDate = moment(reservation.end_date)
@@ -33,13 +37,19 @@ export default function ReservationsIndexPage() {
                 dates.push(current.format("YYYY-MM-DD"))
             }
             // console.log(dates)
-            dates.forEach(date => reservation.qty+=10)
-            console.log(reservation)
+            dates.forEach(date => gearItem[0].qty+=10)
+            // console.log(reservation)
+
+            
+
             setDateRanges(dates)
         })
     }
     useEffect(() => {
         getReservations(setReservations)
+    }, [])
+    useEffect(() => {
+        getGear(setGear)
     }, [])
 
     useEffect(() => {
@@ -47,10 +57,10 @@ export default function ReservationsIndexPage() {
     }, [reservations])
 
     useEffect(() => {
-        console.log("reservations: ",reservations)
+        // console.log("reservations: ",reservations)
     }, [dateRanges])
 
-
+    console.log(gear)
 
     return (
         <motion.main
