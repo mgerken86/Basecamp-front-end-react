@@ -5,6 +5,7 @@ const baseURL = 'https://a-lodge-basecamp.herokuapp.com'
 
 const weatherAPIKey = process.env.REACT_APP_WEATHER_API_KEY
 const trailsAPIKey = process.env.REACT_APP_TRAILS_API_KEY
+const travelAPIKey = process.env.REACT_APP_TRAVEL_API_KEY
 
 
 
@@ -198,10 +199,8 @@ export const deleteComment = (id, navigate) => {
 // gets all Topics
 export const getTopics = (setState) => {
     axios.get(`${baseURL}/topics/`)
-        // axios.get("http://localhost:8000/topics/")
         .then(res => {
             let data = res.data;
-            // console.log(data)
             setState(data);
         })
         .catch(err => { })
@@ -235,7 +234,6 @@ export const fetchTrails = (lat, lng, setState) => {
         url: 'https://trailapi-trailapi.p.rapidapi.com/trails/explore/',
         params: { lat: `${lat}`, lon: `${lng}`, per_page: '5' },
         headers: {
-            'X-RapidAPI-Key': 'b706fa8596msha33725def79a97cp1b9fc1jsn8dfd397c7442',
             'X-RapidAPI-Key': trailsAPIKey,
             'X-RapidAPI-Host': 'trailapi-trailapi.p.rapidapi.com'
         }
@@ -264,7 +262,7 @@ export const fetchRestaurants = (lat, lng, setState) => {
             lang: 'en_US'
         },
         headers: {
-            'X-RapidAPI-Key': 'b00ef5d09cmsh0fcc399427b9deap187b8djsn0c860bac4d4d',
+            'X-RapidAPI-Key': travelAPIKey,
             'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
         }
     };
@@ -291,7 +289,7 @@ export const fetchAttractions = (lat, lng, setState) => {
             lang: 'en_US'
         },
         headers: {
-            'X-RapidAPI-Key': 'b00ef5d09cmsh0fcc399427b9deap187b8djsn0c860bac4d4d',
+            'X-RapidAPI-Key': travelAPIKey,
             'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
         }
     };
