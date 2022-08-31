@@ -1,9 +1,8 @@
 import axios from "axios";
 
 
+// const baseURL = 'localhost://'
 const baseURL = 'https://a-lodge-basecamp.herokuapp.com'
-
-
 
 
 // used to retrieve all gear_items
