@@ -1,6 +1,6 @@
 import axios from "axios";
 
-
+const developmentURL = "http://localhost:8000/"
 const baseURL = 'https://a-lodge-basecamp.herokuapp.com'
 
 const weatherAPIKey = process.env.REACT_APP_WEATHER_API_KEY
@@ -15,7 +15,6 @@ export const getGear = (setState) => {
     axios.get(`${baseURL}/rentals/`)
         .then(res => {
             let data = res.data;
-            // console.log(data)
             setState(data);
         })
         .catch(err => { })
@@ -33,10 +32,10 @@ export const postGear = (setState, formData, starterData) => {
             image_url: formData.image_url,
         })
         .then((res) => {
-
         })
-        .catch((err) => { });
-
+        .catch((err) => { 
+            console.log(err)
+        });
     setState(starterData)
 };
 
@@ -44,7 +43,6 @@ export const postGear = (setState, formData, starterData) => {
 // edit gear item
 export const editGear = (id, formData) => {
     axios
-        // .put(`${baseURL}/rentals/${id}`, {
         .put(`${baseURL}/rentals/${id}`, {
             name: formData.name,
             desc: formData.desc,
@@ -53,7 +51,6 @@ export const editGear = (id, formData) => {
             image_url: formData.image_url
         })
         .then((res) => {
-            console.log(res.data)
         })
         .catch((err) => { });
 };
@@ -65,10 +62,11 @@ export const getReservations = (setState) => {
     axios.get(`${baseURL}/reservations/`)
         .then(res => {
             let data = res.data;
-            // console.log(data)
             setState(data);
         })
-        .catch(err => { })
+        .catch(err => { 
+            console.log(err)
+        })
 }
 
 
@@ -77,10 +75,11 @@ export const getUserReservations = (setState, id) => {
     axios.get(`${baseURL}/myaccount/${id}`)
         .then(res => {
             let data = res.data;
-            // console.log(data)
             setState(data);
         })
-        .catch(err => { })
+        .catch(err => {
+            console.log(err)
+         })
 }
 
 
@@ -114,17 +113,14 @@ export const editReservation = (id, data, user) => {
 // gets all Posts
 export const getPosts = (setState, topic) => {
     axios.get(`${baseURL}/posts/`)
-        // axios.get(`http://localhost:8000/posts/`)
         .then(res => {
             let data = res.data;
-            // console.log(data)
             if (topic === 'all') {
                 setState(data);
             } else {
                 let filteredPosts = data.filter(post => post.this_topic === topic)
                 setState(filteredPosts)
             }
-
         })
         .catch(err => { })
 }
@@ -139,7 +135,6 @@ export const editPost = (id, data, navigate) => {
         body: data.body,
     })
         .then((res) => {
-            // console.log(res)
             navigate(0)
         })
         .catch((err) => console.log(err));
@@ -159,11 +154,8 @@ export const deletePost = (id) => {
 // gets single Post Comments
 export const getPostComments = (setState, postId) => {
     axios.get(`${baseURL}/comments/`)
-        // axios.get(`http://localhost:8000/comments/`)
         .then(res => {
-            // console.log(res.data)
             const newData = [...res.data].filter(object => object.this_post === postId)
-            // console.log('new Data: ', newData)
             setState(newData);
         })
         .catch(err => { })
