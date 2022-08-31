@@ -33,6 +33,8 @@ export default function ReservationsIndexPage() {
                 dates.push(current.format("YYYY-MM-DD"))
             }
             // console.log(dates)
+            dates.forEach(date => reservation.qty+=10)
+            console.log(reservation)
             setDateRanges(dates)
         })
     }
@@ -45,8 +47,9 @@ export default function ReservationsIndexPage() {
     }, [reservations])
 
     useEffect(() => {
-        // console.log(dateRanges)
+        console.log("reservations: ",reservations)
     }, [dateRanges])
+
 
 
     return (
