@@ -25,39 +25,36 @@ export default function ReservationsIndexPage() {
 
 
     const getDateRange = () => {
+        let dates = []
         reservations.map(reservation => {
             // get the gear item of the reservation
-            let gearItem = gear.filter(item => item.id === reservation.gear_item[0].id)
-            console.log('gearItem: ', gearItem)
-            let dates = []
+            // let gearItem = gear.filter(item => item.id === reservation.gear_item[0].id)
             let startDate = moment(reservation.start_date)
             let endDate = moment(reservation.end_date)
             for (let current = startDate; current <= endDate; current.add(1, 'd')) {
-                dates.push(current.format("YYYY-MM-DD"))
+                dates.push({
+                    date: current.format("YYYY-MM-DD"),
+                    gearItem: reservation.gear_item[0].id,
+                    qty: reservation.qty
+                })
             }
-            console.log(dates)
-            // dates.forEach(date => gearItem[0].qty+=10)
-            // console.log(reservation)
-
-            
-
-            setDateRanges(dates)
+            // console.log('DATES: ',dates)
+            // dates.forEach(date => gearItem[0].qty -= reservation.qty)
+            // console.log('reservation: ', reservation)
         })
+        setDateRanges(dates)
     }
+
+
     useEffect(() => {
         getReservations(setReservations)
-    }, [])
-    useEffect(() => {
         getGear(setGear)
     }, [])
+ 
 
     useEffect(() => {
         getDateRange()
     }, [reservations])
-
-    useEffect(() => {
-        // console.log("reservations: ",reservations)
-    }, [dateRanges])
 
     return (
         <motion.main
@@ -82,7 +79,7 @@ export default function ReservationsIndexPage() {
                 
                 {showForm &&
                     <div>
-                        <NewReservationForm user={user}/>
+                        <NewReservationForm user={user} dateRanges={dateRanges} gear={gear}/>
                     </div>}
                 <Calendar
                     localizer={localizer}

@@ -4,18 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { getGear } from '../../utils/axiosRequests'
 
 
-export default function NewReservationForm({ user }) {
+export default function NewReservationForm({ user, gear, dateRanges }) {
     const [formData, setFormData] = useState({})
-    const [gear, setGear] = useState([])
+    // const [gear, setGear] = useState(gear)
     const navigate = useNavigate()
 
     // console.log(user)
-
-    useEffect(()=> {
-        getGear(setGear)
-    }, [])
   
-    // console.log(gear)
+    console.log(gear)
+    console.log(dateRanges)
       const changeData = (e) => {
         const newData = {
           ...formData,
