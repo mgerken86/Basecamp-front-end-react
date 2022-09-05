@@ -35,8 +35,8 @@ export default function ReservationsIndexPage() {
             for (let current = startDate; current <= endDate; current.add(1, 'd')) {
                 dates.push(current.format("YYYY-MM-DD"))
             }
-            // console.log(dates)
-            dates.forEach(date => gearItem[0].qty+=10)
+            console.log(dates)
+            // dates.forEach(date => gearItem[0].qty+=10)
             // console.log(reservation)
 
             
@@ -58,8 +58,6 @@ export default function ReservationsIndexPage() {
     useEffect(() => {
         // console.log("reservations: ",reservations)
     }, [dateRanges])
-
-    console.log(gear)
 
     return (
         <motion.main
