@@ -64,6 +64,7 @@ export default function HomePage() {
             clearTimeout(restaurantTimeout.current);
         }
     }
+
     //continously clear and re-set timeout to change trailsIndex
     useEffect(() => {
         resetTimeout();
@@ -103,7 +104,6 @@ export default function HomePage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
-            {/* <div id='vertDiv'></div> */}
             {!showHome ? <AnimationHomePage setShowHome={setShowHome} />
                 : <>
                     <div className='headerCont'>
@@ -196,7 +196,7 @@ export default function HomePage() {
                             </button>
                         </div>
                     }
-                    {/* {showRestaurantsBtns &&
+                    {showRestaurantsBtns &&
                         <div className='btnsContainer'>
                             <button onClick={() => {
                                 axiosRequests.fetchAttractions(boulder.lat, boulder.lng, setAttractionsData)
@@ -227,7 +227,7 @@ export default function HomePage() {
                                 Estes Park Attractions
                             </button>
                         </div>
-                    } */}
+                    }
 
 
                     {showTrails && trailsData.length === 5 && <div className='trailsDiv'>

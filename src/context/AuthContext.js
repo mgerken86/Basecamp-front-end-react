@@ -57,7 +57,8 @@ export const AuthProvider = ({ children }) => {
       })
     });
     if (response.status === 201) {
-      navigate("/login");
+      // navigate("/login");
+      return loginUser(username, password)
     } else {
       alert("Something went wrong!");
     }
