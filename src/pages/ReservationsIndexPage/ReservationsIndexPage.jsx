@@ -27,8 +27,6 @@ export default function ReservationsIndexPage() {
     const getDateRange = () => {
         let dates = []
         reservations.map(reservation => {
-            // get the gear item of the reservation
-            // let gearItem = gear.filter(item => item.id === reservation.gear_item[0].id)
             let startDate = moment(reservation.start_date)
             let endDate = moment(reservation.end_date)
             for (let current = startDate; current <= endDate; current.add(1, 'd')) {
@@ -38,9 +36,6 @@ export default function ReservationsIndexPage() {
                     qty: reservation.qty
                 })
             }
-            // console.log('DATES: ',dates)
-            // dates.forEach(date => gearItem[0].qty -= reservation.qty)
-            // console.log('reservation: ', reservation)
         })
         setDateRanges(dates)
     }

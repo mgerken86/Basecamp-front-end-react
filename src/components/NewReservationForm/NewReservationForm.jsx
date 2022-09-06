@@ -2,26 +2,61 @@ import { useState, useEffect } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { getGear } from '../../utils/axiosRequests'
+import moment from 'moment';
 
 
 export default function NewReservationForm({ user, gear, dateRanges }) {
-    const [formData, setFormData] = useState({})
-    // const [gear, setGear] = useState(gear)
+    const [formData, setFormData] = useState({
+        start_date: moment(),
+        end_date: moment().add(1, 'days'),
+        gear_item_ids: null,
+        qty: 0,
+    })
+    const [gearItems, setGearItems] = useState([])
     const navigate = useNavigate()
+    const [searchDates, setSearchDates] = useState([])
 
-    // console.log(user)
-  
-    console.log(gear)
-    console.log(dateRanges)
-      const changeData = (e) => {
+    // console.log(gear)
+    // console.log(dateRanges)
+
+    const handleSearch = (start, end) => {
+        let dates = []
+        for (let current = moment(start); current <= moment(end); current.add(1, 'd')) {
+            dates.push({
+                day: current.format("YYYY-MM-DD"),
+                //create new objects for each day's gear to keep from mutating the original gear object
+                gear: gear.map(item => Object.assign({}, item))
+            })
+        }
+        dates.forEach(day => {
+            let reservations = dateRanges.filter(date => date.date == day.day)
+            if (!reservations.length) return day
+            day.gear.map((item, i) => {
+                reservations.forEach(reservation => {
+                    if (item.id === reservation.gearItem) {
+                        console.log('HELLO')
+                        item.qty -= reservation.qty
+                        return item
+                    }
+                })
+            })
+        })
+        let gearFilter = dates.map(day => day.gear.map(gear => Math.min(gear.qty)))
+        setGearItems(gearFilter)
+        console.log(gearFilter)
+    }
+
+
+
+    const changeData = (e) => {
         const newData = {
-          ...formData,
-          [e.target.name]: e.target.value,
+            ...formData,
+            [e.target.name]: e.target.value,
         };
         setFormData(newData);
-      }
-  
-      const handleSubmit = () => {
+    }
+
+    const handleSubmit = () => {
         console.log(formData)
         axios
             .post("https://a-lodge-basecamp.herokuapp.com/reservations/", {
@@ -36,7 +71,7 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                 console.log(res)
                 navigate(0)
             })
-            .catch((err) => {});
+            .catch((err) => { });
     };
 
     return (
@@ -57,31 +92,32 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                     <input
                         type="date"
                         name="end_date"
-                        value={formData.desc}
+                        value={formData.end_date}
                         onChange={changeData}
                         required
                     />
                 </div>
+                <button onClick={() => handleSearch(formData.start_date, formData.end_date)}>Search for Gear on These Dates</button>
                 {/* If there's gear, map through the gear items and make radio inputs for each */}
-                {gear !== null && 
-                <div>
-                    {gear.map((item, index) => {
-                        return <div key={index}>
-                        <input
-                        className="SearchInput"
-                        id={item.name}
-                        type="radio"
-                        name="gear_item_ids"
-                        value={item.id}
-                        onChange={changeData}
-                        required
-                    />
-                    <label htmlFor={item.name}>{item.name}</label>
-                    </div>
-                    })}
-                    
-                    
-                </div>}
+                {gearItems !== null &&
+                    <div>
+                        {gearItems.map((item, index) => {
+                            return <div key={index}>
+                                <input
+                                    className="SearchInput"
+                                    id={item.name}
+                                    type="radio"
+                                    name="gear_item_ids"
+                                    value={item.id}
+                                    onChange={changeData}
+                                    required
+                                />
+                                <label htmlFor={item.name}>{item.name}</label>
+                            </div>
+                        })}
+
+
+                    </div>}
                 <div>
                     <label>Quantity</label>
                     <input
