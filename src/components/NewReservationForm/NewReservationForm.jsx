@@ -41,9 +41,18 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                 })
             })
         })
-        let gearFilter = dates.map(day => day.gear.map(gear => Math.min(gear.qty)))
-        setGearItems(gearFilter)
-        console.log(gearFilter)
+        let gearMap = dates.map(day => day.gear)
+        let gearFlatten = gearMap.reduce((prev, curr) => prev.concat(curr), [])
+        console.log(gearFlatten)
+        let gearReduce = gearFlatten.reduce((prev, curr) => {
+            // console.log(prev.id, curr.id)
+            if(prev.id == curr.id){
+                return prev.qty < curr.qty ? prev : curr
+            }
+        })
+        console.log(gearReduce)
+        setGearItems(gearMap)
+        // console.log(gearMap)
     }
 
 
@@ -99,9 +108,9 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                 </div>
                 <button onClick={() => handleSearch(formData.start_date, formData.end_date)}>Search for Gear on These Dates</button>
                 {/* If there's gear, map through the gear items and make radio inputs for each */}
-                {gearItems !== null &&
+                {gear !== null &&
                     <div>
-                        {gearItems.map((item, index) => {
+                        {gear.map((item, index) => {
                             return <div key={index}>
                                 <input
                                     className="SearchInput"
