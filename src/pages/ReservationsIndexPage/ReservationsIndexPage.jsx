@@ -89,23 +89,6 @@ export default function ReservationsIndexPage() {
                     style={{ height: 800 }}
                 />
             </div>
-            {/* <div className='allReservations'>
-                {reservations.map((reservation, index) => {
-                    return <div key={index} className='rezCont'>
-                        <p>Start Date: {reservation.start_date}</p>
-                        <p>End Date: {reservation.end_date}</p>
-                        {reservation.gear_item.map((gear, index) => {
-                            return <div key={index}>
-                                <h3>Gear Item:</h3>
-                                <p>{gear.name}</p>
-                                <p>${gear.price}</p>
-                                <p>Quantity: {reservation.qty}</p>
-                            </div>
-                        })}
-
-                    </div>
-                })}
-            </div> */}
         </motion.main>
     )
 }
