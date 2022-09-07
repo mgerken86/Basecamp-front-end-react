@@ -9,7 +9,7 @@
     padding: 1em;
 }
 
-#resForm button {
+.centeredBtn, #quantityCont button {
     width: 50%;
     align-self: center;
     justify-self: center;
@@ -56,5 +56,15 @@
 }
 
 #quantityCont input{
-    width: 60%;
+    width: 90%;
+}
+#quantityCont .inputCont{
+    width: 90%;
+}
+#quantityCont {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
