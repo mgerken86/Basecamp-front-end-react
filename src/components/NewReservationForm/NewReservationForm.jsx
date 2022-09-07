@@ -1,3 +1,4 @@
+import './NewReservationForm.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
@@ -6,24 +7,24 @@ import moment from 'moment';
 
 
 export default function NewReservationForm({ user, gear, dateRanges }) {
+    const [gearItems, setGearItems] = useState([])
+    const navigate = useNavigate()
+    const [gearByDates, setGearByDates] = useState([])
     const [formData, setFormData] = useState({
         start_date: moment(),
         end_date: moment().add(1, 'days'),
         gear_item_ids: null,
         qty: 0,
     })
-    const [gearItems, setGearItems] = useState([])
-    const navigate = useNavigate()
-    const [gearByDates, setgearByDates] = useState([])
 
     // console.log(gear)
     // console.log(dateRanges)
 
-    const handleSearch = (start, end) => {
+    const handleSearch = async (start, end) => {
         let dates = []
         for (let current = moment(start); current <= moment(end); current.add(1, 'd')) {
             dates.push({
-                day: current.format("MM-DD-YYYY"),
+                day: current.format("YYYY-MM-DD"),
                 //create new objects for each day's gear to keep from mutating the original gear object
                 gear: gear.map(item => Object.assign({}, item))
             })
@@ -41,6 +42,7 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
             })
         })
         let gearMap = dates.map(day => day.gear)
+        console.log(gearMap)
         //combine the gearMap arrays into one array
         let gearFlatten = gearMap.reduce((prev, curr) => prev.concat(curr), [])
         //reduce into just an array of each gear item with the lowest qty during all of the dates
@@ -57,8 +59,10 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
             return acc
         }, [])
 
+        console.log(result)
+        console.log(gearMap)
         setGearItems(result)
-        setgearByDates(gearMap)
+        setGearByDates(gearMap)
     }
 
 
@@ -128,7 +132,7 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                                     required
                                 />
                                 <label htmlFor={item.name}>
-                                    <span>{item.name}</span> (Quantity in stock: {item.qty})
+                                    <span id='gearSpan'>{item.name}</span> (Quantity in stock: {item.qty})
                                 </label>
                             </div>
                         })}
