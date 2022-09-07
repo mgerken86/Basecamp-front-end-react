@@ -26,7 +26,7 @@
     font-size: 1.5em;
     font-weight: bolder;
     align-self: center;
-    margin: 1em auto;
+    margin: 1em auto 0;
 }
 #calendarBtn:hover {
     background-color: var(--dGray);

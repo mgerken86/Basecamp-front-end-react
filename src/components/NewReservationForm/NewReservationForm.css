@@ -1,3 +1,16 @@
+#resForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2em auto;
+}
+#resForm button {
+    width: 50%;
+    align-self: center;
+    justify-self: center;
+}
+
 #boldSpan{
     font-size: 1.5em;
     font-family: bold;
@@ -26,14 +39,19 @@
 .gearInputCont {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    /* justify-content: space-around; */
+    align-items: stretch;
     background-color: var(--aGray);
     margin: 1em auto;
     padding: 1em;
     border-bottom: 3px solid var(--dGray);
     border-top: 3px solid var(--dGray);
-
+    width: 100%;
 }
 .gearInputCont * {
     margin: .5em .1em;
+}
+
+#quantityCont input{
+    width: 60%;
 }

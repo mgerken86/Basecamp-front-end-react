@@ -91,7 +91,7 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
     };
 
     return (
-        <main>
+        <div id="resForm">
             <div className="listSearch" id="borderCont">
                 <div className='inputCont'>
                     <label><span id='boldSpan'>Start Date</span></label>
@@ -135,7 +135,7 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                             </div>
                         })}
                         </div>
-                        {formData.gear_item_ids && <>
+                        {formData.gear_item_ids && <div id="quantityCont">
                             <div className='inputCont'>
                                 <label><span id='boldSpan'>Quantity</span></label>
                                 <input
@@ -157,10 +157,10 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                                 }}>
                                 Reserve {(gearItems.find(item => item.id == formData.gear_item_ids).name)}
                             </button>
-                        </>}
+                        </div>}
 
                     </div>}
             </div>
-        </main>
+        </div>
     )
 }
