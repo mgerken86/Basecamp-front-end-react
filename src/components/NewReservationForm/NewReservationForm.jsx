@@ -34,7 +34,6 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
             day.gear.map((item, i) => {
                 reservations.forEach(reservation => {
                     if (item.id === reservation.gearItem) {
-                        console.log('HELLO')
                         item.qty -= reservation.qty
                         return item
                     }
@@ -44,13 +43,53 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
         let gearMap = dates.map(day => day.gear)
         let gearFlatten = gearMap.reduce((prev, curr) => prev.concat(curr), [])
         console.log(gearFlatten)
-        let gearReduce = gearFlatten.reduce((prev, curr) => {
-            // console.log(prev.id, curr.id)
-            if(prev.id == curr.id){
-                return prev.qty < curr.qty ? prev : curr
+        // let gearReduce = gearFlatten.reduce((prev, curr) => {
+        //     // console.log(prev.id, curr.id)
+        //     if(prev.id == curr.id){
+        //         return prev.qty < curr.qty ? prev : curr
+        //     }
+        // })
+
+        // for (let i = 0; i < gearFlatten.length; i++) {
+        //     for (let j = i++; j < gearFlatten.length; j++) {
+        //         if (gearFlatten[i].id === gearFlatten[j].id) {
+        //             if (gearFlatten[i].qty > gearFlatten[j].qty) {
+        //                 gearFlatten[i].qty = gearFlatten[j].qty
+        //             }
+        //             gearFlatten.splice(j, 1)
+        //         }
+        //     }
+        // }
+        // for (let i = 0; i < gearFlatten.length; i++) {
+        //     for (let j = gearFlatten.length -1; j > i; j--) {
+        //         if (gearFlatten[i].id === gearFlatten[j].id) {
+        //             if (gearFlatten[i].qty > gearFlatten[j].qty) {
+        //                 gearFlatten[i].qty = gearFlatten[j].qty
+        //             }
+        //             gearFlatten.pop()
+        //             j = gearFlatten.length -1
+        //         }
+        //     }
+        // }
+
+        let result = gearFlatten.reduce((acc, curr) => {
+            console.log(acc)
+            const index = acc.findIndex(item => item.id === curr.id)
+            console.log(index)
+            if (index < 0){
+                acc.push(curr)
+            } else {
+                    let qty = acc[index].qty 
+                    if (qty < curr.qty){
+                        qty = curr.qty
+                    }
             }
-        })
-        console.log(gearReduce)
+            return acc
+        }, [])
+
+
+        console.log(result)
+        console.log(gearMap)
         setGearItems(gearMap)
         // console.log(gearMap)
     }
