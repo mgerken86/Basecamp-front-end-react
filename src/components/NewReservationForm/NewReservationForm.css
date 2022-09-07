@@ -5,6 +5,10 @@
     align-items: center;
     margin: 2em auto;
 }
+.listSearch {
+    padding: 1em;
+}
+
 #resForm button {
     width: 50%;
     align-self: center;
@@ -39,7 +43,6 @@
 .gearInputCont {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
     align-items: stretch;
     background-color: var(--aGray);
     margin: 1em auto;

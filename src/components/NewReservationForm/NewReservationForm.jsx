@@ -113,7 +113,12 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                         required
                     />
                 </div>
-                <button onClick={() => handleSearch(formData.start_date, formData.end_date)}>Search for Gear on These Dates</button>
+                <button 
+                onClick={() => handleSearch(formData.start_date, formData.end_date)}
+                className="centeredBtn"
+                >
+                    Search for Gear on These Dates
+                    </button>
                 {/* If there's gear, map through the gear items and make radio inputs for each */}
                 {gearItems.length > 0 &&
                     <div className='listSearch'>
@@ -151,7 +156,7 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                                 <output><span id='boldSpan'>{formData.qty}</span></output>
                             </div>
                             {/* onClick function sets the state of the rooms to the new input arguments */}
-                            <button
+                            <button className='centeredBtn'
                                 onClick={() => {
                                     handleSubmit()
                                 }}>
