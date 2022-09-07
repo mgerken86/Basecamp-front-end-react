@@ -121,7 +121,8 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                     <div className='listSearch'>
                         <div className="gearInputCont">
                             {gearItems.map((item, index) => {
-                                return <div key={index}>
+                               return <div key={index}>
+                                {item.qty > 0 ? <>
                                     <input
                                         className="SearchInput"
                                         id={item.name}
@@ -132,17 +133,10 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                                         required
                                     />
                                     <label htmlFor={item.name}>
-                                        {item.qty > 0
-                                            ? <>
-                                                <span id='boldSpan'>{item.name}</span> (Quantity in stock: {item.qty})
-                                            </>
-                                            : <>
-                                                Sorry, <span id='boldSpan'>{item.name}</span> is out of stock for these dates
-                                            </>
-                                        }
-
+                                        <span id='boldSpan'>{item.name}</span> (Quantity in stock: {item.qty})
                                     </label>
-                                </div>
+                                    </> : <div style={{color: 'var(--aRed)'}}>Sorry, <span id='boldSpan'>{item.name}</span> is out of stock for these dates</div>}
+                                </div> 
                             })}
                         </div>
                         {formData.gear_item_ids && <div id="quantityCont">

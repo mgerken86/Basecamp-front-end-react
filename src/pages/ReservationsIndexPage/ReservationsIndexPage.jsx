@@ -25,7 +25,6 @@ export default function ReservationsIndexPage() {
 
 
     const getDateRange = () => {
-        console.log(reservations)
         let dates = []
         reservations.map(reservation => {
             let startDate = moment(reservation.start_date)
