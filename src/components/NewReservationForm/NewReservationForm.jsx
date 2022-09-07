@@ -17,9 +17,6 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
         qty: 0,
     })
 
-    // console.log(gear)
-    // console.log(dateRanges)
-
     const handleSearch = async (start, end) => {
         let dates = []
         for (let current = moment(start); current <= moment(end); current.add(1, 'd')) {
@@ -44,8 +41,6 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
         let gearMap = dates.map(day => day.gear)
         //combine the gearMap arrays into one array
         let gearFlatten = gearMap.reduce((prev, curr) => prev.concat(curr), [])
-        console.log(gearMap)
-        console.log(gearFlatten)
         //reduce into just an array of each gear item with the lowest qty during all of the dates
         let result = gearFlatten.reduce((acc, curr) => {
             const index = acc.findIndex(item => item.id === curr.id)
@@ -53,12 +48,10 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                 acc.push(Object.assign({}, curr))
             } else {
                 let qty = acc[index].qty
-                console.log(qty, curr)
                 if (curr.qty < qty) {
                     acc[index].qty = curr.qty
                 }
             }
-            console.log(acc)
             return acc
         }, [])
 
