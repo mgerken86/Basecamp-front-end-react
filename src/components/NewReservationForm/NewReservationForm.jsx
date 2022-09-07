@@ -160,7 +160,7 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                                     handleSubmit()
                                 }}>
                                 Reserve {(gearItems.find(item => item.id == formData.gear_item_ids).name)}
-                            </button> : <h1>You must be logged in to reserve a {(gearItems.find(item => item.id == formData.gear_item_ids).name)}</h1>
+                            </button> : <h1 style={{textAlign: 'center'}}>You must be logged in to reserve a {(gearItems.find(item => item.id == formData.gear_item_ids).name)}</h1>
                             }
 
                         </div>}
