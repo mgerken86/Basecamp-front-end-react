@@ -42,7 +42,6 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
             })
         })
         let gearMap = dates.map(day => day.gear)
-        console.log(gearMap)
         //combine the gearMap arrays into one array
         let gearFlatten = gearMap.reduce((prev, curr) => prev.concat(curr), [])
         //reduce into just an array of each gear item with the lowest qty during all of the dates
@@ -59,8 +58,6 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
             return acc
         }, [])
 
-        console.log(result)
-        console.log(gearMap)
         setGearItems(result)
         setGearByDates(gearMap)
     }
@@ -95,9 +92,9 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
 
     return (
         <main>
-            <div className="listSearch">
-                <div>
-                    <label>Start Date</label>
+            <div className="listSearch" id="borderCont">
+                <div className='inputCont'>
+                    <label><span id='boldSpan'>Start Date</span></label>
                     <input
                         type="date"
                         name="start_date"
@@ -106,8 +103,8 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                         required
                     />
                 </div>
-                <div>
-                    <label>End Date</label>
+                <div className='inputCont'>
+                    <label><span id='boldSpan'>End Date</span></label>
                     <input
                         type="date"
                         name="end_date"
@@ -118,8 +115,9 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                 </div>
                 <button onClick={() => handleSearch(formData.start_date, formData.end_date)}>Search for Gear on These Dates</button>
                 {/* If there's gear, map through the gear items and make radio inputs for each */}
-                {gearItems !== null &&
-                    <div>
+                {gearItems.length > 0 &&
+                    <div className='listSearch'>
+                        <div className="gearInputCont">
                         {gearItems.map((item, index) => {
                             return <div key={index}>
                                 <input
@@ -132,33 +130,36 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                                     required
                                 />
                                 <label htmlFor={item.name}>
-                                    <span id='gearSpan'>{item.name}</span> (Quantity in stock: {item.qty})
+                                    <span id='boldSpan'>{item.name}</span> (Quantity in stock: {item.qty})
                                 </label>
                             </div>
                         })}
-
+                        </div>
+                        {formData.gear_item_ids && <>
+                            <div className='inputCont'>
+                                <label><span id='boldSpan'>Quantity</span></label>
+                                <input
+                                    className="SearchInput"
+                                    type="range"
+                                    min="1"
+                                    max={`${(gearItems.find(item => item.id == formData.gear_item_ids).qty)}`}
+                                    name="qty"
+                                    value={formData.qty}
+                                    onChange={changeData}
+                                    required
+                                />
+                                <output><span id='boldSpan'>{formData.qty}</span></output>
+                            </div>
+                            {/* onClick function sets the state of the rooms to the new input arguments */}
+                            <button
+                                onClick={() => {
+                                    handleSubmit()
+                                }}>
+                                Reserve {(gearItems.find(item => item.id == formData.gear_item_ids).name)}
+                            </button>
+                        </>}
 
                     </div>}
-                <div>
-                    <label>Quantity</label>
-                    <input
-                        className="SearchInput"
-                        type="number"
-                        name="qty"
-                        value={formData.qty}
-                        onChange={changeData}
-                        required
-                    />
-                </div>
-                {/* onClick function sets the state of the rooms to the new input arguments */}
-                <button
-                    className="searchBtn"
-
-                    onClick={() => {
-                        handleSubmit()
-                    }}>
-                    New Reservation
-                </button>
             </div>
         </main>
     )

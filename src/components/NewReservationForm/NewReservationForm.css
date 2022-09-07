@@ -1,4 +1,39 @@
-#gearSpan{
+#boldSpan{
     font-size: 1.5em;
     font-family: bold;
+}
+
+.inputCont {
+    display: flex;
+    margin: .6em auto;
+    justify-content: center;
+
+}
+
+.inputCont * {
+    margin: .3em
+}
+
+#borderCont {
+    border: 3px solid var(--dGray);
+    margin-bottom: 2em;
+    width: 40vw;
+}
+.listSearch button {
+    justify-self: center;
+}
+
+.gearInputCont {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--aGray);
+    margin: 1em auto;
+    padding: 1em;
+    border-bottom: 3px solid var(--dGray);
+    border-top: 3px solid var(--dGray);
+
+}
+.gearInputCont * {
+    margin: .5em .1em;
 }
