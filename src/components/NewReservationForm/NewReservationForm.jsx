@@ -155,13 +155,15 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                                 />
                                 <output><span id='boldSpan'>{formData.qty}</span></output>
                             </div>
-                            {/* onClick function sets the state of the rooms to the new input arguments */}
-                            <button className='centeredBtn'
+                            {/* if user is logged in, show button */}
+                            {user ? <button className='centeredBtn'
                                 onClick={() => {
                                     handleSubmit()
                                 }}>
                                 Reserve {(gearItems.find(item => item.id == formData.gear_item_ids).name)}
-                            </button>
+                            </button> : <h1>You must be logged in to reserve a {(gearItems.find(item => item.id == formData.gear_item_ids).name)}</h1>
+                            }
+                            
                         </div>}
 
                     </div>}
