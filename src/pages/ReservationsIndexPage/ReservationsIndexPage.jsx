@@ -45,7 +45,7 @@ export default function ReservationsIndexPage() {
         getReservations(setReservations)
         getGear(setGear)
     }, [])
- 
+
 
     useEffect(() => {
         getDateRange()
@@ -65,16 +65,15 @@ export default function ReservationsIndexPage() {
             </div>
 
             <div id='calendarCont'>
-                {user ? <button
+                <button
                     id='calendarBtn'
                     onClick={() => setShowForm(!showForm)}>
-                    New Reservation
-                </button> :
-                <h1>You must be logged in to make a reservation</h1>}
-                
+                    Search for Availability
+                </button>
+
                 {showForm &&
                     <div>
-                        <NewReservationForm user={user} dateRanges={dateRanges} gear={gear}/>
+                        <NewReservationForm user={user} dateRanges={dateRanges} gear={gear} />
                     </div>}
                 <Calendar
                     localizer={localizer}
