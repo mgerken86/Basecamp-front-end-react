@@ -14,7 +14,7 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
     })
     const [gearItems, setGearItems] = useState([])
     const navigate = useNavigate()
-    const [searchDates, setSearchDates] = useState([])
+    const [gearByDates, setgearByDates] = useState([])
 
     // console.log(gear)
     // console.log(dateRanges)
@@ -23,7 +23,7 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
         let dates = []
         for (let current = moment(start); current <= moment(end); current.add(1, 'd')) {
             dates.push({
-                day: current.format("YYYY-MM-DD"),
+                day: current.format("MM-DD-YYYY"),
                 //create new objects for each day's gear to keep from mutating the original gear object
                 gear: gear.map(item => Object.assign({}, item))
             })
@@ -31,7 +31,7 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
         dates.forEach(day => {
             let reservations = dateRanges.filter(date => date.date == day.day)
             if (!reservations.length) return day
-            day.gear.map((item, i) => {
+            day.gear.map((item) => {
                 reservations.forEach(reservation => {
                     if (item.id === reservation.gearItem) {
                         item.qty -= reservation.qty
@@ -41,57 +41,24 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
             })
         })
         let gearMap = dates.map(day => day.gear)
+        //combine the gearMap arrays into one array
         let gearFlatten = gearMap.reduce((prev, curr) => prev.concat(curr), [])
-        console.log(gearFlatten)
-        // let gearReduce = gearFlatten.reduce((prev, curr) => {
-        //     // console.log(prev.id, curr.id)
-        //     if(prev.id == curr.id){
-        //         return prev.qty < curr.qty ? prev : curr
-        //     }
-        // })
-
-        // for (let i = 0; i < gearFlatten.length; i++) {
-        //     for (let j = i++; j < gearFlatten.length; j++) {
-        //         if (gearFlatten[i].id === gearFlatten[j].id) {
-        //             if (gearFlatten[i].qty > gearFlatten[j].qty) {
-        //                 gearFlatten[i].qty = gearFlatten[j].qty
-        //             }
-        //             gearFlatten.splice(j, 1)
-        //         }
-        //     }
-        // }
-        // for (let i = 0; i < gearFlatten.length; i++) {
-        //     for (let j = gearFlatten.length -1; j > i; j--) {
-        //         if (gearFlatten[i].id === gearFlatten[j].id) {
-        //             if (gearFlatten[i].qty > gearFlatten[j].qty) {
-        //                 gearFlatten[i].qty = gearFlatten[j].qty
-        //             }
-        //             gearFlatten.pop()
-        //             j = gearFlatten.length -1
-        //         }
-        //     }
-        // }
-
+        //reduce into just an array of each gear item with the lowest qty during all of the dates
         let result = gearFlatten.reduce((acc, curr) => {
-            console.log(acc)
             const index = acc.findIndex(item => item.id === curr.id)
-            console.log(index)
-            if (index < 0){
+            if (index < 0) {
                 acc.push(curr)
             } else {
-                    let qty = acc[index].qty 
-                    if (qty < curr.qty){
-                        qty = curr.qty
-                    }
+                let qty = acc[index].qty
+                if (qty < curr.qty) {
+                    qty = curr.qty
+                }
             }
             return acc
         }, [])
 
-
-        console.log(result)
-        console.log(gearMap)
-        setGearItems(gearMap)
-        // console.log(gearMap)
+        setGearItems(result)
+        setgearByDates(gearMap)
     }
 
 
@@ -147,9 +114,9 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                 </div>
                 <button onClick={() => handleSearch(formData.start_date, formData.end_date)}>Search for Gear on These Dates</button>
                 {/* If there's gear, map through the gear items and make radio inputs for each */}
-                {gear !== null &&
+                {gearItems !== null &&
                     <div>
-                        {gear.map((item, index) => {
+                        {gearItems.map((item, index) => {
                             return <div key={index}>
                                 <input
                                     className="SearchInput"
@@ -160,7 +127,9 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                                     onChange={changeData}
                                     required
                                 />
-                                <label htmlFor={item.name}>{item.name}</label>
+                                <label htmlFor={item.name}>
+                                    <span>{item.name}</span> (Quantity in stock: {item.qty})
+                                </label>
                             </div>
                         })}
 
