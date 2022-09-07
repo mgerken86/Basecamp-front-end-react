@@ -110,32 +110,40 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                         required
                     />
                 </div>
-                <button 
-                onClick={() => handleSearch(formData.start_date, formData.end_date)}
-                className="centeredBtn"
+                <button
+                    onClick={() => handleSearch(formData.start_date, formData.end_date)}
+                    className="centeredBtn"
                 >
                     Search for Gear on These Dates
-                    </button>
+                </button>
                 {/* If there's gear, map through the gear items and make radio inputs for each */}
                 {gearItems.length > 0 &&
                     <div className='listSearch'>
                         <div className="gearInputCont">
-                        {gearItems.map((item, index) => {
-                            return <div key={index}>
-                                <input
-                                    className="SearchInput"
-                                    id={item.name}
-                                    type="radio"
-                                    name="gear_item_ids"
-                                    value={item.id}
-                                    onChange={changeData}
-                                    required
-                                />
-                                <label htmlFor={item.name}>
-                                    <span id='boldSpan'>{item.name}</span> (Quantity in stock: {item.qty})
-                                </label>
-                            </div>
-                        })}
+                            {gearItems.map((item, index) => {
+                                return <div key={index}>
+                                    <input
+                                        className="SearchInput"
+                                        id={item.name}
+                                        type="radio"
+                                        name="gear_item_ids"
+                                        value={item.id}
+                                        onChange={changeData}
+                                        required
+                                    />
+                                    <label htmlFor={item.name}>
+                                        {item.qty > 0
+                                            ? <>
+                                                <span id='boldSpan'>{item.name}</span> (Quantity in stock: {item.qty})
+                                            </>
+                                            : <>
+                                                Sorry, <span id='boldSpan'>{item.name}</span> is out of stock for these dates
+                                            </>
+                                        }
+
+                                    </label>
+                                </div>
+                            })}
                         </div>
                         {formData.gear_item_ids && <div id="quantityCont">
                             <div className='inputCont'>
@@ -160,7 +168,7 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
                                 Reserve {(gearItems.find(item => item.id == formData.gear_item_ids).name)}
                             </button> : <h1>You must be logged in to reserve a {(gearItems.find(item => item.id == formData.gear_item_ids).name)}</h1>
                             }
-                            
+
                         </div>}
 
                     </div>}
