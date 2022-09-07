@@ -44,17 +44,21 @@ export default function NewReservationForm({ user, gear, dateRanges }) {
         let gearMap = dates.map(day => day.gear)
         //combine the gearMap arrays into one array
         let gearFlatten = gearMap.reduce((prev, curr) => prev.concat(curr), [])
+        console.log(gearMap)
+        console.log(gearFlatten)
         //reduce into just an array of each gear item with the lowest qty during all of the dates
         let result = gearFlatten.reduce((acc, curr) => {
             const index = acc.findIndex(item => item.id === curr.id)
             if (index < 0) {
-                acc.push(curr)
+                acc.push(Object.assign({}, curr))
             } else {
                 let qty = acc[index].qty
-                if (qty < curr.qty) {
-                    qty = curr.qty
+                console.log(qty, curr)
+                if (curr.qty < qty) {
+                    acc[index].qty = curr.qty
                 }
             }
+            console.log(acc)
             return acc
         }, [])
 
